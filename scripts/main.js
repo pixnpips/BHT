@@ -205,6 +205,7 @@ $(document).ready(function () {
     };
     
     function start(){
+      $("tr").css("background-color", "rgb(190, 229, 255)");
       $(".kreis").css("background-color", "rgb(79, 202, 54)");
       let startinput= document.getElementById("eingabefeld").value;
       input=startinput;
