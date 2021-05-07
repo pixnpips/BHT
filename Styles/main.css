@@ -1,0 +1,477 @@
+
+/* ------------------------------------KLassen und Elemente-------------------------------------------*/ 
+.mybody{
+    background-color: white ;
+    margin: 50px;
+}
+
+.myh1{
+    color: #000000;
+    font-size: 30px; font-family: Calibri;
+    text-align: center;  
+}
+
+.myh2 {
+    color: #000000;
+    font-size: 25px; font-family: Calibri;
+    text-align: center;
+}
+
+.mytd{
+    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-weight:bold;
+    color: #000000;
+    width: 600px; 
+    height:20px;
+    border: 2px solid rgb(0, 0, 0);
+    color:rgb(0, 0, 0);
+    margin: 5px;
+    text-align: center;
+}
+
+.mytdm{
+    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-weight:bolder;
+    font-size: larger;
+    text-align: center;
+    color: #000000;
+    width: 600px; 
+    height:30px;
+    border: 2px solid rgb(0, 0, 0);
+    color:rgb(0, 0, 0);
+    margin: 5px;
+    background-color:  rgb(123, 167, 233);
+}
+
+
+.mytable{
+    border: 2px solid rgb(0, 0, 0);
+    color:rgb(0, 0, 0);
+    margin: 5px;
+}
+
+.mytr{
+    border: 2px solid rgb(0, 0, 0);
+    color:rgb(0, 0, 0);
+    margin: 5px;
+}
+
+
+p{  
+    color: #000000;
+    font-size: 20px; font-family: Calibri;
+    text-align: center;  
+    margin: 5px;  
+}
+
+#ptupel{
+    padding:0px;
+    margin:0px;
+    font-weight: bold;
+    
+}
+
+/* ------------------------------------Boxen divers-------------------------------------------*/ 
+
+
+.meinebox{
+	border: 2px solid black;	
+	background: rgb(190, 229, 255);	
+    color: rgb(0, 0, 0);
+    font-size: 15px; 
+}
+
+#boxc{
+    width: 1300px;
+    height: 130px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#boxbut{
+    height: 50px;
+    width:1300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    border-top: 5px;
+    z-index: 5;
+}
+
+#big{
+    margin-top: 15px;
+    background-color: rgb(65, 127, 221);
+    width: 1300px;
+    height:560px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;	
+}
+
+#eingabebox{
+    float:left;
+    width: 305px;
+    height: 128px;
+    border-right: 2px solid black;
+}
+
+/* ------------------------------------divs Oben-------------------------------------------*/ 
+
+#eingabefeld{
+    margin-left:7px;
+    background-color:rgb(243, 243, 243); 
+    width:290px;
+}
+
+
+#status{
+    float:left;
+    width:700px;
+    height:128px;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+
+#kommentare{
+    float: left;
+    width:280px;
+    height: 128px;
+}
+
+
+
+#boxt{
+    float:left;
+    width: 300px;
+    height: 500px;
+    margin: 30px;
+    border-bottom: 2px solid black;
+    
+}
+#boxg{
+    float:left;
+    width: 900px;
+    height: 500px;
+    margin-top:30px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+}
+
+#boxtupel{
+    margin:5px;
+    background: rgb(190, 229, 255);
+    height:130px;	
+
+}
+
+/* ------------------------------------Buttons-------------------------------------------*/ 
+.b1{
+    float:left;
+    margin-left: 6px;
+    margin-right: 5px;
+    width: 15.8%;
+    background-color: rgb(65, 127, 221);
+    color: #ffffff;
+    border-radius: 5px;
+    margin-top: 8px;
+}
+
+.b2{
+    float:left;
+    margin-left: 6px;
+    margin-right: 5px;
+    width: 15.8%;
+    background-color: rgb(43, 130, 58);
+    color: #ffffff;
+    border-radius: 5px;
+    margin-top: 8px;
+}
+
+#but7{
+    width:200px;
+}
+
+/* ------------------------------------Kreise/Zustände-------------------------------------------*/ 
+
+.kreis{ 
+    width: 50px;
+    height: 50px;
+    background-color: rgb(79, 202, 54); 
+    border-radius: 25px;   
+    border: 2px solid black;
+    text-align: center;
+    font-family: Calibri,'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-size: 25px;
+    display: flex;
+	align-items: center;
+	justify-content: center;
+    z-index: 2;
+}
+
+
+
+#k1{
+    position: relative;
+    top:170px;
+    left:200px;
+}
+
+#k2{
+    position: relative;
+    top:50px;
+    left:350px;
+}
+
+
+#k3{
+    position: relative;
+    top:150px;
+    left:350px;
+}
+
+#k4{
+    position: relative;
+    bottom:50px;
+    left:500px;
+}
+
+#k5{
+    position: relative;
+    top:50px;
+    left:500px;
+}
+
+#k6{
+    position: relative;
+    bottom:75px;
+    left:650px;
+}
+
+/* ------------------------------------Pfeile-------------------------------------------*/ 
+.pfeil{
+    width: 120px;
+}
+
+#p1{
+    position: relative;
+    bottom:160px;
+    left: 80px;
+    transform: rotate(0deg);
+}
+
+#p2{
+    position: relative;
+    bottom:123px;
+    left: 115px;
+    transform: rotate(29deg);
+}
+
+#p3{
+    position: relative;
+    bottom:200px;
+    left: -8px;
+    transform: rotate(-29deg);
+}
+
+#p4{
+    position: relative;
+    bottom:200px;
+    left:168px;
+    transform: rotate(28deg);
+}
+
+#p5{
+    position: relative;
+    left:45px;
+    bottom:120px;
+    transform: rotate(-28deg);
+}
+
+#p6{
+    position: relative;
+    right: 222px;
+    bottom: 82px;
+    transform: rotate(0deg);
+    object-position:-18px;
+}
+
+#p7{
+    position: relative;
+    right:346px;
+    bottom:232px;
+    transform: rotate(0deg);
+    object-position:-18px;
+}
+
+#p8{
+    position: relative;
+    left:468px;
+    bottom:292px;
+    transform: rotate(270deg);
+    object-position:-19px;
+}
+
+#p9{
+    position: relative;
+    left:251px;
+    bottom:282px;
+    transform: rotate(134deg);
+    width:145px;
+    height:125px;
+}
+
+#p10{
+    position: relative;
+    bottom:280px;
+    left: 425px;
+    transform: rotate(0deg);
+}
+
+#p11{
+    position: relative;
+    bottom:620px;
+    left: 20px;
+    width: 100px;
+}
+
+#p12{
+    position: relative;
+    bottom:370px;
+    left: -85px;
+    transform: rotateX(180deg);
+    width: 100px;
+}
+
+
+
+/* ------------------------------------Eingabezeichen-------------------------------------------*/ 
+#start{
+
+    position:relative ;
+    bottom:375px;
+    left: 30px;
+}
+#ende{
+    position:relative ;
+    bottom:420px;
+    left: 818px;
+}
+
+#B{
+    position:relative ;
+    bottom:490px;
+    left: 120px;
+}
+#TU{
+    position:relative ;
+    bottom:530px;
+    left: 250px;
+}
+
+#P{
+    position:relative ;
+    bottom:420px;
+    left: 220px;
+}
+#S{
+    position:relative ;
+    bottom:590px;
+    left:285px;
+}
+
+#T2{
+    position:relative ;
+    bottom:340px;
+    left: 260px;
+}
+#X{
+    position:relative ;
+    bottom:485px;
+    left: 310px;
+}
+#X2{
+    position:relative ;
+    bottom:560px;
+    left: 280px;
+}
+#V{
+    position:relative ;
+    bottom:370px;
+    left: 250px;
+}
+#P20{
+    position:relative;
+    bottom:460px;
+    left: 320px;
+}
+#S2{
+    position:relative ;
+    bottom:530px;
+    left: 360px;
+}
+#V2{
+    position:relative ;
+    bottom:410px;
+    left: 340px;
+}
+#E{
+    position:relative ;
+    bottom:490px;
+    left: 460px;
+}
+
+#speed{
+    position:relative ;
+    bottom:400px;
+    left: 660px;
+}
+#slider{
+    width: 200px;
+}
+
+#tr10{
+    
+}
+
+
+#tr11{}
+
+
+
+#tr12{}
+
+
+
+#tr21{}
+
+
+
+#tr22{}
+
+
+
+#tr31{}
+
+#tr32{}
+
+#tr41{}
+
+
+
+#tr42{}
+
+
+
+#tr51{}
+
+
+
+#tr52{}
+
+
+
+#tr61{}
+
+
+
