@@ -277,7 +277,7 @@ $(document).ready(function () {
           case "S":
             $("#k2").css("background-color", "yellow");
             $("#tr21").css("background-color", "rgb(250, 250, 58)");
-            setTimeout(k2green,(2*time/3));
+            setTimeout(k2green,(3*time/4));
             if(!stepstate){
               setTimeout(state2,time);
             }else{
@@ -323,7 +323,7 @@ $(document).ready(function () {
           case "T":
             $("#tr31").css("background-color", "rgb(250, 250, 58)");
             $("#k3").css("background-color", "yellow");
-            setTimeout(k3green,(2*time/3));
+            setTimeout(k3green,(3*time/4));
             if(!stepstate){
               setTimeout(state3,time);
             }else{
@@ -471,6 +471,7 @@ $(document).ready(function () {
     function finished(){
       $("#statustext").text("Simulation erfolgreich abgeschlosen");
       $("#status").css("background-color", "rgb(79, 202, 54)");
+      $("#tr61").css("background-color", "rgb(79, 202, 54)"); 
       currentstep=0;
       stepstate=false;
       enablebuttons();

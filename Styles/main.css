@@ -7,18 +7,18 @@
 
 .myh1{
     color: #000000;
-    font-size: 30px; font-family: Calibri;
+    font-size: 30px; font-family: Calibri, Gill Sans, Gill Sans MT, Trebuchet MS, sans-serif;
     text-align: center;  
 }
 
 .myh2 {
     color: #000000;
-    font-size: 25px; font-family: Calibri;
+    font-size: 25px; font-family: Calibri, Gill Sans, Gill Sans MT, Trebuchet MS, sans-serif;
     text-align: center;
 }
 
 .mytd{
-    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-family: Calibri, Gill Sans, Gill Sans MT, Trebuchet MS, sans-serif;
     font-weight:bold;
     color: #000000;
     width: 600px; 
@@ -30,7 +30,7 @@
 }
 
 .mytdm{
-    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-family: Calibri, Gill Sans, Gill Sans MT, Trebuchet MS, sans-serif;
     font-weight:bolder;
     font-size: larger;
     text-align: center;
@@ -59,7 +59,8 @@
 
 p{  
     color: #000000;
-    font-size: 20px; font-family: Calibri;
+    font-size: 20px; 
+    font-family: Calibri, Gill Sans, Gill Sans MT, Trebuchet MS, sans-serif;
     text-align: center;  
     margin: 5px;  
 }
@@ -188,6 +189,9 @@ p{
     margin-top: 8px;
 }
 
+#but5{
+    margin-left: 220px;
+}
 #but7{
     width:200px;
 }
