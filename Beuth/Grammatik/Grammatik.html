@@ -1,0 +1,92 @@
+
+<html lang="de">
+
+	<head>
+	<title>Grammatik</title>
+	<link rel="stylesheet" type="text/css" href="Styles/main.css"/>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-reboot.min.css">
+	<script src="jquery-3.5.1.min.js"></script>
+	<script src="scripts/main.js"></script>
+	</head>
+
+	<body>
+		<div><h1 class="myh1"> Grammatik </h1></div>
+		
+
+
+
+		<div class="meinebox" id="boxc">	
+			<div id= "eingabebox">
+				<h2 class="myh2">Tupel</h2>
+				<p class ="myp" style="font-weight: bolder;">&Sigma;={0,1,2...,8,9,+,-,/,*,(,)}<br>V={S,A,O,Z}<br> Startvariable={S}<br>Produktionsvorschrift=R</p>			
+			</div>
+			<div id="status">
+				<h2 class="myh2" style="margin-top:0px";">Info</h2>
+				<p id="statustext" style="font-weight: bolder; margin-top: 30px;">Starten der Grammatik mit Buttons</p>
+			</div>
+			<div id="version">
+				<h2 class="myh2">Version</h2>
+				<p>V.1.01 Wladimir Pushkutse</p>
+			</div>	
+		</div>
+
+		<div class="meinebox" id="boxbut">
+			<button class="b1" id="but1">generate correct</button>
+			<button class="b1" id="but2">generate wrong</button>
+			<button class="b2" id="but3">Sequence</button>
+			<button class="b2" id="but4">Step</button>
+			
+		</div>
+
+		<div id="big">
+			<div class="meinebox" id="boxt">
+				<h2 class="myh2"></h2>
+				<table class="mytable">
+					<tr class="mytr">
+						<td class="mytdm"> R </td>	
+					</tr>
+					<tr id="tr1" class="mytr">
+						<td class="mytd">S->A</td>		
+					</tr>
+				
+					<tr id="tr2" class="mytr">
+						<td class="mytd">A->AOA</td>	
+					</tr>
+			
+					<tr id="tr3" class="mytr">
+						<td class="mytd">A->(A)</td>
+					</tr>
+					<tr  id="tr4" class="mytr">
+						<td class="mytd">A->Z</td>
+					</tr>
+					<tr  id="tr5" class="mytr">
+						<td class="mytd">O-> +|-|*|/ </td>
+					</tr>
+					<tr id="tr6" class="mytr">
+						<td class="mytd">Z-> 1|2|3|4|5|6|7|8|9 </td>
+					</tr>
+					
+				</table>
+
+			</div>
+
+			<div class="meinebox" id=boxg>
+				<h2 class="myh2" style="margin-top:20px; font-size: 40px;">Output</h2>
+
+				<div style="width: 200px" id= "speed">
+					<h2 class="myh2">Animation Speed</h2>
+					<input type="range" min="0" max="2000" value="1000" step="200"id="slider">
+					<p id="speedtext"></p>
+				</div>
+
+				<div id="output"><p id=outputtext></p></div> 
+
+
+			</div>
+		</div>
+
+		<div id="docdiv"><a href="Docs.html"><button class="b1" id="but5"> Documentation</button></a></div>
+
+	</body>
+</html>
+

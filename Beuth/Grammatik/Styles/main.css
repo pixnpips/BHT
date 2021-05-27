@@ -1,0 +1,252 @@
+
+/* ------------------------------------KLassen und Elemente-------------------------------------------*/ 
+.mybody{
+    background-color: white ;
+    margin: 50px;
+}
+
+.myh1{
+    color: #000000;
+    font-size: 30px; font-family: Calibri;
+    text-align: center;  
+}
+
+.myh2 {
+    color: #000000;
+    font-size: 25px; font-family: Calibri;
+    text-align: center;
+    line-height: 100%;
+}
+
+.mytd{
+    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-weight:bold;
+    font-size: 20px;
+    color: #000000;
+    width: 600px; 
+    height:20px;
+    border: 2px solid rgb(0, 0, 0);
+    color:rgb(0, 0, 0);
+    margin: 5px;
+    text-align: center;
+
+}
+
+.mytdm{
+    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-weight:bolder;
+    font-size: 40px;
+    text-align: center;
+    color: #000000;
+    width: 600px; 
+    height:40px;
+    border: 2px solid rgb(0, 0, 0);
+    color:rgb(0, 0, 0);
+    margin: 5px;
+    background-color:  rgb(123, 167, 233);
+}
+
+
+.mytable{
+    border: 2px solid rgb(0, 0, 0);
+    color:rgb(0, 0, 0);
+    margin: 5px;
+}
+
+.mytr{
+    border: 2px solid rgb(0, 0, 0);
+    color:rgb(0, 0, 0);
+    margin: 5px;
+    height: 34px;
+}
+
+.myp{
+    padding: 0px;
+    margin:0%;
+    line-height: 110%;   
+}
+
+
+p{  
+    color: #000000;
+    font-size: 20px; font-family: Calibri;
+    text-align: center; 
+}
+
+#outputtext{
+    font-size: 30px;
+}
+
+
+/* ------------------------------------Boxen divers-------------------------------------------*/ 
+
+
+.meinebox{
+	border: 2px solid black;	
+	background: rgb(190, 229, 255);	
+    color: rgb(0, 0, 0);
+    font-size: 15px; 
+}
+
+#boxc{
+    width: 1300px;
+    height: 130px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#boxbut{
+    height: 50px;
+    width:1300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    border-top: 5px;
+    z-index: 5;
+}
+
+#big{
+    margin-top: 15px;
+    background-color: rgb(65, 127, 221);
+    width: 1300px;
+    height:340px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;	
+}
+
+#bigD{
+    margin-top: 15px;
+    background-color: rgb(190, 229, 255);
+    width: 1300px;
+    height:600px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;	
+}
+
+#eingabebox{
+    float:left;
+    width: 305px;
+    height: 128px;
+    border-right: 2px solid black;
+}
+
+#output{
+    width:700px;
+    height:100px;
+    background-color: rgb(190, 229, 255);
+    position:relative;
+    left:100px;
+    bottom:50px;
+}
+
+#boxt{
+    float:left;
+    width: 300px;
+    height: 275px;
+    margin: 30px;
+    border-bottom: 2px solid black;
+}
+#boxg{
+    float:left;
+    width: 900px;
+    height: 275px;
+    margin-top:30px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+}
+
+/* ------------------------------------divs Oben-------------------------------------------*/ 
+
+
+
+#status{
+    float:left;
+    width:700px;
+    height:128px;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+
+#version{
+    float: left;
+    width:280px;
+    height: 128px;
+}
+
+
+#DocText{
+    text-align: left;
+    padding-left: 30px;
+    padding-top:30px;
+    line-height: 100%;
+}
+
+#docdiv{
+    position:relative;
+    left:0px;
+    top:0px;
+    width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* ------------------------------------Buttons/Slider-------------------------------------------*/ 
+
+
+
+.b1{
+    float:left;
+    margin-left: 6px;
+    margin-right: 5px;
+    width: 15.8%;
+    background-color: rgb(65, 127, 221);
+    color: #ffffff;
+    border-radius: 5px;
+    margin-top: 8px;
+}
+
+.b2{
+    float:left;
+    margin-left: 6px;
+    margin-right: 5px;
+    width: 15.8%;
+    background-color: rgb(43, 130, 58);
+    color: #ffffff;
+    border-radius: 5px;
+    margin-top: 8px;
+}
+
+#but1{
+    margin-left:230px;
+}
+#but3{
+    margin-left:10px;
+}
+
+#but5{
+    position:relative;
+    left:0px;
+    top:0px;
+}
+#speed{
+    position:relative;
+    top:100px;
+    left: 640px;
+    z-index: 3;
+}
+#slider{
+    width: 200px;
+}
+
+#eingabefeld{
+    margin-left:205px;
+    margin-top: 10px;
+    background-color:rgb(243, 243, 243); 
+    width:290px;
+}
+
+
+
+
