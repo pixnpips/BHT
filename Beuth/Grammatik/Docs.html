@@ -23,7 +23,7 @@
 
 				Bootstrap: Allgemeines CSS Layout, customizen der Elemente über das CSS-main-Sheet <br><br>
 				<span Style="font-size: 30px;line-height:120%;">Implementierung</span><br><br>
-				
+				<span Style="line-height:120%;">
 				Die möglichen Ausdrucke für jede einzelne Produktionsvorschrift wurden in Arrays vom Typ String gespeichert.<br>
 				Die Hauptausgabe des aktuellen Schrittes ergibt sich aus einer globalen Variablen vom Typ String, die Anhand der Produktionsvorschriften <br>mit replace-Methoden
 				aktualisiert wird.
@@ -31,9 +31,11 @@
 				Vor-Produktionsregel erstellte Wort iterieren und dieses wieder in die globale Variable zurückschreiben.  <br>
 				Der Zugriff auf die Arrays erfolgt über das generieren einer Random.Zahl, die auf die Indexe des jeweiligen Ausdrucks-Arrays zugreift.<br>
 				Auf die Ausgabe jedes einzelnen Schrittes wird bewusst verzichtet, da insgesamt nur 5 Produktionsvorschriften aktiv ausgeführt werden<br>
-				Es wird dem Benutzer folgende Funktionalität zur Verfügung gestellt: Erstellen eines korrekten Ausdruckses, <br>
+				Die maximale Anzahl der Durchläufe für die Produktionsvorschriften für A sind begrenzt auf einen maximal Wert von 20, damit das Wort <br>
+				nicht zu lang wird. Aller Werte zwischen 1 und 20 können angenommen werden.
+				Es wird dem Benutzer folgende Funktionalität zur Verfügung gestellt: Erstellen eines korrekten Ausdruckses,
 				 Erstellen eines falschen Ausdruckes, Eine Step-Through Funktion und eine Sequenz, die korrekte Wörter und deren <br>
-				 Generierung visualisieren. Das Feedback erhält der User über Farbsemantik und einen Info Bereich in der Web App.
+				 Generierung visualisieren. Das Feedback erhält der User über Farbsemantik und einen Info Bereich in der Web App.</span>
 
 			 </p>
 

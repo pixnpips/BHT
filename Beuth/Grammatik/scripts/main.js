@@ -69,7 +69,7 @@ function replaceSST(){
 
 
 function replaceA1ST(){
-  let m=getRandomInt(1,9);
+  let m=getRandomInt(1,20);
   for(i=0;i<=m;i++){
     replaceA1();
   }
@@ -119,7 +119,7 @@ function generateCorrect(){
   //alert(Word);
   replaceS();
   //alert(Word);
-  let m=getRandomInt(1,9);
+  let m=getRandomInt(1,20);
   for(i=0;i<=m;i++){
     replaceA1();
   }
@@ -153,7 +153,7 @@ function replaceS(){
 
 
 function replaceA1(){
-    var x= Word.replace("A", AusdruckArray[getRandomInt(2,1)]);
+    var x= Word.replace("A", AusdruckArray[getRandomInt(2,2)]);
     Word = x;
     state=3;
 }
@@ -215,9 +215,9 @@ function replaceS1(){
 }
 
 function replaceA11(){
-  let m=getRandomInt(1,9);
+  let m=getRandomInt(1,20);
   for(i=0;i<=m;i++){
-    var x= Word.replace("A", AusdruckArray[getRandomInt(2,1)]);
+    var x= Word.replace("A", AusdruckArray[getRandomInt(2,2)]);
     Word = x;
   }
 }
