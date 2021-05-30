@@ -14,7 +14,7 @@ $(document).ready(function () {
     var Word=""; 
     let dosequence=false;
     var time=1000;
-    let max=3;
+    let max=10;
     let timeInterval=false;
 
     var myInterval; /*setInterval(generateRight,time);*/
@@ -69,7 +69,7 @@ function replaceSST(){
 
 
 function replaceA1ST(){
-  let m=getRandomInt(1,20);
+  let m=getRandomInt(1,max);
   for(i=0;i<=m;i++){
     replaceA1();
   }
@@ -119,7 +119,7 @@ function generateCorrect(){
   //alert(Word);
   replaceS();
   //alert(Word);
-  let m=getRandomInt(1,20);
+  let m=getRandomInt(1,max);
   for(i=0;i<=m;i++){
     replaceA1();
   }
@@ -196,7 +196,7 @@ String.prototype.replaceAt = function(index, replacement) {
 
 function generateWrong(){
   generateCorrect();
-  let x =Word.replaceAt((getRandomInt(1,7))," ");
+  let x =Word.replaceAt((getRandomInt(0,Word.length-1))," ");
   Word=x;
   ShowWord(); 
   $("#statustext").html("Ung&uumlltige Zahlenfolge generiert");
@@ -215,7 +215,7 @@ function replaceS1(){
 }
 
 function replaceA11(){
-  let m=getRandomInt(1,20);
+  let m=getRandomInt(1,max);
   for(i=0;i<=m;i++){
     var x= Word.replace("A", AusdruckArray[getRandomInt(2,2)]);
     Word = x;
