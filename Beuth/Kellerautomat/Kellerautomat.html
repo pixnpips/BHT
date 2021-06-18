@@ -1,0 +1,382 @@
+
+<html lang="de">
+
+	<head>
+	<title>Kellerautomat</title>
+	<link rel="stylesheet" type="text/css" href="Styles/main.css"/>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-reboot.min.css">
+	<script src="jquery-3.5.1.min.js"></script>
+	<script src="scripts/main.js"></script>
+	</head>
+
+	<body>
+		<div><h1 class="myh1"> Kellerautomat </h1></div>
+		
+
+		<div class="meinebox" id="boxc">	
+			<div id= "eingabebox">
+				<h2 class="myh2">Input</h2>
+				<input type="text" class="form-control" id="eingabefeld">		
+			</div>
+			<div id="status">
+				<h2 class="myh2" style="margin-top:0px";">Info</h2>
+				<p id="statustext" style="font-weight: bolder; margin-top: 0px;">Starten der Grammatik mit Buttons</p>
+				<p id="array" style="font-weight: bolder; margin-top: 0px; font-size: 30px;"></p>
+			</div>
+			<div id="version">
+				<h2 class="myh2">Version</h2>
+				<p>V.1.01 Wladimir Pushkutse</p>
+			</div>	
+		</div>
+
+		<div class="meinebox" id="boxbut">
+			<button class="b1" id="but5">Read Input</button>
+			<button class="b1" id="but1">generate correct</button>
+			<button class="b1" id="but2">generate wrong</button>
+			<button class="b2" id="but3">Sequence</button>
+			<button class="b2" id="but4">Step</button>
+			
+		</div>
+
+		<div id="big">
+
+			<div class="meinebox" id="boxt">
+
+				<h2 class="myh2">Tupel</h2>
+
+				<p class ="myp" style="font-weight: bolder;">&Sigma;={0,1,2...,8,9,+,-,/,*,(,)}<br>&#915;={$,K}<br> Q={0,1,2,3,4}<br>Startzustand={1}<br>F={2}
+					
+				</p>
+
+				<h2 class="myh2">&#948;</h2>
+				
+				<table class="mytable">
+						<tr class="mytr">
+							<td class="mytdm"> Q </td>
+							<td class="mytdm"> &Sigma; </td>	
+							<td class="mytdm"> &#915; </td>	
+							<td class="mytdm" id= "lastrow"> &#119875;(Qx&#915;)</td>	
+							
+						</tr>
+						<tr id="tr1" class="mytr">
+							<td class="mytd">1</td>
+							<td class="mytd">&epsilon;</td>	
+							<td class="mytd">&epsilon;</td>	
+							<td class="mytd">{1,$}</td>	
+										
+						</tr>
+				
+						<tr id="tr2" class="mytr">
+							<td class="mytd">2</td>
+							<td class="mytd">Z</td>	
+							<td class="mytd">&epsilon;</td>	
+							<td class="mytd">{2,&epsilon;}</td>	
+								
+						</tr>
+				
+						<tr id="tr3" class="mytr">
+							<td class="mytd">2</td>
+							<td class="mytd">(</td>	
+							<td class="mytd">&epsilon;</td>	
+							<td class="mytd">{3,K}</td>	
+							
+						</tr>
+						<tr  id="tr4" class="mytr">
+							<td class="mytd">3</td>
+							<td class="mytd">O</td>	
+							<td class="mytd">&epsilon;</td>	
+							<td class="mytd">{3,&epsilon;}</td>	
+							
+						</tr>
+						<tr  id="tr5" class="mytr">
+							<td class="mytd">3</td>
+							<td class="mytd">&epsilon;</td>	
+							<td class="mytd">$</td>
+							<td class="mytd">{2,&epsilon;}</td>	
+								
+						</tr>
+						<tr id="tr6" class="mytr">
+							<td class="mytd">4</td>
+							<td class="mytd">(</td>	
+							<td class="mytd">&epsilon;</td>	
+							<td class="mytd">{3,K}</td>	
+							
+						</tr>
+						<tr id="tr7" class="mytr">
+							<td class="mytd">4</td>
+							<td class="mytd">Z</td>	
+							<td class="mytd">&epsilon;</td>	
+							<td class="mytd">{4,&epsilon;}</td>	
+							
+						</tr>
+						<tr id="tr8" class="mytr">
+							<td class="mytd">5</td>
+							<td class="mytd">)</td>	
+							<td class="mytd">K</td>	
+							<td class="mytd">{4,&epsilon;}</td>	
+							
+						</tr>
+						<tr id="tr9" class="mytr">
+							<td class="mytd">5</td>
+							<td class="mytd">O</td>	
+							<td class="mytd">&epsilon;</td>	
+							<td class="mytd">{3,&epsilon;}</td>	
+							
+						</tr>
+						<tr id="tr10" class="mytr">
+							<td class="mytd">5</td>
+							<td class="mytd">&epsilon;</td>	
+							<td class="mytd">&epsilon;</td>	
+							<td class="mytd">{2,&epsilon;}</td>		
+						</tr>
+				</table>
+				
+				<p class ="myp" style="font-weight: bolder;">Bezeichner:<br>O={+|-|*|/}<br> Z={0|1|2|3|4|5|6|7|8|9}
+				</p>	
+			</div>
+
+			<div class="meinebox" id=boxg>
+				<h2 class="myh2" style="margin-top:20px; font-size: 40px;">Graph</h2>
+
+				<div style="width: 200px" id= "speed">
+					<h2 class="myh2">Animation Speed</h2>
+					<input type="range" min="0" max="2000" value="1000" step="200"id="slider">
+					<p id="speedtext"></p>
+				</div>
+
+				<div class="pfeilwrapper" id="pw1">
+					<svg class="pfeil" id="p1" viewBox="-50 -100 200 200">
+						<defs>
+						<marker  orient="auto"  
+							markerWidth='8' markerHeight='4'
+							refX='0.1' refY='2'>
+							<!-- triangle pointing right (+x) -->
+							<path d='M0,0 V4 L2,2 Z' fill="black"/>
+						</marker>
+						</defs>
+					
+					<path id="pa1" class="pa"
+					  marker-end='url(#head)'
+					  stroke-width='4'
+					  fill='none' stroke='black'  
+					  d='M-30,0 Q25,0 60,0'
+					  />		
+					</svg>
+					<h2 id="ph1" style="font-size: 25px;">&epsilon;, &epsilon;->$</h2>
+				</div>
+
+				<div class="pfeilwrapper" id="pw2">
+					<svg class="pfeil" id="p2"  viewBox="-50 -100 200 200">
+						<defs>
+						<marker id='head' orient="auto"
+							markerWidth='8' markerHeight='4'
+							refX='0.1' refY='2'>
+							<!-- triangle pointing right (+x) -->
+							<path d='M0,0 V4 L2,2 Z' fill="black"/>
+						</marker>
+						</defs>
+					
+					<path id="pa2" class="pa"
+					  marker-end='url(#head)'
+					  stroke-width='4'
+					  fill='none' stroke='black'  
+					  d='M-30,0 Q25,0 60,0'
+					  />		
+					</svg>
+					<h2 id="ph2" style="font-size: 25px;">Z, &epsilon;->&epsilon;</h2>
+				</div>
+
+				<div class="pfeilwrapper" id="pw3">
+					<svg class="pfeil" id="p3"  viewBox="-50 -100 200 200">
+						<defs>
+						<marker id='head' orient="auto"
+							markerWidth='8' markerHeight='4'
+							refX='0.1' refY='2'>
+							<!-- triangle pointing right (+x) -->
+							<path d='M0,0 V4 L2,2 Z' fill="black"/>
+						</marker>
+						</defs>
+					<path id="pa3" class="pa"
+					  marker-end='url(#head)'
+					  stroke-width='4'
+					  fill='none' stroke='black'  
+					  d='M-30,0 Q25,0 60,0'
+					  />		
+					</svg>
+					<h2 id="ph3" style="font-size: 25px;">(, &epsilon;->K</h2>
+				</div>
+
+				<div class="pfeilwrapper" id="pw4">
+					<svg class="pfeil" id="p4" viewBox="-50 -100 200 200">
+						<defs>
+						<marker id='head' orient="auto"
+							markerWidth='8' markerHeight='4'
+							refX='0.1' refY='2'>
+							<!-- triangle pointing right (+x) -->
+							<path d='M0,0 V4 L2,2 Z' fill="black"/>
+						</marker>
+						</defs>
+					<path
+						id="pa4" class="pa"
+					  marker-end='url(#head)'
+					  stroke-width='4'
+					  fill='none' stroke='black'  
+					  d='M-30,0 Q25,0 60,0'
+					  />		
+					</svg>
+					<h2 id="ph4" style="font-size: 25px;">O, &epsilon;->&epsilon;</h2>
+				</div>
+
+
+				<div class="pfeilwrapper" id="pw5">
+					<svg class="pfeil" id="p5"  viewBox="-50 -100 200 200">
+						<defs>
+						<marker id='head' orient="auto"
+							markerWidth='8' markerHeight='4'
+							refX='0.1' refY='2'>
+							<!-- triangle pointing right (+x) -->
+							<path d='M0,0 V4 L2,2 Z' fill="black"/>
+						</marker>
+						</defs>
+					
+					<path id="pa5" class="pa"
+					  marker-end='url(#head)'
+					  stroke-width='4'
+					  fill='none' stroke='black'  
+					  d='M20,0 Q45,-20 40,0'
+					  />		
+					</svg>
+					<h2 id="ph5" style="font-size: 25px;">&epsilon;, $->&epsilon;</h2>
+				</div>
+
+
+				<div class="pfeilwrapper" id="pw6">
+					<svg class="pfeil" id="p6"  viewBox="-50 -100 200 200">
+						<defs>
+						<marker id='head' orient="auto"
+							markerWidth='8' markerHeight='4'
+							refX='0.1' refY='2'>
+							<!-- triangle pointing right (+x) -->
+							<path d='M0,0 V4 L2,2 Z' fill="black"/>
+						</marker>
+						</defs>
+					
+					<path id="pa6" class="pa"
+					  marker-end='url(#head)'
+					  stroke-width='4'
+					  fill='none' stroke='black'  
+					  d='M20,0 Q45,-20 40,0'
+					  />		
+					</svg>
+					<h2 id="ph6" style="font-size: 25px;">(, &epsilon;->K</h2>
+				</div>
+
+
+				<div class="pfeilwrapper" id="pw7">
+					<svg class="pfeil" id="p7"  viewBox="-50 -100 200 200" >
+						<defs>
+						<marker id='head' orient="auto"
+							markerWidth='8' markerHeight='4'
+							refX='0.1' refY='2'>
+							<!-- triangle pointing right (+x) -->
+							<path d='M0,0 V4 L2,2 Z' fill="black"/>
+						</marker>
+						</defs>
+					
+					<path id="pa7" class="pa"
+					  marker-end='url(#head)'
+					  stroke-width='4'
+					  fill='none' stroke='black'  
+					  d='M-30,0 Q25,-20 60,0'
+					  />		
+					</svg>
+					<h2 id="ph7" style="font-size: 25px;">Z, &epsilon;->&epsilon;</h2>
+				</div>
+
+
+				<div class="pfeilwrapper" id="pw8">
+					<svg class="pfeil" id="p8"  viewBox="-50 -100 200 200">
+						<defs>
+						<marker id='head' orient="auto"
+							markerWidth='8' markerHeight='4'
+							refX='0.1' refY='2'>
+							<!-- triangle pointing right (+x) -->
+							<path d='M0,0 V4 L2,2 Z' fill="black"/>
+						</marker>
+						</defs>
+					
+					<path id="pa8" class="pa"
+					  marker-end='url(#head)'
+					  stroke-width='4'
+					  fill='none' stroke='black'  
+					  d='M-30,0 Q25,-20 60,0'
+					  />		
+					</svg>
+					<h2 id="ph8" style="font-size: 25px;">O, &epsilon;->&epsilon;</h2>
+				</div>
+
+
+
+				<div class="pfeilwrapper" id="pw9">
+					<svg class="pfeil" id="p9"  viewBox="-50 -100 200 200">
+						<defs>
+						<marker id='head' orient="auto"
+							markerWidth='8' markerHeight='4'
+							refX='0.1' refY='2'>
+							<!-- triangle pointing right (+x) -->
+							<path d='M0,0 V4 L2,2 Z' fill="black"/>
+						</marker>
+						</defs>
+					
+					<path id="pa9" class="pa"
+					  marker-end='url(#head)'
+					  stroke-width='4'
+					  fill='none' stroke='black'  
+					  d='M-30,0 Q25,0 60,0'
+					  />		
+					</svg>
+					<h2 id="ph9" style="font-size: 25px;">&epsilon;, &epsilon;->&epsilon;</h2>
+				</div>
+
+
+				<div class="pfeilwrapper" id="pw10">
+					<svg class="pfeil" id="p10"  viewBox="-50 -100 200 200">
+						<defs>
+						<marker id='head' orient="auto"
+							markerWidth='8' markerHeight='4'
+							refX='0.1' refY='2'>
+							<!-- triangle pointing right (+x) -->
+							<path d='M0,0 V4 L2,2 Z' fill="black"/>
+						</marker>
+						</defs>
+					
+					<path id="pa10" class="pa"
+					  marker-end='url(#head)'
+					  stroke-width='4'
+					  fill='none' stroke='black'  
+					  d='M20,0 Q45,-20 40,0'
+					  />		
+					</svg>
+					<h2 id="ph10" style="font-size: 25px;">), K->&epsilon;</h2>
+				</div>
+				
+				
+				
+				
+				<div class="kreis" id="k1">1</div>
+				<div class="kreis" id="k2">2</div>
+				<div class="kreis" id="k3">3</div>
+				<div class="kreis" id="k4">4</div>
+				<div class="kreis" id="k5">5</div>
+				<div id="kellerdiv">
+					<h2 >Keller Stack</h2>
+					<h2 id="keller">------</h2>
+				</div>
+				
+			</div>
+		</div>
+
+
+	</body>
+</html>
+
