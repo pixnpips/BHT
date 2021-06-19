@@ -2,7 +2,7 @@
 <html lang="de">
 
 	<head>
-	<title>Grammatik Docs</title>
+	<title>Kellerautomat Docs</title>
 	<link rel="stylesheet" type="text/css" href="Styles/main.css"/>
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-reboot.min.css">
 	<script src="jquery-3.5.1.min.js"></script>
@@ -10,7 +10,7 @@
 	</head>
 
 	<body>
-		<div><h1 class="myh1"> Grammatik Documentation</h1></div>
+		<div><h1 class="myh1"> Kellerautomat Documentation</h1></div>
 		
 
 		</div>
@@ -25,15 +25,17 @@
 				<span Style="font-size: 30px;line-height:120%;">Implementierung</span><br><br>
 				
 				Die möglichen Ausdrucke für jede einzelne Produktionsvorschrift wurden in Arrays vom Typ String gespeichert.<br>
-				Die Hauptausgabe des aktuellen Schrittes ergibt sich aus einer globalen Variablen vom Typ String, die Anhand der Produktionsvorschriften <br>mit replace-Methoden
-				aktualisiert wird.
-				Die Anwendung der Methoden erfolgt teilweise über Loops, die über das von der jeweiligen <br>
-				Vor-Produktionsregel erstellte Wort iterieren und dieses wieder in die globale Variable zurückschreiben.  <br>
-				Der Zugriff auf die Arrays erfolgt über das generieren einer Random.Zahl, die auf die Indexe des jeweiligen Ausdrucks-Arrays zugreift.<br>
-				Auf die Ausgabe jedes einzelnen Schrittes wird bewusst verzichtet, da insgesamt nur 5 Produktionsvorschriften aktiv ausgeführt werden<br>
+				Die Grammatik aus der vorherigen ESA wurde zum Erstellen der mathematischen Audrücke verwendet, zusätzlich hat der User <br>
+				die Möglichkeit eigene Ausdrücke einzugeben. Die Eingaben und die generierten Ausdrücke müssen in den Kellerautomat <br> eingelesen werden.
+				Die Eingabe wird in Arrays umgewandelt und deren Zeichen werden stellenweise mit konstanten Arrays aus dem Code abgeglichen <br>
+				um korrekte Zustandsübergänge zu gewärleisten. Die aktuellen Zustände und auch die Übergänge werden farblich markiert. <br>
+				Anschließend wird das verarbeitete Zeichen gelöscht und ggfs. ein Zeichen in das KellerStack geschrieben. Es kommt eine Function Map, <br>
+				die Timing Funktion SetInterval und diverse Boolean Variablen.n<br>
+				
 				Es wird dem Benutzer folgende Funktionalität zur Verfügung gestellt: Erstellen eines korrekten Ausdruckses, <br>
-				 Erstellen eines falschen Ausdruckes, Eine Step-Through Funktion und eine Sequenz, die korrekte Wörter und deren <br>
-				 Generierung visualisieren. Das Feedback erhält der User über Farbsemantik und einen Info Bereich in der Web App.
+				Erstellen eines falschen Ausdruckes, Eine Step-Through Funktion und eine Sequenz, die korrekte Wörter <br>
+				akzeptiert oder ablehnt. Das Feedback erhält der User über Farbsemantik und einen Info Text Bereich in der Web App. <br>
+				Der User hat die Möglichkeit beliebig zwischen Sequenz und Step zu wechseln, als auch die Sequenz zu pausieren und wieder aufzunehmen.
 
 			 </p>
 

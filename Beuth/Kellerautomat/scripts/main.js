@@ -14,20 +14,24 @@ $(document).ready(function () {
     const GesamtArray=['+','-','*','/','1','2','3','4','5','6','7','8','9','0','(',')',' '];
     var WordArray;
     var Word=""; 
-    let dosequence=false;
     var time=1000;
     var Stackarray=[];
     let fk2=false;
     let isfinished=false;
-    var myInterval; /*setInterval(generateRight,time);*/
+    var endseq=true;
+    var seq;
+    var isseq=false;
+    
+
+    //man kann natürlich einfach in JS die Variablen mit JQuery dauerhaft an HTML Elemnte koppeln!!
 
     $("#speedtext").text(time+"ms")
 
     $("#but3").hide()
     $("#but4").hide()
+    $("#but7").hide()
+
     
-
-
 
 
   Array.prototype.insert = function ( index, item ) {
@@ -154,7 +158,7 @@ function generateWrong(){
   let y= x.replace(" ", "");
   Word=y;
   ShowWord(); 
-  $("#statustext").html("Ung&uumlltige Zahlenfolge generiert <br> <br> Read Input um Kellerautomat zu starten");
+  $("#statustext").html("Ung&uumlltige Zahlenfolge generiert  <br> Read Input um Kellerautomat zu starten");
   $("#status").css("background-color", "red");
   $("#but3").hide()
   $("#but4").hide()
@@ -169,11 +173,12 @@ function WordtoArray(){
   WordArray =input.split('');
   $("#array").html(WordArray);
   var iscorrect=true;
-  for(i=0;i<input.length;i++){
-    if (GesamtArray.includes(input.charAt(i))){
+  for(i=0;i<WordArray.length;i++){
+    if (GesamtArray.includes(WordArray[i])){
       iscorrect=true;
     }else{
       iscorrect=false;
+      break;
     }
   }
 
@@ -194,8 +199,8 @@ function WordtoArray(){
     $("#but3").show();
     $("#but4").show();
   }
-  
   F0();
+  clearInterval(seq);
 }
 
 /*---------------------------------------------Step Funktionen--------------------------------------------------------*/
@@ -339,6 +344,11 @@ function finished(){
   WordArray =input.split('');
   isfinished=true;
   $("#keller").html("-");
+  clearInterval(seq);
+  $("#but3").css("background-color", "green");
+  $("#but3").html("Sequence");
+  isseq=false;
+   
 };
 
 function fault(){
@@ -364,6 +374,13 @@ function fault(){
   if(WordArray.length<1){
     $("#statustext").html("Wort zu Ende, Endzustand nicht erreicht, Wort nicht akzeptiert")
   }
+  clearInterval(seq);
+  enablebuttons();
+
+  $("#but3").css("background-color", "green");
+  $("#but3").html("Sequence");
+  isseq=false;
+  
   
 };
 
@@ -386,7 +403,7 @@ function faultkeller(){
   }else if(state==5){
     $("#k5").css("background-color", "red");
   }
-  
+  clearInterval(seq);
   way=0;
   stepcolors();
   isfinished=false;
@@ -394,6 +411,15 @@ function faultkeller(){
   $("#but3").hide();
   $("#but4").hide();
   fk2=false;
+
+  enablebuttons();
+
+
+  $("#but3").css("background-color", "green");
+  $("#but3").html("Sequence");
+  isseq=false;
+  
+
 };
 
 
@@ -408,6 +434,41 @@ $("#slider").on("change",function(){
 });
 
 
+function sequence(){
+  seq=setInterval(step,time);
+  $("#but3").css("background-color", "red");
+  $("#but3").html("Stop Sequence");
+  isseq=true;
+}
+   
+
+  /*
+  if(!endseq){
+    $("#but3").css("background-color", "red");
+    $("#but3").html("Stop Sequence");
+    $("#but3").click(endsequence); 
+  }else{
+    $("#but3").css("background-color", "green");
+    $("#but3").html("Sequence");
+    $("#but3").click(sequence); 
+  }
+  */
+
+
+function endsequence(){
+  clearInterval(seq);
+  $("#but3").css("background-color", "green");
+  $("#but3").html("Sequence");
+  isseq=false;
+}
+
+function togglesequence(){
+  isseq ? endsequence() : sequence();
+}
+
+
+
+
 
 /*-----------------------------------------------------Buttons-------------------------------------------------------*/
 $("#but5").click(WordtoArray);
@@ -417,9 +478,12 @@ $("#but1").click(generateCorrect);
 
 $("#but2").click(generateWrong);
 
-$("#but3").click();
+$("#but3").click(togglesequence);
 
 $("#but4").click(step);
+
+$("#but7").click(endsequence);
+
 
 
 
@@ -438,11 +502,11 @@ function Test2(){
 }
 
 function disablebuttons (){
-  $("button").prop('disabled', true);
+  $("#but3").prop('disabled', true);
 }
 
 function enablebuttons(){
-  $("button").prop('disabled', false);
+  $("#but3").prop('disabled', false);
 }
 
 function EnalbeStepSeq(){
@@ -459,7 +523,7 @@ function EnalbeStepSeq(){
     $(this).css("background-color", "yellow");
     $("#but3").hide()
     $("#but4").hide()
-    $("#statustext").html("Geben sie ein Wort ein");
+    $("#statustext").html("Wort eingeben und Read Input dr&uumlcken");
     $("#status").css("background-color", "rgb(190, 229, 255)");
 
   });
