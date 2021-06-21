@@ -439,6 +439,9 @@ function sequence(){
   $("#but3").css("background-color", "red");
   $("#but3").html("Stop Sequence");
   isseq=true;
+  $("#but1").prop('disabled', true);
+  $("#but2").prop('disabled', true);
+
 }
    
 
@@ -460,6 +463,8 @@ function endsequence(){
   $("#but3").css("background-color", "green");
   $("#but3").html("Sequence");
   isseq=false;
+  $("#but1").prop('disabled', false);
+  $("#but2").prop('disabled', false);
 }
 
 function togglesequence(){
