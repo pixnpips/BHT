@@ -348,6 +348,8 @@ function finished(){
   $("#but3").css("background-color", "green");
   $("#but3").html("Sequence");
   isseq=false;
+  $("#but1").prop('disabled', false);
+  $("#but2").prop('disabled', false);
    
 };
 
@@ -380,6 +382,8 @@ function fault(){
   $("#but3").css("background-color", "green");
   $("#but3").html("Sequence");
   isseq=false;
+  $("#but1").prop('disabled', false);
+  $("#but2").prop('disabled', false);
   
   
 };
@@ -413,6 +417,8 @@ function faultkeller(){
   fk2=false;
 
   enablebuttons();
+  $("#but1").prop('disabled', false);
+  $("#but2").prop('disabled', false);
 
 
   $("#but3").css("background-color", "green");
