@@ -1,0 +1,73 @@
+
+<html lang="de">
+
+	<head>
+	<title>Turing Maschine Docs</title>
+	<link rel="stylesheet" type="text/css" href="Styles/main.css"/>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-reboot.min.css">
+	<script src="jquery-3.5.1.min.js"></script>
+	<script src="scripts/main.js"></script>
+	</head>
+
+	<body>
+		<div><h1 class="myh1"> Turing Maschine Dokumentation</h1></div>
+		</div>
+
+		<div id="bigD">
+
+			<p id="DocText">
+				<span Style="font-size: 30px;line-height:120%;">Hilfe/ Funktion</span><br><br>
+				
+				Dem Nutzer werden folgende Funktionen zu Verfügung gestellt:<br><br>
+				<span Style="font-weight: bold;">Direktes Eingeben eines eigenen Embedded-Reeber-Wortes in das Input Feld</span><br><br>
+				<span Style="font-weight: bold;">Check Input:</span><br> Vorab-Prüfung des Inputs, ob alle Zeichen im Eingabealphabet enthalten sind<br><br>
+				<span Style="font-weight: bold;">Generate reandom e-Reeber/ Generate wrong e-Reeber:</span> <br>
+				automatisches Erstellen von zufälligen richtigen und falschen Embedded Reeber Worten mittels von Generatorfunktionen<br>
+				Ein falsches Wort kann dabei Fehler im inneren Reeber Bereich haben, als auch im äußeren damit auch <br>
+				die Turing Maschinen spezifische Funktion geprüft werden kann<br><br>
+				<span Style="font-weight: bold;">Sequence/Step:</span><br> Starten der graphisch simulierten Überprüfung des im Input eingegebenen Embedded-Reeber-Wortes<br><br>
+				<span Style="font-weight: bold;">Reset:</span><br> Zurücksetzen der Turingmaschine in den Ausgangszustand/ Unterbrechen der Sequenz<br><br>
+				<span Style="font-weight: bold;">Animation Speed:</span><br> die Animationsgeschwindigkeit kann jederzeit verändert werden<br><br>
+
+
+				
+				<span Style="font-size: 30px;line-height:120%;">Technik</span><br><br>
+				
+				<span Style="font-weight: bold;">Erstellung:</span> <br> 
+				html, css, js, svg, png<br><br>
+
+				<span Style="font-weight: bold;">Librarys/ Frameworks:</span><br><br>
+				<span Style="font-weight: bold;">JQuery: </span>Interaktion zwischen den HTML Dokumenten, vereinfachte Auswahl und Zugriff auf CSS Eigenschaften der HTML Elemente.<br>
+				Erstellen der Animationen
+				<br><br>
+
+				<span Style="font-weight: bold;"></span>Bootstrap: Allgemeines CSS Layout, customizen der Elemente über das CSS-main-Sheet <br><br>
+
+
+				<span Style="font-size: 30px;line-height:120%;">Implementierung</span><br><br>
+				
+				Der Input wird in ein Array vom Typ String gespeichert, das im Verlauf der Animation bearbeitet wird<br>
+				Zum erstellen der e-Reeber.Wörter wurde eine rekursive Gruppe von Funktionen benutzt. <br><br>
+
+				Die Vorab-Prüfung der Eingabe gleicht den Input mit einem konstanten Array ab, um zu ermitteln, ob alle Zeichen Teil<br>
+				des Eingabealphabetes sind<br><br>
+
+				Die Zeichen des Arrays werden in der Simulation Zustandsweise überprüft. Jeder Zustand besitzt seine eigene Funktion, <br>
+				alle Zuständsfunktionen sind rekursiv implementiert, sodass sie sich gegenseitig aufrufen.<br>
+				Die aktuellen Zustände und auch die Übergänge werden farblich markiert. <br>
+				Anschließend wird das verarbeitete Zeichen durch ein Blank ersetzt. Es kommt weiterhin  eine Function Map, <br>
+				die Timing Funktion SetTimeout und diverse Boolean Variablen zum Einsatz<br><br>
+				Der Zustand des Eingabebandes wir mittels JQuery animate implementiert.<br><br> 
+
+				Das Feedback erhält der User über Farbsemantik und einen Info Text Bereich in der Web App. <br>
+				
+
+			 </p>
+
+		</div>
+
+		<div id="docdiv"><a href="turing_maschine.html"><button class="b1" id="but11"> Zurück </button></a></div>
+
+	</body>
+</html>
+

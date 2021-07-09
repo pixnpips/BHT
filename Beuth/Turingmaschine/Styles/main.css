@@ -1,0 +1,844 @@
+
+/* ------------------------------------KLassen und Elemente-------------------------------------------*/ 
+.mybody{
+    background-color: white ;
+    margin: 50px;
+}
+
+.myh1{
+    color: #000000;
+    font-size: 30px; font-family: Calibri;
+    text-align: center;  
+}
+
+.myh2 {
+    color: #000000;
+    font-size: 25px; font-family: Calibri;
+    text-align: center;
+}
+
+.mytd{
+    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-weight:bold;
+    color: #000000;
+    width: 600px; 
+    height:20px;
+    border: 2px solid rgb(0, 0, 0);
+    color:rgb(0, 0, 0);
+    margin: 5px;
+    text-align: center;
+}
+
+.mytd1{
+    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-weight:bold;
+    color: #000000;
+    width: 600px; 
+    height:20px;
+    border: 2px solid rgb(0, 0, 0);
+    border-right: 5px solid black;
+    color:rgb(0, 0, 0);
+    margin: 5px;
+    text-align: center;
+}
+
+.mytdm{
+    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-weight:bolder;
+    font-size: larger;
+    text-align: center;
+    color: #000000;
+    width: 600px; 
+    height:30px;
+    border: 2px solid rgb(0, 0, 0);
+    color:rgb(0, 0, 0);
+    margin: 5px;
+    background-color:  rgb(123, 167, 233);
+}
+
+.mytdm1{
+    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-weight:bolder;
+    font-size: larger;
+    text-align: center;
+    color: #000000;
+    width: 600px; 
+    height:30px;
+    border: 2px solid rgb(0, 0, 0);
+    border-right: 5px solid black;
+    color:rgb(0, 0, 0);
+    margin: 5px;
+    background-color:  rgb(123, 167, 233);
+}
+
+
+.mytable{
+    border: 2px solid rgb(0, 0, 0);
+    color:rgb(0, 0, 0);
+    margin: 5px;
+}
+
+.mytr{
+    background-color:rgb(190, 229, 255);	
+}
+
+
+
+p{  
+    color: #000000;
+    font-size: 20px; font-family: Calibri;
+    text-align: center;  
+    margin: 5px;  
+}
+
+#ptupel{
+    padding:0px;
+    margin:0px;
+    font-weight: bold;
+    
+}
+
+/* ------------------------------------Boxen divers-------------------------------------------*/ 
+
+
+.meinebox{
+	border: 2px solid black;	
+	background: rgb(190, 229, 255);	
+    color: rgb(0, 0, 0);
+    font-size: 15px; 
+}
+
+
+
+#boxbut{
+    height: 50px;
+    width:1800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    border-top: 5px;
+    z-index: 5;
+}
+
+
+#boxc{
+    width: 1800px;
+    height: 140px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#big{
+    margin-top: 15px;
+    background-color: rgb(65, 127, 221);
+    width: 1800px;
+    height:900px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;	
+}
+
+#boxt{
+    float:left;
+    width: 300px;
+    height: 840px;
+    margin: 30px;
+    border-bottom: 2px solid black;
+    
+}
+#boxg{
+    float:left;
+    width: 1400px;
+    height: 840px;
+    margin-top:30px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+}
+
+
+
+
+#eingabebox{
+    float:left;
+    width: 500px;
+    height: 138px;
+    border-right: 2px solid black;
+}
+
+/* ------------------------------------divs Oben-------------------------------------------*/ 
+
+#eingabefeld{
+    margin-left:7px;
+    background-color:rgb(243, 243, 243); 
+    width:420px;
+    height: 40px;
+    font-size: 25px;
+    text-align: center;
+
+}
+
+
+#status{
+    float:left;
+    width:750px;
+    height:138px;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+#statustext{
+    font-size: 25px;
+}
+
+
+#kommentare{
+    float: left;
+    width:500px;
+    height: 138px;
+   
+}
+
+
+
+
+#boxtupel{
+    margin:5px;
+    background: rgb(190, 229, 255);
+    height:130px;	
+
+}
+
+/* ------------------------------------Buttons-------------------------------------------*/ 
+.b1{
+    float:left;
+    margin-left: 6px;
+    margin-right: 5px;
+    width: 15.8%;
+    background-color: rgb(65, 127, 221);
+    color: #ffffff;
+    border-radius: 5px;
+    margin-top: 8px;
+}
+
+.b2{
+    float:left;
+    margin-left: 6px;
+    margin-right: 5px;
+    width: 15.8%;
+    background-color: rgb(43, 130, 58);
+    color: #ffffff;
+    border-radius: 5px;
+    margin-top: 8px;
+}
+
+#but7{
+    width:290px;
+}
+
+#but5{
+    margin-left: 290;
+}
+
+#but1{
+    background-color: red;
+}
+
+#but10{
+    margin-left: 0px;
+    width: 500px;
+    position: relative;
+    left: -880px;
+}
+
+#but11{
+    margin-left: 0px;
+    width: 500px;
+    position: relative;
+    left: 0px;
+}
+
+#docdiv{
+    position:relative;
+    left:0px;
+    top:0px;
+    width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#DocText{
+    text-align: left;
+    padding-left: 30px;
+    padding-top:30px;
+    line-height: 100%;
+}
+#bigD{
+    margin-top: 15px;
+    background-color: rgb(190, 229, 255);
+    width: 1300px;
+    height:1100px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;	
+}
+
+/* ------------------------------------Kreise/Zustände-------------------------------------------*/ 
+
+.kreis{ 
+    width: 50px;
+    height: 50px;
+    background-color: rgb(79, 202, 54); 
+    border-radius: 25px;   
+    border: 2px solid black;
+    text-align: center;
+    font-family: Calibri,'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-size: 25px;
+    display: flex;
+	align-items: center;
+	justify-content: center;
+    z-index: 2;
+}
+
+.kreis2{ 
+    width: 70px;
+    height: 70px;
+    background-color: rgb(79, 202, 54); 
+    border-radius: 35px;   
+    border: 2px solid black;
+    text-align: center;
+    font-family: Calibri,'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-size: 25px;
+    display: flex;
+	align-items: center;
+	justify-content: center;
+    z-index: 2;
+}
+
+#kSt{
+    position:relative ;
+    bottom:310px;
+    left: 80px;
+
+}
+
+#kA{
+    position:relative ;
+    bottom:507px;
+    left: 80px;
+}
+
+#kB{
+    position:relative ;
+    bottom:155px;
+    left: 240px;
+}
+
+#kD{
+    position:relative;
+    bottom:200px;
+    left: 993px;
+}
+
+
+#kE{
+    position:relative ;
+    bottom:700px;
+    left: 1050px;
+}
+#kF{
+    position:relative ;
+    bottom:460px;
+    left: 1050px;
+}
+#kG{
+    position:relative ;
+    bottom:800px;
+    left: 1200px;
+}
+#kH{
+    position:relative ;
+    bottom:560px;
+    left: 1200px;
+}
+
+#kI{
+    position:relative ;
+    bottom:765px;
+    left: 1250px;
+}
+
+
+
+#k1{
+    position: relative;
+    top:270px;
+    left:400px;
+}
+
+#k2{
+    position: relative;
+    top:150px;
+    left:550px;
+}
+
+
+#k3{
+    position: relative;
+    top:250px;
+    left:550px;
+}
+
+#k4{
+    position: relative;
+    top:50px;
+    left:700px;
+}
+
+#k5{
+    position: relative;
+    top:150px;
+    left:700px;
+}
+
+#k6{
+    position: relative;
+    top:25px;
+    left:850px;
+}
+
+/* ------------------------------------Pfeile-------------------------------------------*/ 
+.pfeil{
+    width: 120px;
+}
+
+
+#pst{
+    position:relative ;
+    bottom:805px;
+    left: -135px;
+    object-fit: cover;
+    object-position: -30px 0px;
+    transform: rotate(-90deg);
+}
+
+#pa{
+    position:relative ;
+    bottom:860px;
+    left: -170px;
+    object-fit: cover;
+    object-position: -20px 0px;
+    transform: rotate(0deg);
+
+}
+
+
+#pd1{
+    position:relative ;
+    bottom:945px;
+    left: 565px;
+    object-fit: cover;
+    object-position: -30px 0px;
+    transform: rotate(-65deg);
+
+}
+#pd2{
+    position:relative ;
+    bottom:775px;
+    left: 435px;
+    object-fit: cover;
+    object-position: -30px 0px;
+    transform: rotate(65deg);
+
+}
+#pe{
+    position:relative ;
+    bottom:1000px;
+    left: 428px;
+    object-fit: cover;
+    object-position: -30px 0px;
+    transform: rotate(0deg);
+
+}
+#pf{
+    position:relative ;
+    bottom:705px;
+    left: 303px;
+    object-fit: cover;
+    object-position: -30px 0px;
+    transform: rotate(0deg);
+
+}
+#pg1{
+    position:relative ;
+    bottom:920px;
+    left: 265px;
+    object-fit: cover;
+    object-position: -30px 0px;
+    transform: rotate(65deg);
+
+}
+#ph1{
+    position:relative ;
+    bottom:795px;
+    left: 150px;
+    object-fit: cover;
+    object-position: -30px 0px;
+    transform: rotate(-65deg);
+
+}
+#pg2{
+    position:relative ;
+    bottom:1055px;
+    left: -5px;
+    transform: rotate(0deg);
+    width: 100px;
+
+}
+#ph2{
+    position:relative ;
+    bottom:659px;
+    left: -100px;
+    transform: rotate(180deg);
+    width: 100px;
+
+}
+
+
+#p1{
+    position: relative;
+    bottom:60px;
+    left: 295px;
+    transform: rotate(0deg);
+    object-fit: cover;
+    object-position: -20px 0px;
+    
+}
+
+#p2{
+    position: relative;
+    bottom:23px;
+    left: 325px;
+    transform: rotate(29deg);
+    object-fit: cover;
+    object-position: -20px 0px;
+}
+
+#p3{
+    position: relative;
+    bottom:100px;
+    left: 202px;
+    transform: rotate(-29deg);
+    object-fit: cover;
+    object-position: -20px 0px;
+}
+
+#p4{
+    position: relative;
+    bottom:90px;
+    left:378px;
+    transform: rotate(28deg);
+    object-fit: cover;
+    object-position: -20px 0px;
+}
+
+#p5{
+    position: relative;
+    left:255px;
+    bottom:20px;
+    transform: rotate(-28deg);
+    object-fit: cover;
+    object-position: -20px 0px;
+}
+
+#p6{
+    position: relative;
+    right: 12px;
+    bottom: -18px;
+    transform: rotate(0deg);
+    object-position:-18px;
+    object-fit: cover;
+    object-position: -30px 0px;
+}
+
+#p7{
+    position: relative;
+    right:136px;
+    bottom:132px;
+    transform: rotate(0deg);
+    object-position:-18px;
+    object-fit: cover;
+    object-position: -30px 0px;
+}
+
+#p8{
+    position: relative;
+    left:-200px;
+    bottom:80px;
+    transform: rotate(270deg);
+    object-position:-19px;
+    object-fit: cover;
+    object-position: -30px 0px;
+}
+
+#p9{
+    position: relative;
+    left:-420px;
+    bottom:50px;
+    transform: rotate(134deg);
+    width:145px;
+    height:125px;
+    object-fit: cover;
+    object-position: -20px 0px;
+}
+
+#p10{
+    position: relative;
+    bottom:60px;
+    left: -240px;
+    transform: rotate(0deg);
+    object-fit: cover;
+    object-position: -30px 0px;
+    
+}
+
+#p11{
+    position: relative;
+    bottom:400px;
+    left: -230;
+    width: 100px;
+}
+
+#p12{
+    position: relative;
+    bottom:145px;
+    left: -330px;
+    transform: rotateX(180deg);
+    width: 100px;
+}
+
+/*----------------------Array- Animation----------------------------------*/
+
+#pzu{
+    position: relative;
+    top:34px;
+    left: -88px;
+    transform: rotate(90deg);
+    object-fit: cover;
+    object-position: -170px 0px;
+    width: 200px;
+}
+
+#animus{
+    width:700px;
+    height:100px;
+    
+    position: relative;
+    bottom:250px;
+    left: 650px;
+}
+
+#zustand{
+    
+    width: 40px;
+    height:40px;
+    position: relative;
+    bottom:0px;
+    left: 0px;
+    border: 3px solid black;
+    background-color: yellow;  
+}
+
+#qdiv{
+    position: relative;
+    bottom:215px;
+    left: -3px;  
+    text-align: center;
+    
+}
+
+#qtext{
+    text-align: center; 
+}
+
+#arraywrapper{
+    position: relative;
+    bottom:-12px;
+    left: 14px;
+    
+}
+
+#aniarray{
+    text-align: left;
+}
+
+
+
+/* ------------------------------------Eingabezeichen-------------------------------------------*/ 
+
+#Tst{
+    position:relative ;
+    bottom:750px;
+    left: 40px;
+    font-weight:bold;
+}
+
+#TA1{
+    position:relative ;
+    bottom:840px;
+    left: 90px;
+    font-weight:bold;
+}
+
+#TA2{
+    position:relative ;
+    bottom:800px;
+    left: 30px;
+    font-weight:bold;
+}
+
+#TB1{
+    position:relative ;
+    bottom:260px;
+    left: 310px;
+    font-weight:bold;
+}
+
+#T11{
+    position:relative ;
+    bottom:290px;
+    left: 385px;
+    font-weight:bold;
+}
+
+#T12{
+    position:relative ;
+    bottom:190px;
+    left: 320px;
+    font-weight:bold;
+}
+#T21{
+    position:relative ;
+    bottom:420px;
+    left:355px;
+    font-weight:bold;
+}
+
+#T31{
+    position:relative ;
+    bottom:65px;
+    left: 300px;
+    font-weight:bold;
+}
+#T41{
+    position:relative ;
+    bottom:245px;
+    left: 210px;
+    font-weight:bold;
+}
+#T22{
+    position:relative ;
+    bottom:330px;
+    left: 300px;
+    font-weight:bold;
+}
+#T32{
+    position:relative ;
+    bottom:150px;
+    left: 180px;
+    font-weight:bold;
+}
+#T51{
+    position:relative;
+    bottom:240px;
+    left: 230px;
+    font-weight:bold;
+}
+#T42{
+    position:relative ;
+    bottom:290px;
+    left: 240px;
+    font-weight:bold;
+}
+#T52{
+    position:relative ;
+    bottom:180px;
+    left: 170px;
+    font-weight:bold;
+}
+#T61{
+    position:relative ;
+    bottom:260px;
+    left: 230px;
+    font-weight:bold;
+}
+
+#TD1{
+    position:relative ;
+    bottom:1010px;
+    left: 980px;
+    font-weight:bold;
+    
+}
+
+#TD2{
+    position:relative ;
+    bottom:860px;
+    left: 920px;
+    font-weight:bold;  
+}
+
+#TE1{
+    position:relative ;
+    bottom:1060px;
+    left: 990px;
+    font-weight:bold; 
+}
+
+#TF1{
+    position:relative ;
+    bottom:800px;
+    left: 930px;
+    font-weight:bold;  
+}
+
+#TG1{
+    position:relative ;
+    bottom: 620px;
+    left: 1560px;
+    font-weight:bold; 
+}
+
+#TG2{
+    position:relative ;
+    bottom:1180px;
+    left: 950px;
+    font-weight:bold;  
+}
+
+#TH1{
+    position:relative ;
+    bottom:440px;
+    left: 1495px;
+    font-weight:bold;
+}
+
+#TH2{
+    position:relative ;
+    bottom:290px;
+    left: 1560px;
+    font-weight:bold; 
+}
+
+
+#speed{
+    position:relative ;
+    bottom:600px;
+    left: 100px;
+}
+#slider{
+    width: 200px;
+}
+
+
+
+
+

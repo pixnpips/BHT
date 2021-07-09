@@ -1,0 +1,379 @@
+
+<html lang="de">
+
+	<head>
+	<title>Turing Maschine</title>
+	<link rel="stylesheet" type="text/css" href="Styles/main.css"/>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-reboot.min.css">
+	<script src="jquery-3.5.1.min.js"></script>
+	<script src="scripts/main.js"></script>
+	</head>
+
+	<body>
+		<div><h1 class="myh1"> Turing Maschine - Embedded Reeber </h1></div>
+		
+
+
+
+		<div class="meinebox" id="boxc">	
+			<div id= "eingabebox">
+				<h2 class="myh2">Input</h2>
+				<input type="text" class="form-control" id="eingabefeld">
+				<button class="b2" id="but7" style="font-weight: bold;">Check Input</button>
+			</div>
+			<div id="status">
+				<h2 class="myh2">Status</h2>
+				<p class="myp" id="statustext" style="font-weight: bolder;"></p>
+			</div>
+			<div id="kommentare">
+				<h2 class="myh2">Version</h2>
+				<p class="myp">V.1.01 Wladimir Pushkutse</p>
+			</div>	
+		</div>
+
+		<div class="meinebox" id="boxbut">
+			<button class="b1" id="but2" style="font-weight: bold;">Generate random e-Reeber</button>
+			<button class="b1" id="but3" style="font-weight: bold;">Generate wrong e-Reeber </button>
+			<button class="b2" id="but5" style="font-weight: bold;">Sequence</button>
+			<button class="b2" id="but6" style="font-weight: bold;">Step</button>
+			<button class="b1" id="but1" style="font-weight: bold;">Reset</button>
+		</div>
+
+		<div id="big">
+			<div class="meinebox" id="boxt">
+				<h2 class="myh2">&delta;</h2>
+				<table class="mytable">
+					<tr>
+						<td class="mytdm">Q</td>
+						<td class="mytdm1">&Gamma;</td>
+						<td class="mytdm">Q</td>
+						<td class="mytdm">&Gamma;</td>
+						<td class="mytdm">{L,R}</td>
+					</tr>
+					<tr id="trst" class="mytr">
+						<td class="mytd">St</td>
+						<td class="mytd1">B</td>
+						<td class="mytd">a</td>
+						<td class="mytd">_</td>
+						<td class="mytd">R</td>
+					</tr>
+					<tr id="tra1" class="mytr">
+						<td class="mytd">a</td>
+						<td class="mytd1">P</td>
+						<td class="mytd">b</td>
+						<td class="mytd">P</td>
+						<td class="mytd">R</td>
+					</tr>
+					<tr id="tra2" class="mytr">
+						<td class="mytd">a</td>
+						<td class="mytd1">T</td>
+						<td class="mytd">b</td>
+						<td class="mytd">T</td>
+						<td class="mytd">R</td>
+					</tr>
+					<tr id="trb1" class="mytr">
+						<td class="mytd">b</td>
+						<td class="mytd1">B</td>
+						<td class="mytd">1</td>
+						<td class="mytd">_</td>
+						<td class="mytd">R</td>
+					</tr>
+				
+					<tr id="tr11" class="mytr">
+						<td class="mytd">1</td>
+						<td class="mytd1">T</td>
+						<td class="mytd">2</td>
+						<td class="mytd">_</td>
+						<td class="mytd">R</td>
+					</tr>
+			
+					<tr id="tr12" class="mytr">
+						<td class="mytd">1</td>
+						<td class="mytd1">P</td>
+						<td class="mytd">3</td>
+						<td class="mytd">_</td>
+						<td class="mytd">R</td>
+					</tr>
+					<tr id="tr21" class="mytr">
+						<td class="mytd">2</td>
+						<td class="mytd1">S</td>
+						<td class="mytd">2</td>
+						<td class="mytd">_</td>
+						<td class="mytd">R</td>
+					</tr>
+					<tr id="tr22" class="mytr">
+						<td class="mytd">2</td>
+						<td class="mytd1">X</td>
+						<td class="mytd">4</td>
+						<td class="mytd">_</td>
+						<td class="mytd">R</td>
+					</tr>
+					<tr id="tr31" class="mytr">
+						<td class="mytd">3</td>
+						<td class="mytd1">T</td>
+						<td class="mytd">3</td>
+						<td class="mytd">_</td>
+						<td class="mytd">R</td>
+					</tr>
+					<tr id="tr32" class="mytr">
+						<td class="mytd">3</td>
+						<td class="mytd1">V</td>
+						<td class="mytd">5</td>
+						<td class="mytd">_</td>
+						<td class="mytd">R</td>
+					</tr>
+					<tr id="tr41" class="mytr">
+						<td class="mytd">4</td>
+						<td class="mytd1">X</td>
+						<td class="mytd">3</td>
+						<td class="mytd">_</td>
+						<td class="mytd">R</td>
+					</tr>
+					<tr id="tr42" class="mytr">
+						<td class="mytd">4</td>
+						<td class="mytd1">S</td>
+						<td class="mytd">6</td>
+						<td class="mytd">_</td>
+						<td class="mytd">R</td>
+					</tr>
+					<tr id="tr51" class="mytr">
+						<td class="mytd">5</td>
+						<td class="mytd1">P</td>
+						<td class="mytd">4</td>
+						<td class="mytd">_</td>
+						<td class="mytd">R</td>
+					</tr>
+					<tr id="tr52" class="mytr">
+						<td class="mytd">5</td>
+						<td class="mytd1">V</td>
+						<td class="mytd">6</td>
+						<td class="mytd">_</td>
+						<td class="mytd">R</td>
+					</tr>
+					<tr id="tr61" class="mytr">
+						<td class="mytd">6</td>
+						<td class="mytd1">E</td>
+						<td class="mytd">D</td>
+						<td class="mytd">_</td>
+						<td class="mytd">R</td>
+					</tr>
+					<tr id="trd1" class="mytr">
+						<td class="mytd">d</td>
+						<td class="mytd1">P</td>
+						<td class="mytd">e</td>
+						<td class="mytd">_</td>
+						<td class="mytd">R</td>
+					</tr>
+					<tr id="trd2" class="mytr">
+						<td class="mytd">d</td>
+						<td class="mytd1">T</td>
+						<td class="mytd">f</td>
+						<td class="mytd">_</td>
+						<td class="mytd">R</td>
+					</tr>
+					<tr id="tre1" class="mytr">
+						<td class="mytd">e</td>
+						<td class="mytd1">E</td>
+						<td class="mytd">g</td>
+						<td class="mytd">_</td>
+						<td class="mytd">R</td>
+					</tr>
+					<tr id="trf1" class="mytr">
+						<td class="mytd">f</td>
+						<td class="mytd1">E</td>
+						<td class="mytd">h</td>
+						<td class="mytd">_</td>
+						<td class="mytd">R</td>
+					</tr>
+					<tr id="trg1" class="mytr">
+						<td class="mytd">g</td>
+						<td class="mytd1">_</td>
+						<td class="mytd">g</td>
+						<td class="mytd">_</td>
+						<td class="mytd">L</td>
+					</tr>
+					<tr id="trg2" class="mytr">
+						<td class="mytd">g</td>
+						<td class="mytd1">P</td>
+						<td class="mytd">i</td>
+						<td class="mytd">P</td>
+						<td class="mytd">R</td>
+					</tr>
+					<tr id="trh1" class="mytr">
+						<td class="mytd">h</td>
+						<td class="mytd1">_</td>
+						<td class="mytd">h</td>
+						<td class="mytd">_</td>
+						<td class="mytd">L</td>
+					</tr>
+					<tr id="trh2" class="mytr">
+						<td class="mytd">h</td>
+						<td class="mytd1">T</td>
+						<td class="mytd">i</td>
+						<td class="mytd">T</td>
+						<td class="mytd">R</td>
+					</tr>
+					<tr id="tri1" class="mytr">
+						<td class="mytd" colspan=5;>i</td>
+						
+					</tr>
+
+				</table>
+				<div id="boxtupel">
+					<p id="ptupel">Q={a,b,1,2,3,4,5,6,d,e,f,g,h,i}</p>
+					<p id="ptupel">&Sigma;={B,T,P,S,X,V,E}</p>
+					<p id="ptupel">S={St}</p>
+					<p id="ptupel">Qaccept={I}</p>
+					<p id="ptupel">&Gamma;={_,B,T,P,S,X,V,E}</p>
+
+				</div>
+
+			</div>
+
+			<div class="meinebox" id=boxg>
+				<h2 class="myh2">Graph</h2>
+
+				<div class="kreis" id="k1">1</div>
+				<div class="kreis" id="k2">2</div>
+				<div class="kreis" id="k3">3</div>
+				<div class="kreis" id="k4">4</div>
+				<div class="kreis" id="k5">5</div>
+				<div class="kreis" id="k6">6</div>
+
+
+				<img src="Images/arrow.png" alt="Pfeil" class="Pfeil" id="p1">
+				<img src="Images/arrow.png" alt="Pfeil" class="Pfeil" id="p2">
+				<img src="Images/arrow.png" alt="Pfeil" class="Pfeil" id="p3">
+				<img src="Images/arrow.png" alt="Pfeil" class="Pfeil" id="p4">
+				<img src="Images/arrow.png" alt="Pfeil" class="Pfeil" id="p5">
+				<img src="Images/arrow.png" alt="Pfeil" class="Pfeil" id="p6">
+				<img src="Images/arrow.png" alt="Pfeil" class="Pfeil" id="p7">
+				<img src="Images/arrow.png" alt="Pfeil" class="Pfeil" id="p8">
+				<img src="Images/arrow.png" alt="Pfeil" class="Pfeil" id="p9">
+				<img src="Images/arrow.png" alt="Pfeil" class="Pfeil" id="p10">
+
+				<div id="kB" style="font-size: 30px;" class="kreis">b</div>
+				<div id="kD" style="font-size: 30px;" class="kreis">d</div>
+
+				<div style="float: left;" id="TB1">
+					<p style="font-size: 20px;">B->_, R</p>
+			   	</div>
+				<div style="float: left;" id="T11">
+					<p style="font-size: 20px;">T->_,R</p>
+			   	</div>
+				<div style="float: left;" id="T12">
+					<p style="font-size: 20px;">P->_,R</p>
+			   	</div>
+				<div style="float: left;"  id="T21">
+					<p style="font-size: 20px;">S->_,R</p>
+			   	</div>
+				<div style="float: left;" id="T31">
+					<p style="font-size: 20px;">T->_,R</p>
+			   	</div>
+				<div style="float: left;" id="T22">
+					<p style="font-size: 20px;">X->_,R</p>
+			   	</div>
+				<div style="float: left;" id="T41">
+					<p style="font-size: 20px;">X->_,R</p>
+			   	</div>
+				<div style="float: left;" id="T32">
+					<p style="font-size: 20px;">V->_,R</p>
+			   	</div>
+				<div style="float: left;" id="T51">
+					<p style="font-size: 20px;">P->_,R</p>
+			   	</div>
+				<div style="float: left;" id="T42">
+					<p style="font-size: 20px;">S->_,R</p>
+			   	</div>
+				<div style="float: left;" id="T52">
+					<p style="font-size: 20px;">V->_,R</p>
+			   	</div>
+				<div style="float: left;" id="T61">
+					<p style="font-size: 20px;">E->_,R</p>
+			   	</div>
+
+				<img src="Images/arrow_drilled.png" alt="Pfeil" class="Pfeil" id="p11">
+				<img src="Images/arrow_drilled.png" alt="Pfeil" class="Pfeil" id="p12">
+
+
+				<div style="width: 200px" id= "speed">
+					<h2 class="myh2">Animation Speed</h2>
+					<input type="range" min="100" max="2000" value="1000" step="100"id="slider">
+					<p id="speedtext"></p>
+				</div>
+
+				<div class="kreis" id="kSt">St</div>
+				<div class="kreis" id="kA">a</div>
+				<div class="kreis" id="kE">e</div>
+				<div class="kreis" id="kF">f</div>
+				<div class="kreis" id="kG">g</div>
+				<div class="kreis" id="kH">h</div>
+				<div class="kreis2" id="kI">i</div>
+
+				<img src="Images/arrow.png" alt="Pfeil" class="Pfeil" id="pst">
+				<img src="Images/arrow.png" alt="Pfeil" class="Pfeil" id="pa">
+				<img src="Images/arrow.png" alt="Pfeil" class="Pfeil" id="pd1">
+				<img src="Images/arrow.png" alt="Pfeil" class="Pfeil" id="pd2">
+				<img src="Images/arrow.png" alt="Pfeil" class="Pfeil" id="pe">
+				<img src="Images/arrow.png" alt="Pfeil" class="Pfeil" id="pf">
+				<img src="Images/arrow.png" alt="Pfeil" class="Pfeil" id="pg1">
+				<img src="Images/arrow.png" alt="Pfeil" class="Pfeil" id="ph1">
+				<img src="Images/arrow_drilled.png" alt="Pfeil" class="Pfeil" id="pg2">
+				<img src="Images/arrow_drilled.png" alt="Pfeil" class="Pfeil" id="ph2">
+
+				<div style="float: left;" id="Tst">
+					<p style="font-size: 20px;">B->_,R</p>
+			   	</div>
+				   <div style="float: left;" id="TA1">
+					<p style="font-size: 20px;">P->P,R</p>
+			   	</div>
+				   <div style="float: left;" id="TA2">
+					<p style="font-size: 20px;">T->T,R</p>
+			   	</div>
+				   <div style="float: left;" id="TD1">
+					<p style="font-size: 20px;">P->_,R</p>
+			   	</div>
+				   <div style="float: left;" id="TD2">
+					<p style="font-size: 20px;">T->_,R</p>
+			   	</div>
+				   <div style="float: left;" id="TE1">
+					<p style="font-size: 20px;">E->_,R</p>
+			   	</div>
+				   <div style="float: left;" id="TF1">
+					<p style="font-size: 20px;">E->_,R</p>
+			   	</div>
+				   <div style="float: left;" id="TG2">
+					<p style="font-size: 20px;">_->_,L</p>
+			   	</div>
+
+				</div>
+					<div style="float: left;" id="TH2">
+					<p style="font-size: 20px;">_->_,L</p>
+				</div>	
+				</div>
+					<div style="float: left;" id="TG1">
+					<p style="font-size: 20px;">P->P,R</p>
+				</div>
+				</div>
+					<div style="float: left;" id="TH1">
+					<p style="font-size: 20px;">T->T,R</p>
+				</div>
+
+				<div style="float: left;" id="animus">
+					<div id="zustand">
+					 	<img src="Images/arrow.png" alt="Pfeil" class="Pfeil" id="pzu" >
+					 	<div id="qdiv">
+							 <p id="qtext" style="font-size: 40px;">St</p></div>
+					</div>
+					<div id="arraywrapper"><p id="aniarray" style="font-size: 40px;"></p></div>
+				</div>
+					   	
+			</div>
+		</div>
+		<div id="docdiv"><a href="Docs.html"><button class="b1" id="but10" style="font-weight: bold;">Help&Documentation</button></a></div>
+		
+		<button class="b1" id="but4">Check</button>
+
+	</body>
+</html>
+
