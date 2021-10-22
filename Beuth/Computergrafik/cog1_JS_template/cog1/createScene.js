@@ -17,14 +17,18 @@ function(exports, scenegraph, animation) {
 	 */
 	function init() {
 
-		var cubeNode = scenegraph.createNodeWithModel("cube", "cube", {scale:300});
-		cubeNode.rotateTo([1.6, -3.87, 0]);
+		
 
 		// BEGIN exercise myModel
+		var mymodelNode = scenegraph.createNodeWithModel("mymodel", "mymodel", {scale:300});
+		//mymodelNode.rotateTo([1.6, -3.87, 0]);
 		
 		// END exercise myModel
 		
 		return;
+
+		var cubeNode = scenegraph.createNodeWithModel("cube", "cube", {scale:300});
+		cubeNode.rotateTo([1.6, -3.87, 0]);
 
 		//var cubeNode = scenegraph.createNodeWithModel("cube", "cube", {scale:100, textureURL:"brickWall.jpg"});		
 		var cubeNode1 = scenegraph.createNodeWithModel("cube 1", "cube", {scale:70, textureURL:"stoneWall.jpg"});
