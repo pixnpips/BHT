@@ -129,35 +129,78 @@ function(exports, shader, framebuffer, data) {
 
 		// BEGIN exercise Bresenham
 		// Comment out the next two lines.
-		drawLine(startX, startY, endX, endY, color);
-		return;
+
+		// Hier wird die Funktion Drawline aufgerufen, der unser Mymodel zeichnet:
+		//drawLine(startX, startY, endX, endY, color);
+		//return;
+
 
 		// Skip it, if the line is just a point.
-
-
+		
+		if (dX==0&&dY==0){
+			//console.log("Nur ein Punkt");
+			return;
+		}
+		
+		
 		// Optionally draw start point as is the same
 		// as the end point of the previous edge.
 		// In any case, do not add an intersection for start point here,
 		// this should happen later in the scanline function.
-
+		
 
 		// Distinction of cases for driving variable.
+		
+
+		if(dXAbs>=dYAbs){
 
 			// x is driving variable.
+			e=dXAbs-dYAbs2;
 
-						// Do not add intersections for points on horizontal line
-						// and not the end point, which is done in scanline.
+			// Do not add intersections for points on horizontal line
+			// and not the end point, which is done in scanline.
+			//framebuffer.set(x, y, getZ(x, y), color);
 
-					//framebuffer.set(x, y, getZ(x, y), color);
+			while (x!=endX){
+
+				x=x+dXSign;
+				framebuffer.set(x, y, getZ(x, y), color);
+				//console.log("X:"+x+ "  Y:"+y +"  Z:"+z);
+
+				if(e>0){
+					e=e-dYAbs2;
+				}else{
+					y=y+dYSign;
+					e=e+dXdYdiff2;	
+				};
+			};		
+			
+		}else{
 
 			// y is driving variable.
+			e=dYAbs-dXAbs2;
 
-					// Add every intersection as there can be only one per scan line.
-					// but not the end point, which is done in scanline.
+			// Add every intersection as there can be only one per scan line.
+			// but not the end point, which is done in scanline.
+			//framebuffer.set(x, y, getZ(x, y), color);
+			while(y!=endY){
 
-						//framebuffer.set(x, y, getZ(x, y), color);
-		
-		// END exercise Bresenham		
+				y=y+dYSign;
+				//console.log("X:"+x+ "  Y:"+y +"  Z:"+z);
+				framebuffer.set(x, y, getZ(x, y), color);
+
+				if(e>0){
+					e=e-dXAbs2;
+					
+				}else{
+					x=x+dXSign;
+					e=e+dYdXdiff2;
+					
+				};
+			};
+		};
+		// END exercise Bresenham
+		return;	
 	};
 
 	/**
