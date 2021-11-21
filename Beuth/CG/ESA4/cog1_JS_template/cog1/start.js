@@ -45,7 +45,7 @@ require(["dojo", "dojo/parser", "dojo/domReady!"], function(dojo) {
 
 			// On same [maybe local] HTTP-server as used to load dojo:
 
-			"cog1" : "/Beuth/Computergrafik/ESA4/cog1_JS_template/cog1"
+			"cog1" : "/Beuth/CG/ESA4/cog1_JS_template/cog1"
 
 			// "cog1" : "/~gers/cog1_sol/cog1"
 
