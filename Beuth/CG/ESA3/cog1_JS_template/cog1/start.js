@@ -39,10 +39,15 @@ require(["dojo", "dojo/parser", "dojo/domReady!"], function(dojo) {
 		paths : {
 			// Absolute path to cog1 project, local directory without
 			// HTTP-server:
-			"cog1" : "D:/OneDrive/2_Studium/Unterlagen Fächer/3_Semester/CG/Programm/cog1_JS_template/cog1"
+			//"cog1" : "D:/OneDrive/2_Studium/Unterlagen Fächer/3_Semester/CG/Programm/cog1_JS_template/cog1"
+
+			
 
 			// On same [maybe local] HTTP-server as used to load dojo:
-			// "cog1" : "/Beuth/Computergrafik/
+
+			"cog1" : "/Beuth/Computergrafik/cog1_JS_template/cog1"
+
+			// "cog1" : "/~gers/cog1_sol/cog1"
 
 		},
 		// Add one entry for each custom module.

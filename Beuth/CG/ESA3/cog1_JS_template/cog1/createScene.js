@@ -20,13 +20,9 @@ function(exports, scenegraph, animation) {
 		
 
 		// BEGIN exercise myModel
-
-		//Hier ist mein eigenes Modell auskommentiert:
-		//var mymodelNode = scenegraph.createNodeWithModel("mymodel", "mymodel", {scale:300});
+		var mymodelNode = scenegraph.createNodeWithModel("mymodel", "mymodel", {scale:300});
 		//mymodelNode.rotateTo([1.6, -3.87, 0]);
-
-		//Hier wird unser Scanline Test Modell aufgerufen
-		var insideOutPolyNode = scenegraph.createNodeWithModel("insideOutPoly", "insideOutPoly");
+		
 		// END exercise myModel
 		
 		return;
