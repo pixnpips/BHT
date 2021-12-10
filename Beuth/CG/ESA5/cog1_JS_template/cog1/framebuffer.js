@@ -132,36 +132,43 @@ define(["exports", "scene"], function(exports, scene) {
 		// BEGIN exercise Z-Buffer
 		// Z-Buffer pixel starts a frame as undefined.
 		// The first access on a pixel does not need a test.
-		
-		//console.log(zBuf[indexZBuf]);
-		//console.log('Z-Wert: '+z);
-		 
-		if (zBuf[indexZBuf] === maxDistance) {
+		if (z - zBuf[indexZBuf]> 0 || zBuf[indexZBuf] === maxDistance) {
 			zBuf[indexZBuf] = z;
 			color=color;
 			return true;
 		}
-		
+
+		//console.log(zBuf[indexZBuf]);
+		//console.log('Z-Wert: '+z);
 
 		// On z-buffer fights color black should win to emphasize debug edges.
 		// Use some small epsilon to determine z-buffer fights
 		// in favor of the the polygon processed first or last (depending on sign).
 		// Epsilon depends on the z-range of the scene.
 
+		
+
 		// Guess some decent epsilon (which may be >1 despite the name).
 
-
-		//Hierdran hat es immer gelegen:
 		
-		let e = 1;
+		//Variante mit dem Epsilon----------------------------------------------------
+		
+		// if (zBuf[indexZBuf] === maxDistance) {
+		// 	zBuf[indexZBuf] = z;
+		// 	color=color;
+		// 	return true;
+		// }
+		
+		// let e = 1;
 
-		if (z - zBuf[indexZBuf] >= e || z - zBuf[indexZBuf] <= -e) {
-			if (z - zBuf[indexZBuf]> 0) {
-				zBuf[indexZBuf] = z;
-				return true;
-			}
-		}
-
+		// if (z - zBuf[indexZBuf] >= e || z - zBuf[indexZBuf] <= -e) {
+		// 	if (z - zBuf[indexZBuf]> 0) {
+		// 	zBuf[indexZBuf] = z;
+		// 	return true;
+		// 	}
+		// }	
+		
+		
 
 		// The camera is in the origin looking in negative z-direction.
 
@@ -169,7 +176,9 @@ define(["exports", "scene"], function(exports, scene) {
 		// END exercise Z-Buffer
 
 		return false;
-	}
+		}
+
+	
 
 		// BEGIN exercise Z-Buffer
 		
