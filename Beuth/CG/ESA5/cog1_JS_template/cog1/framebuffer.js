@@ -132,11 +132,13 @@ define(["exports", "scene"], function(exports, scene) {
 		// BEGIN exercise Z-Buffer
 		// Z-Buffer pixel starts a frame as undefined.
 		// The first access on a pixel does not need a test.
-		if (z - zBuf[indexZBuf]> 0 || zBuf[indexZBuf] === maxDistance) {
-			zBuf[indexZBuf] = z;
-			color=color;
-			return true;
-		}
+
+		// Quick and Dirty
+		// if (z - zBuf[indexZBuf]> 0 || zBuf[indexZBuf] === maxDistance) {
+		// 	zBuf[indexZBuf] = z;
+		// 	color=color;
+		// 	return true;
+		// }
 
 		//console.log(zBuf[indexZBuf]);
 		//console.log('Z-Wert: '+z);
@@ -153,23 +155,21 @@ define(["exports", "scene"], function(exports, scene) {
 		
 		//Variante mit dem Epsilon----------------------------------------------------
 		
-		// if (zBuf[indexZBuf] === maxDistance) {
-		// 	zBuf[indexZBuf] = z;
-		// 	color=color;
-		// 	return true;
-		// }
+		 if (zBuf[indexZBuf] === maxDistance) {
+		 	zBuf[indexZBuf] = z;
+		 	color=color;
+		 	return true;
+		 }
 		
-		// let e = 1;
+		 let e = 1;
 
-		// if (z - zBuf[indexZBuf] >= e || z - zBuf[indexZBuf] <= -e) {
-		// 	if (z - zBuf[indexZBuf]> 0) {
-		// 	zBuf[indexZBuf] = z;
-		// 	return true;
-		// 	}
-		// }	
+		 if (z - zBuf[indexZBuf] >= e || z - zBuf[indexZBuf] <= -e) {
+			if (z - zBuf[indexZBuf]> 0) {
+			zBuf[indexZBuf] = z;
+		 	return true;
+			}
+		}	
 		
-		
-
 		// The camera is in the origin looking in negative z-direction.
 
 
