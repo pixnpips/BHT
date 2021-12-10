@@ -614,7 +614,7 @@
 
 
 		 // Check result, applying the plane equation to the original polygon vertices.--> schlägt nicht aus
-		 
+		/** 
 		 for(var i = 0; i < polygon.length; i++) {
 		 	var p = polygon[i];
 		 	var x = vertices[p][0];
@@ -626,6 +626,7 @@
 		 		console.log("Plane: A=" + A + " B=" + B + " C=" + C + " D=" + D);
 		  	}
 		 };
+		 */ 
 		
 
 		 // END exercise Z-Buffer

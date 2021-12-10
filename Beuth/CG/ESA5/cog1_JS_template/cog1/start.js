@@ -39,7 +39,7 @@ require(["dojo", "dojo/parser", "dojo/domReady!"], function(dojo) {
 		paths : {
 			// Absolute path to cog1 project, local directory without
 			// HTTP-server:
-			"cog1" : "/Beuth/CG/ESA4/cog1_JS_template/cog1"
+			"cog1" : "/Beuth/CG/ESA5/cog1_JS_template/cog1"
 
 			// On same [maybe local] HTTP-server as used to load dojo:
 			// "cog1" : "/Beuth/Computergrafik/
