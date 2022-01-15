@@ -48,7 +48,7 @@ define(["exports", "shader"], function(exports, shader) {
 			transformation : {
 				translate : [0, 0, 0],
 				rotate : [0, 0, 0], // around x,y,z axis angle in radiant.
-				scale : [0, 0, 0],
+				scale : [1, 1, 1],
 				shear : [0, 0,0],
 			},
 			// Modelview matrix as 4x4 glMatrix to
