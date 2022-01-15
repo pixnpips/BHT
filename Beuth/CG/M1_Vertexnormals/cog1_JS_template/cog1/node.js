@@ -2,7 +2,7 @@
  * An node in the scene contains a model (3D-data) and a
  * transform, i.e. translate, rotate, scale vectors for a node in the scene.
  * It can have a parent node.
- * 
+ *
  * @namespace cog1
  * @module node
  */
@@ -48,8 +48,8 @@ define(["exports", "shader"], function(exports, shader) {
 			transformation : {
 				translate : [0, 0, 0],
 				rotate : [0, 0, 0], // around x,y,z axis angle in radiant.
-				scale : [0.6, 0.6, 0.6],
-				shear : [0, 0.3,-0.3],
+				scale : [0, 0, 0],
+				shear : [0, 0,0],
 			},
 			// Modelview matrix as 4x4 glMatrix to
 			// Transform, i.e. translate, rotate, scale the node.
@@ -67,7 +67,7 @@ define(["exports", "shader"], function(exports, shader) {
 			worldRotation : mat4.identity(mat4.create()),
 			// Local shearing matrix.
 			localShear : mat4.identity(mat4.create()),
-			
+
 			//
 			// Public functions.
 			//
@@ -257,11 +257,11 @@ define(["exports", "shader"], function(exports, shader) {
 			// Include rotation.
 			mat4.multiply(this.localModelview, this.localRotation, this.localModelview);
 
-			
+
 			// Include scaling.
 			mat4.scale(this.localModelview, this.transformation.scale);
 
-		
+
 			// BEGIN exercise Shear ---------------------------------------------------------------------------------------------------------
 			// Include shearing. Hier müssen wir die local Modelview Matrix mit in die Scherung miteinbeziehen damit es geupdatet wird!!!!!!!!!!!!!!!!!!!
 
@@ -274,7 +274,7 @@ define(["exports", "shader"], function(exports, shader) {
 			this.localShear[8]=this.transformation.shear[1];
 			this.localShear[9]=this.transformation.shear[0];
 
-			mat4.multiply(this.localModelview, this.localShear);	
+			mat4.multiply(this.localModelview, this.localShear);
 
 			//console.log("Modelview: " +this.localModelview);
 			//console.log("localshear: "+this.localShear);
@@ -337,7 +337,7 @@ define(["exports", "shader"], function(exports, shader) {
 	 */
 	function rotateTo(vec) {
 		this.rotate(vec, true);
-		
+
 	}
 
 	/**
@@ -348,7 +348,7 @@ define(["exports", "shader"], function(exports, shader) {
 	 */
 	function scale(vec, setTo) {
 		this.transform(this.transformation.scale, vec, setTo);
-		
+
 	}
 
 	/**
