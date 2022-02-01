@@ -100,8 +100,9 @@ define(["exports", "data"], function(exports, data) {
 						[vertnum,vertnum+1,vertnum+2]);
 					
 				}
+				instance.polygonVertices.splice(0,polys);
 			}
-			instance.polygonVertices.splice(0,polys);
+			
 		}
 
 		
