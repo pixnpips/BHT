@@ -419,7 +419,7 @@ define(["exports", "data", "glMatrix"], function(data, exports) {
 			}
 		}
 
-		console.log(this.vertexNormals);
+		//console.log(this.vertexNormals);
 
 		// Normalize normals.
 
@@ -430,7 +430,7 @@ define(["exports", "data", "glMatrix"], function(data, exports) {
 		}
 
 
-		console.log(this.vertexNormals);
+		//console.log(this.vertexNormals);
 		// END exercise Vertex-Normals
 	}
 	
