@@ -7,7 +7,7 @@
 $objFile    = 'myModel2.obj';            // 'dynamic' or filename or 'get';
 $importDir  = 'obj/';               // directory for obj-data
 $targetDir  = 'cog1/modelData/';    // directory for target-file
-$myModel    = 'myBlenderModel.js';  // target-file
+$myModel    = 'myBlenderModell.js';  // target-file
 $mode       = 'file';               // 'file' = print to file $myModel / 'echo' = print to screen (can be used for dynamic reading)
 
 $color      = 'rainbow';            // 'red','green','blue','cyan','pink','yellow','black','rainbow','random'
