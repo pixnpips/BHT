@@ -39,8 +39,11 @@ function(exports, scenegraph, animation) {
 		//var dirtyTeapotNode = scenegraph.createNodeWithModel("dirtyTeapot", "teapot_dirty", {color:8});
 		//dirtyTeapotNode.scale([2,2,2]);
 
-		var cubeNode_dirty = scenegraph.createNodeWithModel("cube_dirty", "cube_dirty", {scale:300});
-		cubeNode_dirty.rotateTo([1.6, -3.87, 0]);
+		//var cubeNode_dirty = scenegraph.createNodeWithModel("cube_dirty", "cube_dirty", {scale:300});
+		//cubeNode_dirty.rotateTo([1.6, -3.87, 0]);
+
+		var Blender_Node= scenegraph.createNodeWithModel("MyBlenderModell", "MyBlenderModell", {scale:500});
+		Blender_Node.rotateTo([0,-0.75,0]);
 
 
 		return;
