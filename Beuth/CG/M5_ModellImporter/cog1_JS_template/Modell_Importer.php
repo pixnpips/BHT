@@ -4,7 +4,7 @@
 // @version: 1.3
 
 // SETTINGS
-$objFile    = 'myModel2.obj';            // 'dynamic' or filename or 'get';
+$objFile    = 'myModel2.obj';       // 'dynamic' or filename or 'get';
 $importDir  = 'obj/';               // directory for obj-data
 $targetDir  = 'cog1/modelData/';    // directory for target-file
 $myModel    = 'myBlenderModell.js';  // target-file
