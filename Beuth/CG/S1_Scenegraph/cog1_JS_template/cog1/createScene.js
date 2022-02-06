@@ -29,36 +29,34 @@ function(exports, scenegraph, animation) {
 		//var insideOutPolyNode = scenegraph.createNodeWithModel("insideOutPoly", "insideOutPoly");
 		// END exercise myModel
 
-		var vladsphere= scenegraph.createNodeWithModel("vladsphere", "vladsphere", {scale:200});
-		vladsphere.rotateTo([0,-0.75,0]);
-		
-		var cubeNode = scenegraph.createNodeWithModel("cube", "cube", {scale:300},vladsphere);
+	
 
-		var diamondNode1 = scenegraph.createNodeWithModel("1", "diamond",{scale:100},cubeNode);
-		diamondNode1.translate([300,300,300])
+		var c1= scenegraph.createNodeWithModel("cube1", "cube", {scale:40});
+		c1.translate([-320,0,0]);
 
-		var diamondNode2 = scenegraph.createNodeWithModel("2", "diamond",{scale:100},cubeNode);
-		diamondNode2.translate([-300,300,300])
+		var s1= scenegraph.createNodeWithModel("s1", "vladsphere", {scale:20},c1);
+		s1.translate([360,0,0])
+		s1.scale([15,1,1]);
 
-		var diamondNode3 = scenegraph.createNodeWithModel("3", "diamond",{scale:100},cubeNode);
-		diamondNode3.translate([300,-300,300])
+		var c2= scenegraph.createNodeWithModel("cube2", "cube", {scale:40},c1);
+		c2.translate([0,0,0]);
+		c2.rotate([0,0,1.8]);
+		c2.translate([720,0,0]);
 
-		var diamondNode4 = scenegraph.createNodeWithModel("4", "diamond",{scale:100},cubeNode);
-		diamondNode4.translate([300,300,-300])
+		var s2= scenegraph.createNodeWithModel("s2", "vladsphere", {scale:20},c2);
+		s2.translate([360,0,0]);
+		s2.scale([15,1,1]);
 
-		var diamondNode5 = scenegraph.createNodeWithModel("5", "diamond",{scale:100},cubeNode);
-		diamondNode5.translate([-300,-300,300])
+		var c3= scenegraph.createNodeWithModel("cube3", "cube", {scale:40},c2);
+		c3.translate([0,0,0]);
+		c3.rotate([0,0,-0.3]);
+		c3.translate([720,-20,0]);
 
-		var diamondNode6 = scenegraph.createNodeWithModel("6", "diamond",{scale:100},cubeNode);
-		diamondNode6.translate([300,-300,-300])
+		var s3= scenegraph.createNodeWithModel("s3", "vladsphere", {scale:20},c3);
+		s3.translate([160,0,0]);
+		s3.scale([6,3,3]);
 
-		var diamondNode7 = scenegraph.createNodeWithModel("7", "diamond",{scale:100},cubeNode);
-		diamondNode7.translate([-300,300,-300])
-
-		var diamondNode8 = scenegraph.createNodeWithModel("8", "diamond",{scale:100},cubeNode);
-		diamondNode8.translate([-300,-300,-300])
-
-
+	
 
 
 
