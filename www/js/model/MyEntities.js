@@ -13,13 +13,23 @@ import {EntityManager} from "../Main.js";
  *************/
 
 export class MyEntity extends EntityManager.Entity {
-
     constructor() {
         super();
     }
-
 }
 
+
 // TODO-REPEATED: add new entity type declarations here
+export class MediaItem extends EntityManager.Entity {
+    constructor(title, src, contentType) {
+        super();
+        this.title = title;
+        this.description = "";
+        this.added = Date.now();
+        this.src = src;
+        this.srcType = null;
+        this.contentType = contentType;
+    }
+}
 
 
