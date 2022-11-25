@@ -3,6 +3,7 @@
  */
 import {mwf} from "../Main.js";
 import {entities} from "../Main.js";
+import {GenericCRUDImplLocal} from "../Main.js";
 
 export default class ListviewViewController extends mwf.ViewController {
 
@@ -10,6 +11,8 @@ export default class ListviewViewController extends mwf.ViewController {
         super();
         console.log("ListviewViewController()");
 
+
+        //Diese Items müssen immer definiert sein!!
         this.items = [
             new
             entities.MediaItem("m1","https://placekitten.com/100/100"),
@@ -19,6 +22,9 @@ export default class ListviewViewController extends mwf.ViewController {
             entities.MediaItem("m3","https://placekitten.com/150/200")
         ];
         this.addNewMediaItemElement = null;
+
+        this.crudops =
+            GenericCRUDImplLocal.newInstance("MediaItem");
     }
 
     /*
@@ -31,6 +37,9 @@ export default class ListviewViewController extends mwf.ViewController {
         this.addNewMediaItemElement.onclick = (() => {
             this.addToListview(new entities.MediaItem("m new","https://placekitten.com/100/100"));
         });
+
+        //Achtung das hier ist der Punkt andem die Items definiert sein müssen!!!
+        this.initialiseListview(this.items);
         // call the superclass once creation is done
         super.oncreate();
     }
