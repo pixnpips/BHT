@@ -8,8 +8,17 @@ export default class ListviewViewController extends mwf.ViewController {
 
     constructor() {
         super();
-
         console.log("ListviewViewController()");
+
+        this.items = [
+            new
+            entities.MediaItem("m1","https://placekitten.com/100/100"),
+            new
+            entities.MediaItem("m2","https://placekitten.com/200/150"),
+            new
+            entities.MediaItem("m3","https://placekitten.com/150/200")
+        ];
+        this.addNewMediaItemElement = null;
     }
 
     /*
@@ -17,8 +26,11 @@ export default class ListviewViewController extends mwf.ViewController {
      */
     async oncreate() {
         // TODO: do databinding, set listeners, initialise the view
-
-
+        this.initialiseListview(this.items);
+        this.addNewMediaItemElement = this.root.querySelector("#addNewMediaItem");
+        this.addNewMediaItemElement.onclick = (() => {
+            this.addToListview(new entities.MediaItem("m new","https://placekitten.com/100/100"));
+        });
         // call the superclass once creation is done
         super.oncreate();
     }
@@ -29,6 +41,12 @@ export default class ListviewViewController extends mwf.ViewController {
      */
     bindListItemView(listviewid, itemview, itemobj) {
         // TODO: implement how attributes of itemobj shall be displayed in itemview
+        itemview.root.getElementsByTagName("img")[0].src =
+            itemobj.src;
+        itemview.root.getElementsByTagName("h2")[0].textContent =
+            itemobj.title;
+        itemview.root.getElementsByTagName("h3")[0].textContent =
+            itemobj.added;
     }
 
     /*
@@ -37,6 +55,7 @@ export default class ListviewViewController extends mwf.ViewController {
      */
     onListItemSelected(itemobj, listviewid) {
         // TODO: implement how selection of itemobj shall be handled
+        alert("Element " + itemobj.title + " wurde ausgewählt!");
     }
 
     /*
