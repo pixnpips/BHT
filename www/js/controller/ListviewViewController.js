@@ -3,14 +3,14 @@
  */
 import {mwf} from "../Main.js";
 import {entities} from "../Main.js";
-import {GenericCRUDImplLocal} from "../Main.js";
+//import {GenericCRUDImplLocal} from "../Main.js";
 
 export default class ListviewViewController extends mwf.ViewController {
 
     constructor() {
         super();
         console.log("ListviewViewController()");
-        this.crudops = GenericCRUDImplLocal.newInstance("MediaItem");
+        //this.crudops = GenericCRUDImplLocal.newInstance("MediaItem");
         this.addNewMediaItemElement = null;
     }
 
@@ -22,19 +22,22 @@ export default class ListviewViewController extends mwf.ViewController {
 
         // Hier wird unser crudopsObject mit der Funktion readAll aufgerufen  um unsere
         //anfangsansicht mit den Daten vom Server aufzubauen!!!
+        // this.crudops.readAll().then((items) => {
+        //     this.initialiseListview(items);
+        // });
 
-        this.crudops.readAll().then((items) => {
+        entities.MediaItem.readAll().then((items) => {
             this.initialiseListview(items);
         });
 
         //Hier wird ein new Media Item erstellt und er Eventlistener auf das d+ Button gesetzt
         this.addNewMediaItemElement = this.root.querySelector("#addNewMediaItem");
         this.addNewMediaItemElement.onclick = (() => {
-            this.crudops.create(new entities.MediaItem("m","https://placekitten.com/100/100")).then((created) =>
-            {
-                this.addToListview(created);
-            }
-        );
+            this.createNewItem();
+            //this.crudops.create(new entities.MediaItem("m","https:
+            //placekitten.com/100/100")).then((created) => {
+            // this.addToListview(created);
+            //});
         });
 
         // call the superclass once creation is done
@@ -94,15 +97,51 @@ export default class ListviewViewController extends mwf.ViewController {
         // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
     }
 
-    deleteItem(item) {
-        this.crudops.delete(item._id).then(() => {
-            this.removeFromListview(item._id);
+    createNewItem() {
+        var newItem = new entities.MediaItem("", "https://placekitten.com/100/100");
+        this.showDialog("mediaItemDialog", {
+            item: newItem,
+            actionBindings: {
+                submitForm: ((event) => {
+                    event.original.preventDefault();
+                    newItem.create().then(() => {
+                        this.addToListview(newItem);
+                    });
+                    this.hideDialog();
+                })
+            }
         });
     }
+
+
     editItem(item) {
-        item.title = (item.title + item.title);
-        this.crudops.update(item._id,item).then(() => {
-            this.updateInListview(item._id,item);
+        this.showDialog("mediaItemDialog", {
+            item: item,
+            actionBindings: {
+                submitForm: ((event) => {
+                    event.original.preventDefault();
+                    item.update().then(() => {
+                        this.updateInListview(item._id,item);
+                    });
+                    this.hideDialog();
+                }),/*!!!*/
+                deleteItem: ((event) => {
+                    this.deleteItem(item);
+                    this.hideDialog();
+                })
+            }
+        });
+    }
+
+
+
+    deleteItem(item) {
+        // this.crudops.delete(item._id).then(() => {
+        //     this.removeFromListview(item._id);
+        // });
+
+        item.delete().then(() => {
+            this.removeFromListview(item._id);
         });
     }
 

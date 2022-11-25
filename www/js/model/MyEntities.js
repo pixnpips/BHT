@@ -34,6 +34,7 @@ export class MediaItem extends EntityManager.Entity {
     get addedDateString() {
         return (new Date(this.added)).toLocaleDateString();
     }
+
     get mediaType() {
         if (this.contentType) {
             var index = this.contentType.indexOf("/");
