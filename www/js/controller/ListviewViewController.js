@@ -10,21 +10,8 @@ export default class ListviewViewController extends mwf.ViewController {
     constructor() {
         super();
         console.log("ListviewViewController()");
-
-
-        //Diese Items müssen immer definiert sein!!
-        this.items = [
-            new
-            entities.MediaItem("m1","https://placekitten.com/100/100"),
-            new
-            entities.MediaItem("m2","https://placekitten.com/200/150"),
-            new
-            entities.MediaItem("m3","https://placekitten.com/150/200")
-        ];
+        this.crudops = GenericCRUDImplLocal.newInstance("MediaItem");
         this.addNewMediaItemElement = null;
-
-        this.crudops =
-            GenericCRUDImplLocal.newInstance("MediaItem");
     }
 
     /*
@@ -32,14 +19,24 @@ export default class ListviewViewController extends mwf.ViewController {
      */
     async oncreate() {
         // TODO: do databinding, set listeners, initialise the view
-        this.initialiseListview(this.items);
-        this.addNewMediaItemElement = this.root.querySelector("#addNewMediaItem");
-        this.addNewMediaItemElement.onclick = (() => {
-            this.addToListview(new entities.MediaItem("m new","https://placekitten.com/100/100"));
+
+        // Hier wird unser crudopsObject mit der Funktion readAll aufgerufen  um unsere
+        //anfangsansicht mit den Daten vom Server aufzubauen!!!
+
+        this.crudops.readAll().then((items) => {
+            this.initialiseListview(items);
         });
 
-        //Achtung das hier ist der Punkt andem die Items definiert sein müssen!!!
-        this.initialiseListview(this.items);
+        //Hier wird ein new Media Item erstellt und er Eventlistener auf das d+ Button gesetzt
+        this.addNewMediaItemElement = this.root.querySelector("#addNewMediaItem");
+        this.addNewMediaItemElement.onclick = (() => {
+            this.crudops.create(new entities.MediaItem("m","https://placekitten.com/100/100")).then((created) =>
+            {
+                this.addToListview(created);
+            }
+        );
+        });
+
         // call the superclass once creation is done
         super.oncreate();
     }
@@ -48,15 +45,15 @@ export default class ListviewViewController extends mwf.ViewController {
      * for views with listviews: bind a list item to an item view
      * TODO: delete if no listview is used or if databinding uses ractive templates
      */
-    bindListItemView(listviewid, itemview, itemobj) {
-        // TODO: implement how attributes of itemobj shall be displayed in itemview
-        itemview.root.getElementsByTagName("img")[0].src =
-            itemobj.src;
-        itemview.root.getElementsByTagName("h2")[0].textContent =
-            itemobj.title;
-        itemview.root.getElementsByTagName("h3")[0].textContent =
-            itemobj.added;
-    }
+    // bindListItemView(listviewid, itemview, itemobj) {
+    //     // TODO: implement how attributes of itemobj shall be displayed in itemview
+    //     itemview.root.getElementsByTagName("img")[0].src =
+    //         itemobj.src;
+    //     itemview.root.getElementsByTagName("h2")[0].textContent =
+    //         itemobj.title+itemobj._id;
+    //     itemview.root.getElementsByTagName("h3")[0].textContent =
+    //         itemobj.added;
+    // }
 
     /*
      * for views with listviews: react to the selection of a listitem
@@ -64,7 +61,8 @@ export default class ListviewViewController extends mwf.ViewController {
      */
     onListItemSelected(itemobj, listviewid) {
         // TODO: implement how selection of itemobj shall be handled
-        alert("Element " + itemobj.title + " wurde ausgewählt!");
+        alert("Element " + itemobj.title +
+            itemobj._id + " wurde ausgewählt!");
     }
 
     /*
@@ -73,6 +71,8 @@ export default class ListviewViewController extends mwf.ViewController {
      */
     onListItemMenuItemSelected(menuitemview, itemobj, listview) {
         // TODO: implement how selection of the option menuitemview for itemobj shall be handled
+        super.onListItemMenuItemSelected(menuitemview, itemobj,
+            listview);
     }
 
     /*
@@ -92,6 +92,18 @@ export default class ListviewViewController extends mwf.ViewController {
      */
     async onReturnFromNextView(nextviewid, returnValue, returnStatus) {
         // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
+    }
+
+    deleteItem(item) {
+        this.crudops.delete(item._id).then(() => {
+            this.removeFromListview(item._id);
+        });
+    }
+    editItem(item) {
+        item.title = (item.title + item.title);
+        this.crudops.update(item._id,item).then(() => {
+            this.updateInListview(item._id,item);
+        });
     }
 
 }

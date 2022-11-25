@@ -18,7 +18,6 @@ export default class ViewControllerTemplate extends mwf.ViewController {
     async oncreate() {
         // TODO: do databinding, set listeners, initialise the view
 
-
         // call the superclass once creation is done
         super.oncreate();
     }
