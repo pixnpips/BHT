@@ -64,8 +64,8 @@ export default class ListviewViewController extends mwf.ViewController {
      */
     onListItemSelected(itemobj, listviewid) {
         // TODO: implement how selection of itemobj shall be handled
-        alert("Element " + itemobj.title +
-            itemobj._id + " wurde ausgewählt!");
+        //alert("Element " + itemobj.title + itemobj._id + " wurde ausgewählt!");
+        this.nextView("mediaReadview",{item: itemobj});
     }
 
     /*
