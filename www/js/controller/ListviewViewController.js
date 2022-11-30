@@ -22,9 +22,13 @@ export default class ListviewViewController extends mwf.ViewController {
 
         // Hier wird unser crudopsObject mit der Funktion readAll aufgerufen  um unsere
         //anfangsansicht mit den Daten vom Server aufzubauen!!!
+
         // this.crudops.readAll().then((items) => {
         //     this.initialiseListview(items);
         // });
+
+
+        //---------------Hier könnte der kritische Punkt sein in dem es schiefgegangen ist-------------//
 
         entities.MediaItem.readAll().then((items) => {
             this.initialiseListview(items);
@@ -34,10 +38,12 @@ export default class ListviewViewController extends mwf.ViewController {
         this.addNewMediaItemElement = this.root.querySelector("#addNewMediaItem");
         this.addNewMediaItemElement.onclick = (() => {
             this.createNewItem();
-            //this.crudops.create(new entities.MediaItem("m","https:
-            //placekitten.com/100/100")).then((created) => {
+
+
+            // this.crudops.create(new entities.MediaItem("m","https:
+            // placekitten.com/100/100")).then((created) => {
             // this.addToListview(created);
-            //});
+            // });
         });
 
         // call the superclass once creation is done
@@ -76,8 +82,7 @@ export default class ListviewViewController extends mwf.ViewController {
      */
     onListItemMenuItemSelected(menuitemview, itemobj, listview) {
         // TODO: implement how selection of the option menuitemview for itemobj shall be handled
-        super.onListItemMenuItemSelected(menuitemview, itemobj,
-            listview);
+        super.onListItemMenuItemSelected(menuitemview, itemobj, listview);
     }
 
     /*
