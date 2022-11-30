@@ -1,9 +1,6 @@
 /* TODO: add any application specific styling here */
 
-div{
-
-}
-
-main{
-
+#mediaReadview img {
+    width: 100%;
+    max-width: 100%;
 }

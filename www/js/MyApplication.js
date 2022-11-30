@@ -23,7 +23,7 @@ class MyApplication extends mwf.Application {
         console.log("MyApplication.oncreate(): initialising local database");
         // initialise the local database
         // TODO-REPEATED: add new entity types to the array of object store names
-        await GenericCRUDImplLocal.initialiseDB("mwftutdb", 1, ["MyEntity"]);
+        await GenericCRUDImplLocal.initialiseDB("mwftutdb", 1, ["MyEntity","MediaItem"]);
 
         console.log("MyApplication.oncreate(): local database initialised");
 
@@ -31,6 +31,15 @@ class MyApplication extends mwf.Application {
         //this.registerEntity("MyEntity", entities.MyEntity, true);
         //this.registerCRUD("MyEntity", this.CRUDOPS.LOCAL, GenericCRUDImplLocal.newInstance("MyEntity"));
         //this.registerCRUD("MyEntity", this.CRUDOPS.REMOTE, GenericCRUDImplRemote.newInstance("MyEntity"));
+
+        //Das hier war der Fehler beim und beim Reload: Meine Entity war nicht registriert!!!
+
+        this.registerEntity("MediaItem", entities.MediaItem, true);
+        this.registerCRUD("MediaItem", this.CRUDOPS.LOCAL, GenericCRUDImplLocal.newInstance("MediaItem"));
+        this.registerCRUD("MediaItem", this.CRUDOPS.REMOTE, GenericCRUDImplRemote.newInstance("MediaItem"));
+
+        // activate the local crud operations
+        this.initialiseCRUD(this.CRUDOPS.LOCAL,EntityManager);
 
         // TODO: do any further application specific initialisations here
 
