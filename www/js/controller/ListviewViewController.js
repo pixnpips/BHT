@@ -38,13 +38,29 @@ export default class ListviewViewController extends mwf.ViewController {
         this.addNewMediaItemElement = this.root.querySelector("#addNewMediaItem");
         this.addNewMediaItemElement.onclick = (() => {
             this.createNewItem();
-
-
             // this.crudops.create(new entities.MediaItem("m","https:
             // placekitten.com/100/100")).then((created) => {
             // this.addToListview(created);
             // });
         });
+
+
+        //Hier reagiert die Listview mittels eines Listeners auf gelöschte MediaItemobjecte und entfernt diese aus der Sicht
+        //mwf EventMatcher ist die Funktion mit der man allgemein bekannt macht,
+        // das in der Listenansicht ein Element gelöscht,erstellt oder geupdated wurde!
+        //!!!!Achtung in den Funktionen unten wurden die addtoListView usw ausgelagert in den Entitymanager
+
+        this.addListener(new mwf.EventMatcher("crud","created","MediaItem"),((event) => {
+            this.addToListview(event.data);
+        }));
+
+        this.addListener(new mwf.EventMatcher("crud","updated","MediaItem"),((event) => {
+            this.updateInListview(event.data._id,event.data);
+        }));
+
+        this.addListener(new mwf.EventMatcher("crud","deleted","MediaItem"),((event) => {
+            this.removeFromListview(event.data);
+        }));
 
         // call the superclass once creation is done
         super.oncreate();
@@ -100,13 +116,14 @@ export default class ListviewViewController extends mwf.ViewController {
      * for views that initiate transitions to other views
      * NOTE: return false if the view shall not be returned to, e.g. because we immediately want to display its previous view. Otherwise, do not return anything.
      */
-    async onReturnFromNextView(nextviewid, returnValue, returnStatus) {
-        // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
-        if (nextviewid == "mediaReadview" && returnValue &&
-            returnValue.deletedItem) {
-            this.removeFromListview(returnValue.deletedItem._id);
-        }
-    }
+    //  Das hier ist nicht mehr von nöten weil die Aktionen mittels des Listeners in der oncreate Methode ausgeführt wurden
+    // async onReturnFromNextView(nextviewid, returnValue, returnStatus) {
+    //     // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
+    //     if (nextviewid == "mediaReadview" && returnValue &&
+    //         returnValue.deletedItem) {
+    //         this.removeFromListview(returnValue.deletedItem._id);
+    //     }
+    // }
 
     createNewItem() {
         var newItem = new entities.MediaItem("", "https://placekitten.com/100/100");
@@ -116,7 +133,7 @@ export default class ListviewViewController extends mwf.ViewController {
                 submitForm: ((event) => {
                     event.original.preventDefault();
                     newItem.create().then(() => {
-                        this.addToListview(newItem);
+                        //this.addToListview(newItem);
                     });
                     this.hideDialog();
                 })
@@ -132,7 +149,7 @@ export default class ListviewViewController extends mwf.ViewController {
                 submitForm: ((event) => {
                     event.original.preventDefault();
                     item.update().then(() => {
-                        this.updateInListview(item._id,item);
+                        //this.updateInListview(item._id,item);
                     });
                     this.hideDialog();
                 }),/*!!!*/
@@ -147,12 +164,9 @@ export default class ListviewViewController extends mwf.ViewController {
 
 
     deleteItem(item) {
-        // this.crudops.delete(item._id).then(() => {
-        //     this.removeFromListview(item._id);
-        // });
 
         item.delete().then(() => {
-            this.removeFromListview(item._id);
+            // this.removeFromListview(item._id);
         });
     }
 

@@ -31,7 +31,10 @@ class MyApplication extends mwf.Application {
         //this.registerEntity("MyEntity", entities.MyEntity, true);
         //this.registerCRUD("MyEntity", this.CRUDOPS.LOCAL, GenericCRUDImplLocal.newInstance("MyEntity"));
         //this.registerCRUD("MyEntity", this.CRUDOPS.REMOTE, GenericCRUDImplRemote.newInstance("MyEntity"));
-        this.registerEntity("MediaItem", entities.MyEntity, true);
+
+        //Das hier war der Fehler beim und beim Reload: Meine Entity war nicht registriert!!!
+
+        this.registerEntity("MediaItem", entities.MediaItem, true);
         this.registerCRUD("MediaItem", this.CRUDOPS.LOCAL, GenericCRUDImplLocal.newInstance("MediaItem"));
         this.registerCRUD("MediaItem", this.CRUDOPS.REMOTE, GenericCRUDImplRemote.newInstance("MediaItem"));
 
