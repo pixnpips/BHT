@@ -1,7 +1,7 @@
 /**
  * @author Jörn Kreutel
  */
-import {mwf} from "../Main.js";
+import {mwf, MyApplication} from "../Main.js";
 import {entities} from "../Main.js";
 //import {GenericCRUDImplLocal} from "../Main.js";
 
@@ -12,6 +12,7 @@ export default class ListviewViewController extends mwf.ViewController {
         console.log("ListviewViewController()");
         //this.crudops = GenericCRUDImplLocal.newInstance("MediaItem");
         this.addNewMediaItemElement = null;
+        this.switchCrudButton=null;
     }
 
     /*
@@ -28,11 +29,14 @@ export default class ListviewViewController extends mwf.ViewController {
         // });
 
 
-        //---------------Hier könnte der kritische Punkt sein in dem es schiefgegangen ist-------------//
+        //---------------Auslesen aller ListItems aus der lokalen oder remote Datenbank -------------//
 
-        entities.MediaItem.readAll().then((items) => {
-            this.initialiseListview(items);
-        });
+            entities.MediaItem.readAll().then((items) => {
+                this.initialiseListview(items);
+            });
+
+
+
 
         //Hier wird ein new Media Item erstellt und er Eventlistener auf das d+ Button gesetzt
         this.addNewMediaItemElement = this.root.querySelector("#addNewMediaItem");
@@ -43,6 +47,15 @@ export default class ListviewViewController extends mwf.ViewController {
             // this.addToListview(created);
             // });
         });
+
+        //----------------Button für das Umschalten zwischen remote oder local CRUD-----------------//
+
+        this.switchCrudButton=this.root.querySelector("#swCRUD");
+        this.switchCrudButton.onclick=(() =>{
+            this.switchCrud();
+        });
+
+        this.root.querySelector("#crudState").textContent=MyApplication.currentCRUDScope;
 
 
         //Hier reagiert die Listview mittels eines Listeners auf gelöschte MediaItemobjecte und entfernt diese aus der Sicht
@@ -141,6 +154,19 @@ export default class ListviewViewController extends mwf.ViewController {
         });
     }
 
+    //----------------function für das Umschalten zwischen remote oder local CRUD-----------------//
+
+    switchCrud(){
+        let state=MyApplication.currentCRUDScope;
+        if (state==="local"){MyApplication.switchCRUD("remote");}
+        else if(state==="remote"){MyApplication.switchCRUD("local");}
+
+        entities.MediaItem.readAll().then((items) => {
+            this.initialiseListview(items);
+        });
+        this.root.querySelector("#crudState").textContent=MyApplication.currentCRUDScope;
+    }
+
 
     editItem(item) {
         this.showDialog("mediaItemDialog", {
@@ -161,10 +187,7 @@ export default class ListviewViewController extends mwf.ViewController {
         });
     }
 
-
-
     deleteItem(item) {
-
         item.delete().then(() => {
             // this.removeFromListview(item._id);
         });
