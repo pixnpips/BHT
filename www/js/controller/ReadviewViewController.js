@@ -23,7 +23,11 @@ export default class ReadviewViewController extends mwf.ViewController {
             this.bindElement("mediaReadviewTemplate",{item: mediaItem},this.root).viewProxy;
 
         this.viewProxy.bindAction("deleteItem",(() => {
-            mediaItem.delete().then(() => {
+            // mediaItem.delete().then(() => {
+            //     this.previousView({deletedItem:mediaItem});
+            // })
+
+            this.deleteItem(mediaItem).then(() => {
                 this.previousView({deletedItem:mediaItem});
             })
         }));
@@ -75,7 +79,7 @@ export default class ReadviewViewController extends mwf.ViewController {
         // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
     }
 
-    deleteItem(item) {
+    async deleteItem(item) {
         this.showDialog("mediaItemDeleteDialog",{
             item: item,
             actionBindings: {
