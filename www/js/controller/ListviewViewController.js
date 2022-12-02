@@ -180,17 +180,37 @@ export default class ListviewViewController extends mwf.ViewController {
                     this.hideDialog();
                 }),/*!!!*/
                 deleteItem: ((event) => {
-                    this.deleteItem(item);
                     this.hideDialog();
+                    this.deleteItem(item);
                 })
             }
         });
     }
 
+
+    //  deleteItem(item) {
+    //     item.delete().then(() => {
+    //         // this.removeFromListview(item._id);
+    //     });
+    //     this.hideDialog();
+    // }
+
     deleteItem(item) {
-        item.delete().then(() => {
-            // this.removeFromListview(item._id);
-        });
+        this.showDialog("mediaItemDeleteDialog",{
+            item: item,
+            actionBindings: {
+                submitForm: ((event) => {
+                    event.original.preventDefault();
+                    item.delete().then(() => {
+                        // this.removeFromListview(item._id);
+                    });
+                    this.hideDialog();
+                }),/*!!!*/
+                quitDelete: ((event) => {
+                    this.hideDialog();
+                })
+            }
+        })
     }
 
 }

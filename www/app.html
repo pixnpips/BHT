@@ -31,7 +31,7 @@
 <!-- TODO-REPEATED: add new views here -->
 
 <!--    ListView    -->
-        <div class="mwf-view mwf-view-initial" id="mediaOverview" data-mwf-viewcontroller="ListviewViewController" >
+        <div class="mwf-view mwf-view-initial  "  id="mediaOverview" data-mwf-viewcontroller="ListviewViewController" > <!--mwf-styling mwf-dialog-shown-->
             <header>
                 <button class="mwf-imgbutton mwf-img-sandwich mwf-left-align"></button>
                 <h1 class="mwf-left-align">Medien</h1>
@@ -56,7 +56,7 @@
             </footer>
         </div>
 
-<!--    ListItemEditView    -->
+<!--    ListItemDialog View  -->
 
         <div data-mwf-templatename="mediaItemMenu" class="mwf-listitem-menu mwf-template mwf-databind mwf-dialog mwf-popup ">
             <header>
@@ -70,7 +70,7 @@
             </main>
         </div>
 
-<!--    ListItemDialog View  -->
+<!--    ListItemEditView  -->
 
         <div class="mwf-dialog mwf-popup mwf-template mwf-databind mwf-view-component "
              data-mwf-viewcontroller="GenericDialogTemplateViewController" data-mwf-templatename="mediaItemDialog">
@@ -87,6 +87,26 @@
                 </form>
             </main>
         </div>
+
+
+<!--    ListItemDeleteView  -->
+
+<div class="mwf-dialog mwf-popup mwf-template mwf-databind mwf-view-component"
+    data-mwf-viewcontroller="GenericDialogTemplateViewController" data-mwf-templatename="mediaItemDeleteDialog">  <!--mwf-styling mwf-shown-->
+    <main>
+        <h2>Medium löschen</h2>
+        <form id="itemDeleteForm" on-submit="submitForm">
+            <div class="mwf-dialog-body">
+                <p> Möchten sie das Medium {{item.title}} löschen?</p>
+            </div>
+            <div class="mwf-buttonbar">
+                <button class="mwf-left-align mwf-button"  type="button" on-click="quitDelete">Abbrechen</button>
+                <input class="mwf-button-prio mwf-right-align mwf-button" type="submit" on-click="deleteItem" value="Löschen"/>
+            </div>
+        </form>
+    </main>
+</div>
+
 
 <!--    ReadItemView  -->
 
@@ -106,10 +126,6 @@
                 </footer>
             </div>
         </div>
-
-
-
-
 
     </body>
 </html>

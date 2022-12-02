@@ -75,5 +75,23 @@ export default class ReadviewViewController extends mwf.ViewController {
         // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
     }
 
+    deleteItem(item) {
+        this.showDialog("mediaItemDeleteDialog",{
+            item: item,
+            actionBindings: {
+                submitForm: ((event) => {
+                    event.original.preventDefault();
+                    item.delete().then(() => {
+                        // this.removeFromListview(item._id);
+                    });
+                    this.hideDialog();
+                }),/*!!!*/
+                quitDelete: ((event) => {
+                    this.hideDialog();
+                })
+            }
+        })
+    }
+
 }
 
