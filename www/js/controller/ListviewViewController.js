@@ -38,7 +38,7 @@ export default class ListviewViewController extends mwf.ViewController {
 
 
 
-        //Hier wird ein new Media Item erstellt und er Eventlistener auf das d+ Button gesetzt
+        //Hier wird ein new Media Item erstellt und er Eventlistener auf das + Button gesetzt
         this.addNewMediaItemElement = this.root.querySelector("#addNewMediaItem");
         this.addNewMediaItemElement.onclick = (() => {
             this.createNewItem();
@@ -97,6 +97,7 @@ export default class ListviewViewController extends mwf.ViewController {
      * for views with listviews: react to the selection of a listitem
      * TODO: delete if no listview is used or if item selection is specified by targetview/targetaction
      */
+
     onListItemSelected(itemobj, listviewid) {
         // TODO: implement how selection of itemobj shall be handled
         //alert("Element " + itemobj.title + itemobj._id + " wurde ausgewählt!");
@@ -160,6 +161,8 @@ export default class ListviewViewController extends mwf.ViewController {
         let state=MyApplication.currentCRUDScope;
         if (state==="local"){MyApplication.switchCRUD("remote");}
         else if(state==="remote"){MyApplication.switchCRUD("local");}
+        else(alert ("No detected Database"));
+
 
         entities.MediaItem.readAll().then((items) => {
             this.initialiseListview(items);

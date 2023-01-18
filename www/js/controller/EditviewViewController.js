@@ -4,12 +4,12 @@
 import {mwf} from "../Main.js";
 import {entities} from "../Main.js";
 
-export default class ReadviewViewController extends mwf.ViewController {
+export default class ViewControllerTemplate extends mwf.ViewController {
 
     constructor() {
         super();
-        this.viewProxy = null;
-        console.log("ReadviewViewController()");
+
+        console.log("ViewControllerTemplate()");
     }
 
     /*
@@ -17,19 +17,6 @@ export default class ReadviewViewController extends mwf.ViewController {
      */
     async oncreate() {
         // TODO: do databinding, set listeners, initialise the view
-        //var mediaItem = new entities.MediaItem("m","https://placekitten.com/300/400");
-        var mediaItem = this.args.item;
-        this.viewProxy =
-            this.bindElement("mediaReadviewTemplate",{item: mediaItem},this.root).viewProxy;
-        this.viewProxy.bindAction("deleteItem",(() => {
-            // mediaItem.delete().then(() => {
-            //     this.previousView({deletedItem:mediaItem});
-            // })
-
-            this.deleteItem(mediaItem).then(() => {
-                this.previousView({deletedItem:mediaItem});
-            })
-        }));
 
         // call the superclass once creation is done
         super.oncreate();
@@ -78,22 +65,5 @@ export default class ReadviewViewController extends mwf.ViewController {
         // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
     }
 
-    async deleteItem(item) {
-        this.showDialog("mediaItemDeleteDialog",{
-            item: item,
-            actionBindings: {
-                submitForm: ((event) => {
-                    event.original.preventDefault();
-                    item.delete().then(() => {
-                        // this.removeFromListview(item._id);
-                    });
-                    this.hideDialog();
-                }),/*!!!*/
-                quitDelete: ((event) => {
-                    this.hideDialog();
-                })
-            }
-        })
-    }
 }
 
