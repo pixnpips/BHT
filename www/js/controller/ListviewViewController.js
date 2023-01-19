@@ -136,23 +136,23 @@ export default class ListviewViewController extends mwf.ViewController {
      * for views that initiate transitions to other views
      * NOTE: return false if the view shall not be returned to, e.g. because we immediately want to display its previous view. Otherwise, do not return anything.
      */
-    //  Das hier ist nicht mehr von nöten weil die Aktionen mittels des Listeners in der oncreate Methode ausgeführt wurden
-    async onReturnFromNextView(nextviewid, returnValue, returnStatus) {
-        // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
-        if (nextviewid == "mediaReadview" || nextviewid== "mediaEditView" ){
-            if(returnValue){
-                if (returnValue.deletedItem){
-                    this.removeFromListview(returnValue.deletedItem._id)
-                }
-                else if(returnValue.createdItem){
-                    this.addToListview(returnValue.createdItem);
-                }
-                else if(returnValue.updatedItem){
-                    this.updateInListview(returnValue.updatedItem._id, returnValue.updatedItem);
-                }
-            }
-        }
-    }
+     //Das hier ist nicht mehr von nöten weil die Aktionen mittels des Listeners in der oncreate Methode ausgeführt wurden
+    // async onReturnFromNextView(nextviewid, returnValue, returnStatus) {
+    //     // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
+    //     if (nextviewid == "mediaReadview" || nextviewid== "mediaEditView" ){
+    //         if(returnValue){
+    //             if (returnValue.deletedItem){
+    //                 this.removeFromListview(returnValue.deletedItem._id)
+    //             }
+    //             // else if(returnValue.createdItem){
+    //             //     this.addToListview(returnValue.createdItem);
+    //             // }
+    //             // else if(returnValue.updatedItem){
+    //             //     this.updateInListview(returnValue.updatedItem._id, returnValue.updatedItem);
+    //             // }
+    //         }
+    //     }
+    // }
 
     createNewItem() {
         var newItem = new entities.MediaItem("", "https://placekitten.com/100/100");

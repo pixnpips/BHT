@@ -17,8 +17,8 @@ export default class EditviewViewController extends mwf.ViewController {
     async oncreate() {
 
         //erstellen erstmal ein MediaItemobject oder nehmen es aus den Args der Voransicht!!
-        this.mediaItem = this.args?.item || new entities.MediaItem("kitti 1", "https://placekitten.com/200/200");
-
+        this.mediaItem = this.args?.item || new entities.MediaItem("", );
+        //"https://placekitten.com/200/200"
         //Binden unser ausgeschnittenes Template an einen Viewproxy damit es angezeigt werden kann und damit wir ractive nutzen können!
         this.viewProxy = this.bindElement("mediaEditViewTemplate",{item: this.mediaItem},this.root).viewProxy;
 
@@ -27,21 +27,19 @@ export default class EditviewViewController extends mwf.ViewController {
         this.editviewForm= this.root.querySelector("#editForm");
         this.editviewForm.onsubmit = (e) =>{
             //alert("sie haben das Formular versendet");
-            if(!this.mediaItem.created()) {
+            e.preventDefault();
+            if(!this.mediaItem.created) {
                 this.mediaItem.create().then(() => {
-                    alert("Media Item created " + this.mediaItem);
+                    //alert("Media Item created " + this.mediaItem);
                 })
                 this.previousView({createdItem: this.mediaItem});
             }else{
                 this.mediaItem.update().then(() => {
-                    alert("Media Item updated " + this.mediaItem);
+                    //alert("Media Item updated " + this.mediaItem);
                 })
                 this.previousView({updatedItem: this.mediaItem});
             }
-            e.preventDefault();
         }
-
-
 
         // call the superclass once creation is done
         super.oncreate();

@@ -24,7 +24,7 @@ export class MediaItem extends EntityManager.Entity {
     constructor(title, src, contentType) {
         super();
         this.title = title;
-        this.description = "Standard Beschreibung";
+        this.description = "";
         this.added = Date.now();
         this.src = src;
         this.srcType = null;
