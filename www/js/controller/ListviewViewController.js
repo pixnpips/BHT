@@ -41,11 +41,17 @@ export default class ListviewViewController extends mwf.ViewController {
         //Hier wird ein new Media Item erstellt und er Eventlistener auf das + Button gesetzt
         this.addNewMediaItemElement = this.root.querySelector("#addNewMediaItem");
         this.addNewMediaItemElement.onclick = (() => {
-            this.createNewItem();
+
+            //this.createNewItem(); --- Achtung hier haben wir den einfachen Dialog aufgerufen!!!
+
             // this.crudops.create(new entities.MediaItem("m","https:
             // placekitten.com/100/100")).then((created) => {
             // this.addToListview(created);
             // });
+
+            //Jetzt wechseln wir in unsere EditView
+            this.nextView("mediaEditView");
+
         });
 
         //----------------Button für das Umschalten zwischen remote oder local CRUD-----------------//
@@ -131,13 +137,22 @@ export default class ListviewViewController extends mwf.ViewController {
      * NOTE: return false if the view shall not be returned to, e.g. because we immediately want to display its previous view. Otherwise, do not return anything.
      */
     //  Das hier ist nicht mehr von nöten weil die Aktionen mittels des Listeners in der oncreate Methode ausgeführt wurden
-    // async onReturnFromNextView(nextviewid, returnValue, returnStatus) {
-    //     // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
-    //     if (nextviewid == "mediaReadview" && returnValue &&
-    //         returnValue.deletedItem) {
-    //         this.removeFromListview(returnValue.deletedItem._id);
-    //     }
-    // }
+    async onReturnFromNextView(nextviewid, returnValue, returnStatus) {
+        // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
+        if (nextviewid == "mediaReadview" || nextviewid== "mediaEditView" ){
+            if(returnValue){
+                if (returnValue.deletedItem){
+                    this.removeFromListview(returnValue.deletedItem._id)
+                }
+                else if(returnValue.createdItem){
+                    this.addToListview(returnValue.createdItem);
+                }
+                else if(returnValue.updatedItem){
+                    this.updateInListview(returnValue.updatedItem._id, returnValue.updatedItem);
+                }
+            }
+        }
+    }
 
     createNewItem() {
         var newItem = new entities.MediaItem("", "https://placekitten.com/100/100");
