@@ -18,16 +18,17 @@ export default class ReadviewViewController extends mwf.ViewController {
     async oncreate() {
         // TODO: do databinding, set listeners, initialise the view
         //var mediaItem = new entities.MediaItem("m","https://placekitten.com/300/400");
-        var mediaItem = this.args.item;
+        this.mediaItem = this.args.item;
         this.viewProxy =
-            this.bindElement("mediaReadviewTemplate",{item: mediaItem},this.root).viewProxy;
+            this.bindElement("mediaReadviewTemplate",{item: this.mediaItem},this.root).viewProxy;
+
         this.viewProxy.bindAction("deleteItem",(() => {
             // mediaItem.delete().then(() => {
             //     this.previousView({deletedItem:mediaItem});
             // })
 
-            this.deleteItem(mediaItem).then(() => {
-                this.previousView({deletedItem:mediaItem});
+            this.deleteItem(this.mediaItem).then(() => {
+               // this.previousView({deletedItem:this.mediaItem});
             })
         }));
 
@@ -88,6 +89,7 @@ export default class ReadviewViewController extends mwf.ViewController {
                         // this.removeFromListview(item._id);
                     });
                     this.hideDialog();
+                    this.previousView({deletedItem:this.mediaItem});
                 }),/*!!!*/
                 quitDelete: ((event) => {
                     this.hideDialog();

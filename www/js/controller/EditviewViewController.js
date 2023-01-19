@@ -20,29 +20,43 @@ export default class EditviewViewController extends mwf.ViewController {
         this.mediaItem = this.args?.item || new entities.MediaItem("", );
         //"https://placekitten.com/200/200"
         //Binden unser ausgeschnittenes Template an einen Viewproxy damit es angezeigt werden kann und damit wir ractive nutzen können!
+        //Hier findet das Databinding statt!!!
         this.viewProxy = this.bindElement("mediaEditViewTemplate",{item: this.mediaItem},this.root).viewProxy;
-
 
         // TODO: do databinding, set listeners, initialise the view
         this.editviewForm= this.root.querySelector("#editForm");
+
         this.editviewForm.onsubmit = (e) =>{
             //alert("sie haben das Formular versendet");
             e.preventDefault();
-            if(!this.mediaItem.created) {
-                this.mediaItem.create().then(() => {
-                    //alert("Media Item created " + this.mediaItem);
-                })
-                this.previousView({createdItem: this.mediaItem});
-            }else{
-                this.mediaItem.update().then(() => {
-                    //alert("Media Item updated " + this.mediaItem);
-                })
-                this.previousView({updatedItem: this.mediaItem});
-            }
+            this.updateorCreateItem(this.mediaItem);
         }
+
+        this.viewProxy.bindAction("deleteItem",(() => {
+            // mediaItem.delete().then(() => {
+            //     this.previousView({deletedItem:mediaItem});
+            // })
+            this.deleteItem(this.mediaItem).then(() => {
+                // this.previousView({deletedItem:this.mediaItem});
+            })
+        }));
 
         // call the superclass once creation is done
         super.oncreate();
+    }
+
+    updateorCreateItem= (item) =>{
+        if(!item.created) {
+            item.create().then(() => {
+                //alert("Media Item created " + this.mediaItem);
+                this.previousView({createdItem: item});
+            })
+        }else{
+            item.update().then(() => {
+                //alert("Media Item updated " + this.mediaItem);
+                this.previousView({updatedItem: item});
+            })
+        }
     }
 
     /*
@@ -86,6 +100,25 @@ export default class EditviewViewController extends mwf.ViewController {
      */
     async onReturnFromNextView(nextviewid, returnValue, returnStatus) {
         // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
+    }
+
+    async deleteItem(item) {
+        this.showDialog("mediaItemDeleteDialog",{
+            item: item,
+            actionBindings: {
+                submitForm: ((event) => {
+                    event.original.preventDefault();
+                    item.delete().then(() => {
+                        // this.removeFromListview(item._id);
+                    });
+                    this.hideDialog();
+                    this.previousView({deletedItem:this.mediaItem});
+                }),/*!!!*/
+                quitDelete: ((event) => {
+                    this.hideDialog();
+                })
+            }
+        })
     }
 
 }
