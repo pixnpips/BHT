@@ -231,5 +231,11 @@ export default class ListviewViewController extends mwf.ViewController {
         })
     }
 
+    copyItem(item){
+        item.create().then(()=>{
+            this.updateInListview(item._id,item)
+        })
+    }
+
 }
 

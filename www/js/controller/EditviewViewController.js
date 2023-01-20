@@ -41,6 +41,20 @@ export default class EditviewViewController extends mwf.ViewController {
             })
         }));
 
+        this.viewProxy.bindAction("autofillUrl",(() => {
+            this.autofillUrl();
+        }));
+
+        // Hier wird der URl Input ausgelesen und als img src Attribut gesetzt
+        // Im HTML Dokument  haben wir die beiden Attribute jeweils mit ractives if/else statements umgesetzt
+
+        this.url= document.querySelector('input[name="url"]');
+        this.image= document.querySelector(".editImage");
+        this.url.addEventListener('blur', (e) =>{
+            this.image.setAttribute("src", this.url.value );
+            this.mediaItem.src= this.url.value;
+        });
+
         // call the superclass once creation is done
         super.oncreate();
     }
@@ -119,6 +133,12 @@ export default class EditviewViewController extends mwf.ViewController {
                 })
             }
         })
+    }
+
+    autofillUrl() {
+        this.url.focus();
+        this.url.value= "https://placekitten.com/150/200";
+        this.image.setAttribute("src", "https://placekitten.com/150/200");
     }
 
 }
