@@ -233,9 +233,10 @@ export default class ListviewViewController extends mwf.ViewController {
 
     copyItem(item){
         let newItem = new entities.MediaItem(item.title, item.src);
+        newItem.description=item.description;
+        newItem.srcType=item.srcType;
+        newItem.contentType=item.contentType;
         newItem.create();
-
     }
-
 }
 
