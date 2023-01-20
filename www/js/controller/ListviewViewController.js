@@ -155,7 +155,7 @@ export default class ListviewViewController extends mwf.ViewController {
     // }
 
     createNewItem() {
-        var newItem = new entities.MediaItem("", "https://placekitten.com/100/100");
+        var newItem = new entities.MediaItem("", "");
         this.showDialog("mediaItemDialog", {
             item: newItem,
             actionBindings: {
@@ -232,9 +232,9 @@ export default class ListviewViewController extends mwf.ViewController {
     }
 
     copyItem(item){
-        item.create().then(()=>{
-            this.updateInListview(item._id,item)
-        })
+        let newItem = new entities.MediaItem(item.title, item.src);
+        newItem.create();
+
     }
 
 }
