@@ -81,7 +81,13 @@ export default class ReadviewViewController extends mwf.ViewController {
     async onReturnFromNextView(nextviewid, returnValue, returnStatus) {
         // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
         // console.log(returnValue);
-        this.viewProxy.update({item: returnValue.updatedItem});
+
+        if(returnStatus==="upd"){this.viewProxy.update({item: returnValue.updatedItem});}
+
+        if(returnStatus==="del"){
+            this.previousView();
+            return false;
+        }
     }
 
     async deleteItem(item) {

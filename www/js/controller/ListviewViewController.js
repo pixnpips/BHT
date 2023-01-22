@@ -205,6 +205,19 @@ export default class ListviewViewController extends mwf.ViewController {
         });
     }
 
+    // onresume(){
+    //     super.onresume().then(()=>{
+    //         console.log("!!!")
+    //         console.log("!!!")
+    //         console.log(this.args);
+    //         // if(this.args.==="cre" || this.args.status==="upd"){
+    //         //     let item= this.getItemviewFromListview(this.args.item._id, "mediaOverview");
+    //         //     console.log("!!!")
+    //         //     console.log(item);
+    //         // }
+    //     })
+    // }
+
 
     //  deleteItem(item) {
     //     item.delete().then(() => {

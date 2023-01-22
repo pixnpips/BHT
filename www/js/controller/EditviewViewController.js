@@ -63,12 +63,12 @@ export default class EditviewViewController extends mwf.ViewController {
         if(!item.created) {
             item.create().then(() => {
                 //alert("Media Item created " + this.mediaItem);
-                this.previousView({createdItem: item});
+                this.previousView({createdItem: item},"cre");
             })
         }else{
             item.update().then(() => {
                 //alert("Media Item updated " + this.mediaItem);
-                this.previousView({updatedItem: item});
+                this.previousView({updatedItem: item},"upd");
             })
         }
     }
@@ -126,7 +126,7 @@ export default class EditviewViewController extends mwf.ViewController {
                         // this.removeFromListview(item._id);
                     });
                     this.hideDialog();
-                    this.previousView({deletedItem:this.mediaItem});
+                    this.previousView({deletedItem:this.mediaItem},"del");
                 }),/*!!!*/
                 quitDelete: ((event) => {
                     this.hideDialog();
