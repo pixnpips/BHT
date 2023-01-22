@@ -32,6 +32,10 @@ export default class ReadviewViewController extends mwf.ViewController {
             })
         }));
 
+        this.viewProxy.bindAction("changeToEditView",(() => {
+            this.nextView("mediaEditView", {item: this.mediaItem}, false);
+        }));
+
         // call the superclass once creation is done
         super.oncreate();
     }
@@ -77,6 +81,11 @@ export default class ReadviewViewController extends mwf.ViewController {
      */
     async onReturnFromNextView(nextviewid, returnValue, returnStatus) {
         // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
+        console.log("!");
+        console.log(returnValue.updatedItem);
+        console.log("!");
+        console.log(returnValue);
+        this.viewProxy.update({returnValue});
     }
 
     async deleteItem(item) {
