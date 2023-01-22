@@ -19,8 +19,7 @@ export default class ReadviewViewController extends mwf.ViewController {
         // TODO: do databinding, set listeners, initialise the view
         //var mediaItem = new entities.MediaItem("m","https://placekitten.com/300/400");
         this.mediaItem = this.args.item;
-        this.viewProxy =
-            this.bindElement("mediaReadviewTemplate",{item: this.mediaItem},this.root).viewProxy;
+        this.viewProxy = this.bindElement("mediaReadviewTemplate",{item: this.mediaItem},this.root).viewProxy;
 
         this.viewProxy.bindAction("deleteItem",(() => {
             // mediaItem.delete().then(() => {
@@ -81,11 +80,8 @@ export default class ReadviewViewController extends mwf.ViewController {
      */
     async onReturnFromNextView(nextviewid, returnValue, returnStatus) {
         // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
-        console.log("!");
-        console.log(returnValue.updatedItem);
-        console.log("!");
-        console.log(returnValue);
-        this.viewProxy.update({returnValue});
+        // console.log(returnValue);
+        this.viewProxy.update({item: returnValue.updatedItem});
     }
 
     async deleteItem(item) {
