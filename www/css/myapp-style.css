@@ -9,6 +9,12 @@
 #mediaReadview main {
     padding: 10px;
 }
+
+#mediaEditView img {
+    width: 50%;
+    max-width: 100%;
+    /*border: 2px solid limegreen;*/
+}
 footer p{
     margin-left: 10px;
     height: 7px;
