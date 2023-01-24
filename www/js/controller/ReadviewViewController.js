@@ -18,18 +18,21 @@ export default class ReadviewViewController extends mwf.ViewController {
     async oncreate() {
         // TODO: do databinding, set listeners, initialise the view
         //var mediaItem = new entities.MediaItem("m","https://placekitten.com/300/400");
-        var mediaItem = this.args.item;
-        this.viewProxy =
-            this.bindElement("mediaReadviewTemplate",{item: mediaItem},this.root).viewProxy;
+        this.mediaItem = this.args.item;
+        this.viewProxy = this.bindElement("mediaReadviewTemplate",{item: this.mediaItem},this.root).viewProxy;
 
         this.viewProxy.bindAction("deleteItem",(() => {
             // mediaItem.delete().then(() => {
             //     this.previousView({deletedItem:mediaItem});
             // })
 
-            this.deleteItem(mediaItem).then(() => {
-                this.previousView({deletedItem:mediaItem});
+            this.deleteItem(this.mediaItem).then(() => {
+               // this.previousView({deletedItem:this.mediaItem});
             })
+        }));
+
+        this.viewProxy.bindAction("changeToEditView",(() => {
+            this.nextView("mediaEditView", {item: this.mediaItem}, false);
         }));
 
         // call the superclass once creation is done
@@ -77,6 +80,14 @@ export default class ReadviewViewController extends mwf.ViewController {
      */
     async onReturnFromNextView(nextviewid, returnValue, returnStatus) {
         // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
+        // console.log(returnValue);
+
+        if(returnStatus==="upd"){this.viewProxy.update({item: returnValue.updatedItem});}
+
+        if(returnStatus==="del"){
+            this.previousView();
+            return false;
+        }
     }
 
     async deleteItem(item) {
@@ -89,6 +100,7 @@ export default class ReadviewViewController extends mwf.ViewController {
                         // this.removeFromListview(item._id);
                     });
                     this.hideDialog();
+                    this.previousView({deletedItem:this.mediaItem});
                 }),/*!!!*/
                 quitDelete: ((event) => {
                     this.hideDialog();
@@ -96,6 +108,5 @@ export default class ReadviewViewController extends mwf.ViewController {
             }
         })
     }
-
 }
 
