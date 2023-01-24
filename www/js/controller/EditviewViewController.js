@@ -1,7 +1,7 @@
 /**
  * @author Jörn Kreutel
  */
-import {mwf} from "../Main.js";
+import {mwf, MyApplication} from "../Main.js";
 import {entities} from "../Main.js";
 
 export default class EditviewViewController extends mwf.ViewController {
@@ -16,11 +16,15 @@ export default class EditviewViewController extends mwf.ViewController {
      */
     async oncreate() {
 
+
         //erstellen erstmal ein MediaItemobject oder nehmen es aus den Args der Voransicht!!
         this.mediaItem = this.args?.item || new entities.MediaItem("", );
         //"https://placekitten.com/200/200"
+
+
         //Binden unser ausgeschnittenes Template an einen Viewproxy damit es angezeigt werden kann und damit wir ractive nutzen können!
         //Hier findet das Databinding statt!!!
+        //Das ist eine Repräsentation des Templates das wir mit Ractive Databinding gefüllt haben zu Anzeige
         this.viewProxy = this.bindElement("mediaEditViewTemplate",{item: this.mediaItem},this.root).viewProxy;
 
         // TODO: do databinding, set listeners, initialise the view
@@ -50,14 +54,63 @@ export default class EditviewViewController extends mwf.ViewController {
 
         this.url= document.querySelector('input[name="url"]');
         this.image= document.querySelector(".editImage");
+
         this.url.addEventListener('blur', (e) =>{
             this.image.setAttribute("src", this.url.value );
             this.mediaItem.src= this.url.value;
         });
 
+        //Hier wird geprüft ob der Dateiupload angezeigt werden soll
+        this.uploadfieldset= document.getElementById("fsupload");
+        this.showUploadView();
+
+        //Inputelement auswählen und Eventlistener einfügen
+
+        this.editviewForm.filesrc.onchange= () =>{
+            this.uploadImage();
+        }
         // call the superclass once creation is done
         super.oncreate();
     }
+
+    uploadImage () {
+        //erstellen Url und Object zum Anzeigen der Vorschau
+        const filedata = this.editviewForm.filesrc.files[0];
+        const filedataurl= URL.createObjectURL(filedata);
+
+        // Zuweisen der Daten für die Vorschau
+        this.image.src=filedataurl;
+        this.mediaItem.src=filedataurl;
+
+        // verschicken wir das FileinputFile per Formdata und XML HTTP Request
+        if(filedata){
+            const uploadData = new FormData;
+            uploadData.append("filesrc", filedata);
+            const brieftaube= new XMLHttpRequest();
+            brieftaube.open("POST","api/upload");
+            brieftaube.send(uploadData);
+
+            //Temporär
+            this.image.src=filedataurl;
+            this.mediaItem.src=filedataurl;
+
+            brieftaube.onload=(e)=>{
+
+            }
+        }
+
+        // Update des Viewproxy
+        this.viewProxy.update({item: this.mediaItem});
+    }
+
+    showUploadView(){
+        let crudstate=MyApplication.currentCRUDScope;
+        if(crudstate==="local") {
+            this.uploadfieldset.hidden=true;
+        }
+    }
+
+
 
     updateorCreateItem= (item) =>{
         if(!item.created) {

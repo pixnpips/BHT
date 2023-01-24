@@ -36,8 +36,6 @@ export default class ListviewViewController extends mwf.ViewController {
             });
 
 
-
-
         //Hier wird ein new Media Item erstellt und er Eventlistener auf das + Button gesetzt
         this.addNewMediaItemElement = this.root.querySelector("#addNewMediaItem");
         this.addNewMediaItemElement.onclick = (() => {
