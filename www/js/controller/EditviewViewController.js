@@ -16,7 +16,6 @@ export default class EditviewViewController extends mwf.ViewController {
      */
     async oncreate() {
 
-
         //erstellen erstmal ein MediaItemobject oder nehmen es aus den Args der Voransicht!!
         this.mediaItem = this.args?.item || new entities.MediaItem("", );
         //"https://placekitten.com/200/200"
@@ -86,9 +85,9 @@ export default class EditviewViewController extends mwf.ViewController {
             brieftaube.open("POST","api/upload");
             brieftaube.send(uploadData);
 
-            //Temporär
-            this.image.src=filedataurl;
-            this.mediaItem.src=filedataurl;
+            // //Temporär
+            // this.image.src=filedataurl;
+            // this.mediaItem.src=filedataurl;
 
             brieftaube.onload=(e)=>{
                 const responseString=brieftaube.responseText;

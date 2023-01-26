@@ -6,8 +6,6 @@ import {entities} from "../Main.js";
 
 export default class ReadviewViewController extends mwf.ViewController {
 
-    ORIGINAL;
-
     constructor() {
         super();
         this.viewProxy = null;
@@ -18,18 +16,25 @@ export default class ReadviewViewController extends mwf.ViewController {
      * for any view: initialise the view
      */
     async oncreate() {
+
         // TODO: do databinding, set listeners, initialise the view
         //var mediaItem = new entities.MediaItem("m","https://placekitten.com/300/400");
         this.mediaItem = this.args.item;
         this.viewProxy = this.bindElement("mediaReadviewTemplate",{item: this.mediaItem},this.root).viewProxy;
 
-        this.ORIGINAL= this.args.item;
+
+
+        //---------------------------------Hier nochmal ansetzen, Objecte werden immer weiter transportiert
+
+        //Originales Objekt um alle Änderungen in der Editview Databinding wiedeer rückgängig zu machen
+        this.Original= JSON.parse(JSON.stringify(this.mediaItem));
+        console.log("Das Original nach Erstellen:");
+        console.log(this.Original);
 
         this.viewProxy.bindAction("deleteItem",(() => {
             // mediaItem.delete().then(() => {
             //     this.previousView({deletedItem:mediaItem});
             // })
-
             this.deleteItem(this.mediaItem).then(() => {
                // this.previousView({deletedItem:this.mediaItem});
             })
@@ -39,8 +44,6 @@ export default class ReadviewViewController extends mwf.ViewController {
             this.nextView("mediaEditView", {item: this.mediaItem}, false);
         }));
 
-        console.log("! \n !\n !");
-        console.log(this.ORIGINAL);
 
         // call the superclass once creation is done
         super.oncreate();
@@ -86,7 +89,7 @@ export default class ReadviewViewController extends mwf.ViewController {
      * NOTE: return false if the view shall not be returned to, e.g. because we immediately want to display its previous view. Otherwise, do not return anything.
      */
     async onReturnFromNextView(nextviewid, returnValue, returnStatus) {
-        alert(returnStatus);
+
         // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
         // console.log(returnValue);
         if(returnStatus==="upd"){
@@ -95,10 +98,12 @@ export default class ReadviewViewController extends mwf.ViewController {
             this.previousView();
             return false;
         }else{
-            console.log("! \n !\n !");
-            console.log();
-            this.mediaItem= this.ORIGINAL;
-            this.viewProxy.update({item: this.ORIGINAL});
+
+            //---------------------------------Hier nochmal ansetzen, Objekte werden immer weiter transportiert
+            console.log("Das Original nach Return:");
+            console.log(this.Original);
+            this.mediaItem= this.Original;
+            this.viewProxy.update({item: this.Original});
         }
     }
 
