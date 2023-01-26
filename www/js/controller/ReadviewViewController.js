@@ -6,6 +6,8 @@ import {entities} from "../Main.js";
 
 export default class ReadviewViewController extends mwf.ViewController {
 
+    ORIGINAL;
+
     constructor() {
         super();
         this.viewProxy = null;
@@ -21,6 +23,8 @@ export default class ReadviewViewController extends mwf.ViewController {
         this.mediaItem = this.args.item;
         this.viewProxy = this.bindElement("mediaReadviewTemplate",{item: this.mediaItem},this.root).viewProxy;
 
+        this.ORIGINAL= this.args.item;
+
         this.viewProxy.bindAction("deleteItem",(() => {
             // mediaItem.delete().then(() => {
             //     this.previousView({deletedItem:mediaItem});
@@ -34,6 +38,9 @@ export default class ReadviewViewController extends mwf.ViewController {
         this.viewProxy.bindAction("changeToEditView",(() => {
             this.nextView("mediaEditView", {item: this.mediaItem}, false);
         }));
+
+        console.log("! \n !\n !");
+        console.log(this.ORIGINAL);
 
         // call the superclass once creation is done
         super.oncreate();
@@ -79,14 +86,19 @@ export default class ReadviewViewController extends mwf.ViewController {
      * NOTE: return false if the view shall not be returned to, e.g. because we immediately want to display its previous view. Otherwise, do not return anything.
      */
     async onReturnFromNextView(nextviewid, returnValue, returnStatus) {
+        alert(returnStatus);
         // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
         // console.log(returnValue);
-
-        if(returnStatus==="upd"){this.viewProxy.update({item: returnValue.updatedItem});}
-
-        if(returnStatus==="del"){
+        if(returnStatus==="upd"){
+            this.viewProxy.update({item: returnValue.updatedItem});
+        }else if(returnStatus==="del"){
             this.previousView();
             return false;
+        }else{
+            console.log("! \n !\n !");
+            console.log();
+            this.mediaItem= this.ORIGINAL;
+            this.viewProxy.update({item: this.ORIGINAL});
         }
     }
 

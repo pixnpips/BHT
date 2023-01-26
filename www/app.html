@@ -144,7 +144,7 @@
                     <h1 class="mwf-left-align">{{#if item.created}}{{item.title}}{{else}}Neues Medium{{/if}}</h1>
                     <button class="mwf-imgbutton mwf-img-disk mwf-right-align" type="submit" form="editForm" value="Submit"></button>
                     <button class="mwf-imgbutton mwf-img-delete mwf-right-align" disabled="{{#unless item.created}}disabled{{/unless}}" on-click="deleteItem" ></button>
-                    <button class=" mwf-img-paste mwf-right-align" disabled="{{#if item.created}}disabled{{/if}}" on-click="autofillUrl" ></button>
+                    <button class=" mwf-imgbutton  mwf-img-paste mwf-right-align" disabled="{{#if item.created}}disabled{{/if}}" on-click="autofillUrl" ></button>
                 </header>
                 <main class="mwf-scrollview">
                     <form onsubmit="" id="editForm" enctype="multipart/form-data">
@@ -155,9 +155,6 @@
                             <input class="mwf-material-altinput"  type="file" id="filesrc" name="filesrc">
 
                         </fieldset>
-<!--                        <fieldset class="mwf-material" id="fsupload">-->
-<!--                            <legend>Dateiupload</legend>-->
-<!--                        </fieldset>-->
                         <fieldset class="mwf-material">
                             <input  type="text" name="title" required="required"  value="{{item.title}}">
                             <legend>Titel</legend>

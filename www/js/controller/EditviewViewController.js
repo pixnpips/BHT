@@ -78,10 +78,6 @@ export default class EditviewViewController extends mwf.ViewController {
         const filedata = this.editviewForm.filesrc.files[0];
         const filedataurl= URL.createObjectURL(filedata);
 
-        // Zuweisen der Daten für die Vorschau
-        this.image.src=filedataurl;
-        this.mediaItem.src=filedataurl;
-
         // verschicken wir das FileinputFile per Formdata und XML HTTP Request
         if(filedata){
             const uploadData = new FormData;
@@ -95,12 +91,22 @@ export default class EditviewViewController extends mwf.ViewController {
             this.mediaItem.src=filedataurl;
 
             brieftaube.onload=(e)=>{
-
+                const responseString=brieftaube.responseText;
+                const JsonObj= JSON.parse(responseString);
+                //console.log(JsonObj);
+                const responseURl= brieftaube.responseURL.substring(0,27);
+                const objectURL=JsonObj.data["filesrc"];
+                const completeURL=responseURl.concat(objectURL);
+                //console.log(completeURL);
+                this.image.src=completeURL;
+                this.mediaItem.src=completeURL;
+                this.url.value=completeURL;
             }
         }
 
         // Update des Viewproxy
         this.viewProxy.update({item: this.mediaItem});
+
     }
 
     showUploadView(){
