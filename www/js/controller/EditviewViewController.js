@@ -92,6 +92,7 @@ export default class EditviewViewController extends mwf.ViewController {
     // URL für Online Videos:
     // http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
     // http://192.168.178.45:7383/content/mov/1674838261455_bbb.mp4
+    //https://placekitten.com/150/200
 
     uploadImage () {
         //erstellen Url und Object zum Anzeigen der Vorschau
