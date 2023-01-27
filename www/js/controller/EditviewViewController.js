@@ -16,7 +16,6 @@ export default class EditviewViewController extends mwf.ViewController {
      */
     async oncreate() {
 
-
         //erstellen erstmal ein MediaItemobject oder nehmen es aus den Args der Voransicht!!
         this.mediaItem = this.args?.item || new entities.MediaItem("", );
         //"https://placekitten.com/200/200"
@@ -56,13 +55,14 @@ export default class EditviewViewController extends mwf.ViewController {
         this.image= document.querySelector(".editImage");
 
         this.url.addEventListener('blur', (e) =>{
-            this.image.setAttribute("src", this.url.value );
-            this.mediaItem.src= this.url.value;
+            this.getMediaViewfromURL();
         });
+
 
         //Hier wird geprüft ob der Dateiupload angezeigt werden soll
         this.uploadfieldset= document.getElementById("fsupload");
         this.showUploadView();
+        this.video=document.querySelector("video");
 
         //Inputelement auswählen und Eventlistener einfügen
 
@@ -73,14 +73,34 @@ export default class EditviewViewController extends mwf.ViewController {
         super.oncreate();
     }
 
+    getMediaViewfromURL(){
+        // this.image.setAttribute("src", this.url.value);
+        // this.mediaItem.src= this.url.value;
+
+        const req= new XMLHttpRequest();
+        req.open('get', this.url.value);
+        req.send();
+        req.onload=(e)=>{
+            //alert(req.getResponseHeader('Content-Type'));
+            this.mediaItem.contentType=req.getResponseHeader('Content-Type');
+            this.mediaItem.src= this.url.value;
+            //alert(this.mediaItem.src);
+            this.viewProxy.update({item:this.mediaItem});
+        }
+    }
+
+    // URL für Online Videos:
+    // http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
+    // http://192.168.178.45:7383/content/mov/1674838261455_bbb.mp4
+    //https://placekitten.com/150/200
+
     uploadImage () {
         //erstellen Url und Object zum Anzeigen der Vorschau
         const filedata = this.editviewForm.filesrc.files[0];
+        //Temporär - benutzen wir nicht, stattdessen die richtige URl nach dem Opload
         const filedataurl= URL.createObjectURL(filedata);
-
-        // Zuweisen der Daten für die Vorschau
-        this.image.src=filedataurl;
-        this.mediaItem.src=filedataurl;
+        //this.image.src=filedataurl;
+        // this.mediaItem.src=filedataurl;
 
         // verschicken wir das FileinputFile per Formdata und XML HTTP Request
         if(filedata){
@@ -90,18 +110,37 @@ export default class EditviewViewController extends mwf.ViewController {
             brieftaube.open("POST","api/upload");
             brieftaube.send(uploadData);
 
-            //Temporär
-            this.image.src=filedataurl;
-            this.mediaItem.src=filedataurl;
-
             brieftaube.onload=(e)=>{
 
+                //Analyse des Filedata Type zum aktuelisieren der Vorschau und des Ractive Templates HTML
+                this.mediaItem.contentType= filedata.type;
+                //alert(filedata.type);
+
+                //Erstellen des Jasonobjects zum auslesen der Werte
+                const responseString=brieftaube.responseText;
+                const JsonObj= JSON.parse(responseString);
+                //console.log(JsonObj);
+
+                //Erstellen einer gültigen URL
+                const responseURl= brieftaube.responseURL.substring(0,27);
+                const objectURL=JsonObj.data["filesrc"];
+                const completeURL=responseURl.concat(objectURL);
+                //console.log(completeURL);
+
+                //Zuweisen der gültigen URL an alle erforderlichen Elemente
+                //this.image.src=completeURL;
+                this.url.value=completeURL;
+
+                //Hier reicht die MediaItemsource weil wir Ractive Databinding benutzen
+                this.mediaItem.src=completeURL;
+
+                // anschließendes Update des Viewproxy, das ist wichtig damit wir direkt die Vorschau auf dem Viewproxy sehen
+                this.viewProxy.update({item:this.mediaItem});
             }
         }
-
-        // Update des Viewproxy
-        this.viewProxy.update({item: this.mediaItem});
     }
+
+
 
     showUploadView(){
         let crudstate=MyApplication.currentCRUDScope;
@@ -161,6 +200,8 @@ export default class EditviewViewController extends mwf.ViewController {
         // TODO: implement action bindings for dialog, accessing dialog.root
     }
 
+
+
     /*
      * for views that initiate transitions to other views
      * NOTE: return false if the view shall not be returned to, e.g. because we immediately want to display its previous view. Otherwise, do not return anything.
@@ -186,6 +227,16 @@ export default class EditviewViewController extends mwf.ViewController {
                 })
             }
         })
+    }
+
+    async onpause(){
+        const video = this.root.querySelector("video") ;
+
+        //Diese Funktion ist Frameworkbasiert
+        if(video){
+            video.pause();
+        }
+        super.onpause();
     }
 
     autofillUrl() {

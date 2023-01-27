@@ -16,16 +16,23 @@ export default class ReadviewViewController extends mwf.ViewController {
      * for any view: initialise the view
      */
     async oncreate() {
+
         // TODO: do databinding, set listeners, initialise the view
         //var mediaItem = new entities.MediaItem("m","https://placekitten.com/300/400");
         this.mediaItem = this.args.item;
         this.viewProxy = this.bindElement("mediaReadviewTemplate",{item: this.mediaItem},this.root).viewProxy;
 
+        //---------------------------------Hier nochmal ansetzen, Objecte werden immer weiter transportiert
+
+        //Originales Objekt um alle Änderungen in der Editview Databinding wiedeer rückgängig zu machen
+        this.Original= JSON.parse(JSON.stringify(this.mediaItem));
+        console.log("Das Original nach Erstellen:");
+        console.log(this.Original);
+
         this.viewProxy.bindAction("deleteItem",(() => {
             // mediaItem.delete().then(() => {
             //     this.previousView({deletedItem:mediaItem});
             // })
-
             this.deleteItem(this.mediaItem).then(() => {
                // this.previousView({deletedItem:this.mediaItem});
             })
@@ -74,20 +81,38 @@ export default class ReadviewViewController extends mwf.ViewController {
         // TODO: implement action bindings for dialog, accessing dialog.root
     }
 
+    // URL für Online Videos:
+    // http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4.
+
     /*
      * for views that initiate transitions to other views
      * NOTE: return false if the view shall not be returned to, e.g. because we immediately want to display its previous view. Otherwise, do not return anything.
      */
     async onReturnFromNextView(nextviewid, returnValue, returnStatus) {
         // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
-        // console.log(returnValue);
-
-        if(returnStatus==="upd"){this.viewProxy.update({item: returnValue.updatedItem});}
-
-        if(returnStatus==="del"){
+        alert(returnStatus);
+        if(returnStatus==="upd"){
+            this.viewProxy.update({item: returnValue.updatedItem});
+        }else if(returnStatus==="del"){
             this.previousView();
             return false;
+        }else{
+            //---------------------------------Hier nochmal ansetzen, Objekte werden immer weiter transportiert
+            console.log("Das Original nach Return:");
+            console.log(this.Original);
+            this.mediaItem= this.args.item;
+            this.viewProxy.update({item: this.mediaItem});
         }
+    }
+
+    async onpause(){
+        const video = this.root.querySelector("video") ;
+
+        //Diese Funktion ist Frameworkbasiert
+        if(video){
+            video.pause();
+        }
+        super.onpause();
     }
 
     async deleteItem(item) {
