@@ -48,6 +48,7 @@
                         {{else}}
                         <div class="videoContain mwf-left-align">
                             <video src="{{src}}"></video>
+                            <img class="playable" src="/lib/css/img/glyphicons/png/glyphicons-221-play-button.png"/>
                         </div>
                         {{/if}}
                         <div class="mwf-li-titleblock">
@@ -161,7 +162,7 @@
                     <form onsubmit="" id="editForm" enctype="multipart/form-data">
                         <fieldset class="mwf-material">
 <!--                            <input type="url" name="url" required="required" class="mwf-material-altinput-target"  value="{{#if item.created}}{{item.src}}{{else}}{{/if}}">-->
-                            <input type="url" name="url" required="required" class="mwf-material-altinput-target"  value="{{item.src}}">
+                            <input type="url" name="url" required="required" class="mwf-material-altinput-target"  value="{{#if item.created}}{{item.src}}{{else}}{{/if}}">
                             <legend>URL</legend>
                             <label id="fsupload" class="mwf-imgbutton mwf-img-camera mwf-right-align mwf-material-altinput " for="filesrc"></label>
                             <input class="mwf-material-altinput"  type="file" id="filesrc" name="filesrc">
@@ -172,7 +173,8 @@
                         </fieldset>
 
                         {{#if item.mediaType != 'video'}}
-                        <img class="editImage" src="{{#if item.created}}{{item.src}}{{else}}{{/if}}"/>
+<!--                        <img class="editImage" src="{{#if item.created}}{{item.src}}{{else}}{{/if}}"/>-->
+                        <img class="editImage" src="{{item.src}}"/>
                         {{else}}
 <!--                        <video class="editImage" src="{{#if item.created}}{{item.src}}{{else}}{{/if}}"></video>-->
                         <video autoplay="true" controls= "true" class="editImage" src="{{item.src}}"></video>

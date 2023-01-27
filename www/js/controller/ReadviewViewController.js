@@ -105,6 +105,16 @@ export default class ReadviewViewController extends mwf.ViewController {
         }
     }
 
+    async onpause(){
+        const video = this.root.querySelector("video") ;
+
+        //Diese Funktion ist Frameworkbasiert
+        if(video){
+            video.pause();
+        }
+        super.onpause();
+    }
+
     async deleteItem(item) {
         this.showDialog("mediaItemDeleteDialog",{
             item: item,

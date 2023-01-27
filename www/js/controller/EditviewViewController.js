@@ -55,9 +55,9 @@ export default class EditviewViewController extends mwf.ViewController {
         this.image= document.querySelector(".editImage");
 
         this.url.addEventListener('blur', (e) =>{
-            this.image.setAttribute("src", this.url.value);
-            this.mediaItem.src= this.url.value;
+            this.getMediaViewfromURL();
         });
+
 
         //Hier wird geprüft ob der Dateiupload angezeigt werden soll
         this.uploadfieldset= document.getElementById("fsupload");
@@ -72,6 +72,26 @@ export default class EditviewViewController extends mwf.ViewController {
         // call the superclass once creation is done
         super.oncreate();
     }
+
+    getMediaViewfromURL(){
+        // this.image.setAttribute("src", this.url.value);
+        // this.mediaItem.src= this.url.value;
+
+        const req= new XMLHttpRequest();
+        req.open('get', this.url.value);
+        req.send();
+        req.onload=(e)=>{
+            //alert(req.getResponseHeader('Content-Type'));
+            this.mediaItem.contentType=req.getResponseHeader('Content-Type');
+            this.mediaItem.src= this.url.value;
+            //alert(this.mediaItem.src);
+            this.viewProxy.update({item:this.mediaItem});
+        }
+    }
+
+    // URL für Online Videos:
+    // http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
+    // http://192.168.178.45:7383/content/mov/1674838261455_bbb.mp4
 
     uploadImage () {
         //erstellen Url und Object zum Anzeigen der Vorschau
@@ -89,19 +109,11 @@ export default class EditviewViewController extends mwf.ViewController {
             brieftaube.open("POST","api/upload");
             brieftaube.send(uploadData);
 
-            // Benutzen von Data URLs:
-            const filereader= new FileReader();
-            filereader.readAsDataURL(filedata);
-            filereader.onload=()=>{
-
-            }
-
-
             brieftaube.onload=(e)=>{
 
                 //Analyse des Filedata Type zum aktuelisieren der Vorschau und des Ractive Templates HTML
                 this.mediaItem.contentType= filedata.type;
-                alert(filedata.type);
+                //alert(filedata.type);
 
                 //Erstellen des Jasonobjects zum auslesen der Werte
                 const responseString=brieftaube.responseText;
@@ -187,8 +199,7 @@ export default class EditviewViewController extends mwf.ViewController {
         // TODO: implement action bindings for dialog, accessing dialog.root
     }
 
-    // URL für Online Videos:
-    // http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
+
 
     /*
      * for views that initiate transitions to other views

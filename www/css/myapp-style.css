@@ -34,15 +34,23 @@ footer p{
 }
 
 .videoContain{
-    display: block;
+    position: relative;
     width:50px;
     height:50px;
 }
 
 li video{
-    display: grid;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    overflow: hidden;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+}
+
+.playable {
+    position: relative;
+    bottom:30px;
+    left:5px;
+    /*left: 3px;*/
+    width:15px;
+    /*z-index: 6;*/
+    filter:invert(100%);
 }
