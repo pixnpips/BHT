@@ -42,7 +42,14 @@
             <main class="mwf-scrollview">
                 <ul class="mwf-listview" data-mwf-listitem-view="myapp-listitem" data-mwf-listitem-menu="mediaItemMenu" >
                     <li class="mwf-listitem mwf-li-title-subtitle mwf-template mwf-databind" data-mwf-templatename="myapp-listitem" data-mwf-targetview="mediaReadview">
-                        <img alt="" class="mwf-left-align" src="{{src}}"/>
+<!--                        <img class="mwf-left-align" src="{{src}}"/>-->
+                        {{#if mediaType != 'video'}}
+                        <img src="{{src}}" class="mwf-left-align"/>
+                        {{else}}
+                        <div class="videoContain mwf-left-align">
+                            <video src="{{src}}"></video>
+                        </div>
+                        {{/if}}
                         <div class="mwf-li-titleblock">
                             <h2>{{title}} {{_id}}</h2>
                             <h3>{{addedDateString}}</h3>
@@ -123,7 +130,11 @@
                     <button class="mwf-imgbutton mwf-img-delete mwf-right-align" on-click="deleteItem"></button>
                 </header>
                 <main class="mwf-scrollview">
+                    {{#if item.mediaType != 'video'}}
                     <img src="{{item.src}}"/>
+                    {{else}}
+                    <video autoplay="true" controls= "true" src="{{item.src}}"></video>
+                    {{/if}}
                     <p>{{item.description}}</p>
                 </main>
                 <footer>
@@ -149,17 +160,24 @@
                 <main class="mwf-scrollview">
                     <form onsubmit="" id="editForm" enctype="multipart/form-data">
                         <fieldset class="mwf-material">
-                            <input type="url" name="url" required="required" class="mwf-material-altinput-target"  value="{{#if item.created}}{{item.src}}{{else}}{{/if}}">
+<!--                            <input type="url" name="url" required="required" class="mwf-material-altinput-target"  value="{{#if item.created}}{{item.src}}{{else}}{{/if}}">-->
+                            <input type="url" name="url" required="required" class="mwf-material-altinput-target"  value="{{item.src}}">
                             <legend>URL</legend>
                             <label id="fsupload" class="mwf-imgbutton mwf-img-camera mwf-right-align mwf-material-altinput " for="filesrc"></label>
                             <input class="mwf-material-altinput"  type="file" id="filesrc" name="filesrc">
-
                         </fieldset>
                         <fieldset class="mwf-material">
                             <input  type="text" name="title" required="required"  value="{{item.title}}">
                             <legend>Titel</legend>
                         </fieldset>
+
+                        {{#if item.mediaType != 'video'}}
                         <img class="editImage" src="{{#if item.created}}{{item.src}}{{else}}{{/if}}"/>
+                        {{else}}
+<!--                        <video class="editImage" src="{{#if item.created}}{{item.src}}{{else}}{{/if}}"></video>-->
+                        <video autoplay="true" controls= "true" class="editImage" src="{{item.src}}"></video>
+                        {{/if}}
+
                         <fieldset class="mwf-material">
                             <input class="edit-textarea " type="textarea" name="desc"  value="{{item.description}}">
                             <legend>Beschreibung</legend>

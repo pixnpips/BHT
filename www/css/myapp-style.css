@@ -15,8 +15,34 @@
     max-width: 100%;
     /*border: 2px solid limegreen;*/
 }
+
+#mediaReadview video{
+    width: 100%;
+    max-width: 100%;
+    /*border: 2px solid limegreen;*/
+}
+
+#mediaEditView video{
+    width: 100%;
+    max-width: 100%;
+    /*border: 2px solid limegreen;*/
+}
 footer p{
     margin-left: 10px;
     height: 7px;
     line-height: 7px;
+}
+
+.videoContain{
+    display: block;
+    width:50px;
+    height:50px;
+}
+
+li video{
+    display: grid;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
 }

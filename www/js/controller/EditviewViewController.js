@@ -55,13 +55,14 @@ export default class EditviewViewController extends mwf.ViewController {
         this.image= document.querySelector(".editImage");
 
         this.url.addEventListener('blur', (e) =>{
-            this.image.setAttribute("src", this.url.value );
+            this.image.setAttribute("src", this.url.value);
             this.mediaItem.src= this.url.value;
         });
 
         //Hier wird geprüft ob der Dateiupload angezeigt werden soll
         this.uploadfieldset= document.getElementById("fsupload");
         this.showUploadView();
+        this.video=document.querySelector("video");
 
         //Inputelement auswählen und Eventlistener einfügen
 
@@ -75,7 +76,10 @@ export default class EditviewViewController extends mwf.ViewController {
     uploadImage () {
         //erstellen Url und Object zum Anzeigen der Vorschau
         const filedata = this.editviewForm.filesrc.files[0];
+        //Temporär - benutzen wir nicht, stattdessen die richtige URl nach dem Opload
         const filedataurl= URL.createObjectURL(filedata);
+        //this.image.src=filedataurl;
+        // this.mediaItem.src=filedataurl;
 
         // verschicken wir das FileinputFile per Formdata und XML HTTP Request
         if(filedata){
@@ -85,28 +89,45 @@ export default class EditviewViewController extends mwf.ViewController {
             brieftaube.open("POST","api/upload");
             brieftaube.send(uploadData);
 
-            // //Temporär
-            // this.image.src=filedataurl;
-            // this.mediaItem.src=filedataurl;
+            // Benutzen von Data URLs:
+            const filereader= new FileReader();
+            filereader.readAsDataURL(filedata);
+            filereader.onload=()=>{
+
+            }
+
 
             brieftaube.onload=(e)=>{
+
+                //Analyse des Filedata Type zum aktuelisieren der Vorschau und des Ractive Templates HTML
+                this.mediaItem.contentType= filedata.type;
+                alert(filedata.type);
+
+                //Erstellen des Jasonobjects zum auslesen der Werte
                 const responseString=brieftaube.responseText;
                 const JsonObj= JSON.parse(responseString);
                 //console.log(JsonObj);
+
+                //Erstellen einer gültigen URL
                 const responseURl= brieftaube.responseURL.substring(0,27);
                 const objectURL=JsonObj.data["filesrc"];
                 const completeURL=responseURl.concat(objectURL);
                 //console.log(completeURL);
-                this.image.src=completeURL;
-                this.mediaItem.src=completeURL;
+
+                //Zuweisen der gültigen URL an alle erforderlichen Elemente
+                //this.image.src=completeURL;
                 this.url.value=completeURL;
+
+                //Hier reicht die MediaItemsource weil wir Ractive Databinding benutzen
+                this.mediaItem.src=completeURL;
+
+                // anschließendes Update des Viewproxy, das ist wichtig damit wir direkt die Vorschau auf dem Viewproxy sehen
+                this.viewProxy.update({item:this.mediaItem});
             }
         }
-
-        // Update des Viewproxy
-        this.viewProxy.update({item: this.mediaItem});
-
     }
+
+
 
     showUploadView(){
         let crudstate=MyApplication.currentCRUDScope;
@@ -166,6 +187,9 @@ export default class EditviewViewController extends mwf.ViewController {
         // TODO: implement action bindings for dialog, accessing dialog.root
     }
 
+    // URL für Online Videos:
+    // http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
+
     /*
      * for views that initiate transitions to other views
      * NOTE: return false if the view shall not be returned to, e.g. because we immediately want to display its previous view. Otherwise, do not return anything.
@@ -191,6 +215,16 @@ export default class EditviewViewController extends mwf.ViewController {
                 })
             }
         })
+    }
+
+    async onpause(){
+        const video = this.root.querySelector("video") ;
+
+        //Diese Funktion ist Frameworkbasiert
+        if(video){
+            video.pause();
+        }
+        super.onpause();
     }
 
     autofillUrl() {
