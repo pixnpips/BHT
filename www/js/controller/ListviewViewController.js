@@ -48,7 +48,6 @@ export default class ListviewViewController extends mwf.ViewController {
 
             //Jetzt wechseln wir in unsere EditView
             this.nextView("mediaEditView");
-
         });
 
         //----------------Button für das Umschalten zwischen remote oder local CRUD-----------------//
