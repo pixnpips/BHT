@@ -54,3 +54,14 @@ li video{
     /*z-index: 6;*/
     filter:invert(100%);
 }
+
+.chosen{
+    background-color: rgb(45, 45, 45);
+    animation-name: example;
+    animation-duration: 3s;
+}
+
+@keyframes example {
+    from {background-color: rgb(92, 213, 35);}
+    to {background-color: rgb(45, 45, 45);}
+}

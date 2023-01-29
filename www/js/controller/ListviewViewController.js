@@ -13,6 +13,8 @@ export default class ListviewViewController extends mwf.ViewController {
         //this.crudops = GenericCRUDImplLocal.newInstance("MediaItem");
         this.addNewMediaItemElement = null;
         this.switchCrudButton=null;
+        this.newLiElem=null;
+        this.newItem=null;
     }
 
     /*
@@ -27,7 +29,8 @@ export default class ListviewViewController extends mwf.ViewController {
         // this.crudops.readAll().then((items) => {
         //     this.initialiseListview(items);
         // });
-
+        this.newLiElem=null;
+        this.newItem=null;
 
         //---------------Auslesen aller ListItems aus der lokalen oder remote Datenbank -------------//
 
@@ -35,18 +38,9 @@ export default class ListviewViewController extends mwf.ViewController {
                 this.initialiseListview(items);
             });
 
-
         //Hier wird ein new Media Item erstellt und er Eventlistener auf das + Button gesetzt
         this.addNewMediaItemElement = this.root.querySelector("#addNewMediaItem");
         this.addNewMediaItemElement.onclick = (() => {
-            //this.createNewItem(); --- Achtung hier haben wir den einfachen Dialog aufgerufen!!!
-
-            // this.crudops.create(new entities.MediaItem("m","https:
-            // placekitten.com/100/100")).then((created) => {
-            // this.addToListview(created);
-            // });
-
-            //Jetzt wechseln wir in unsere EditView
             this.nextView("mediaEditView");
         });
 
@@ -132,23 +126,38 @@ export default class ListviewViewController extends mwf.ViewController {
      * for views that initiate transitions to other views
      * NOTE: return false if the view shall not be returned to, e.g. because we immediately want to display its previous view. Otherwise, do not return anything.
      */
-     //Das hier ist nicht mehr von nöten weil die Aktionen mittels des Listeners in der oncreate Methode ausgeführt wurden
-    // async onReturnFromNextView(nextviewid, returnValue, returnStatus) {
-    //     // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
-    //     if (nextviewid == "mediaReadview" || nextviewid== "mediaEditView" ){
-    //         if(returnValue){
-    //             if (returnValue.deletedItem){
-    //                 this.removeFromListview(returnValue.deletedItem._id)
-    //             }
-    //             // else if(returnValue.createdItem){
-    //             //     this.addToListview(returnValue.createdItem);
-    //             // }
-    //             // else if(returnValue.updatedItem){
-    //             //     this.updateInListview(returnValue.updatedItem._id, returnValue.updatedItem);
-    //             // }
-    //         }
-    //     }
-    // }
+
+    async onReturnFromNextView(nextviewid, returnValue, returnStatus) {
+        // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
+            if(returnValue){
+                // console.log("!\n!\n!\n");
+                // console.log(returnValue);
+                if(returnValue.createdItem){
+                    this.newItem=returnValue.createdItem;
+                }else if(returnValue.updatedItem){
+                    this.newItem= returnValue.updatedItem;
+                }else{
+                    console.log("Rückkehr aus Editview ohne Änderungen");
+                }
+            }
+    }
+
+     async onresume() {
+        await super.onresume();
+        if(this.newItem){
+            this.newLiElem= this.getItemviewFromListview(this.newItem._id);
+            console.log("!\n!\n!\n");
+            console.log(this.newLiElem);
+            this.newLiElem.scrollIntoView(true);
+            this.newLiElem.classList.toggle("chosen");
+            setTimeout(()=>{
+                this.newLiElem.classList.toggle("chosen");
+            }, 3000);
+        }
+        this.newItem=null;
+        //alert("Onresume");
+    }
+
 
     createNewItem() {
         var newItem = new entities.MediaItem("", "");
@@ -173,7 +182,6 @@ export default class ListviewViewController extends mwf.ViewController {
         if (state==="local"){MyApplication.switchCRUD("remote");}
         else if(state==="remote"){MyApplication.switchCRUD("local");}
         else(alert ("No detected Database"));
-
 
         entities.MediaItem.readAll().then((items) => {
             this.initialiseListview(items);
@@ -201,26 +209,7 @@ export default class ListviewViewController extends mwf.ViewController {
         });
     }
 
-    // onresume(){
-    //     super.onresume().then(()=>{
-    //         console.log("!!!")
-    //         console.log("!!!")
-    //         console.log(this.args);
-    //         // if(this.args.==="cre" || this.args.status==="upd"){
-    //         //     let item= this.getItemviewFromListview(this.args.item._id, "mediaOverview");
-    //         //     console.log("!!!")
-    //         //     console.log(item);
-    //         // }
-    //     })
-    // }
 
-
-    //  deleteItem(item) {
-    //     item.delete().then(() => {
-    //         // this.removeFromListview(item._id);
-    //     });
-    //     this.hideDialog();
-    // }
 
     deleteItem(item) {
         this.showDialog("mediaItemDeleteDialog",{

@@ -9,6 +9,7 @@ export default class ReadviewViewController extends mwf.ViewController {
     constructor() {
         super();
         this.viewProxy = null;
+        this.status="";
         console.log("ReadviewViewController()");
     }
 
@@ -85,6 +86,7 @@ export default class ReadviewViewController extends mwf.ViewController {
         // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
        //alert(returnStatus);
         if(returnStatus==="upd"){
+            this.mediaItem=returnValue.updatedItem;
             this.viewProxy.update({item: returnValue.updatedItem});
         }else if(returnStatus==="del"){
             this.previousView();
@@ -93,6 +95,7 @@ export default class ReadviewViewController extends mwf.ViewController {
             console.log("Editview verlassen, Item nicht verändert");
         }
     }
+
 
     async onpause(){
         const video = this.root.querySelector("video") ;
