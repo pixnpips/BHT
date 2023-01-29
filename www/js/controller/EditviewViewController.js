@@ -110,10 +110,11 @@ export default class EditviewViewController extends mwf.ViewController {
         //Temporär - benutzen wir nicht, stattdessen die richtige URl nach dem Opload
         const filedataurl= URL.createObjectURL(this.filedata);
         this.mediaItem.src=filedataurl;
-
         this.mediaItem.contentType= this.filedata.type;
         this.viewProxy.update({item:this.mediaItem});
     }
+
+
     uploadData () {
         // verschicken wir das FileinputFile per Formdata und XML HTTP Request
         if(this.filedata){
@@ -146,8 +147,10 @@ export default class EditviewViewController extends mwf.ViewController {
                 this.viewProxy.update({item:this.mediaItem});
                 // console.log("?\n?\n?");
                 // console.log(this.mediaItem);
-                this.mediaItem.update();
-                return true;
+                this.mediaItem.update().then(()=>{
+                    return true;
+                });
+
             }
         }
     }
