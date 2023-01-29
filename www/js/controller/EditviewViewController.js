@@ -21,7 +21,6 @@ export default class EditviewViewController extends mwf.ViewController {
         //erstellen erstmal ein MediaItemobject oder nehmen es aus den Args der Voransicht!!
         this.mediaItem = this.args?.item || new entities.MediaItem("", );
 
-
         //Binden unser ausgeschnittenes Template an einen Viewproxy damit es angezeigt werden kann und damit wir ractive nutzen können!
         //Hier findet das Databinding statt!!!
         //Das ist eine Repräsentation des Templates das wir mit Ractive Databinding gefüllt haben zu Anzeige
@@ -29,6 +28,9 @@ export default class EditviewViewController extends mwf.ViewController {
 
         // TODO: do databinding, set listeners, initialise the view
         this.editviewForm= this.root.querySelector("#editForm");
+
+        this.originalsrc=this.mediaItem.src;
+        this.originalContenttype= this.mediaItem.contentType;
 
         this.editviewForm.onsubmit = (e) =>{
             e.preventDefault();
@@ -97,7 +99,7 @@ export default class EditviewViewController extends mwf.ViewController {
         }
     }
 
-    // URL für Online Videos:
+    // URL divers:
     // http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
     // http://192.168.178.45:7383/content/mov/1674906589146_bbb.mp4
     //  https://placekitten.com/150/200
@@ -150,6 +152,12 @@ export default class EditviewViewController extends mwf.ViewController {
         }
     }
 
+    onback() {
+        this.mediaItem.src=this.originalsrc;
+        this.mediaItem.contentType=this.originalContenttype;
+        this.editviewForm.reset();
+        super.onback();
+    }
 
 
     showUploadView(){
@@ -158,7 +166,6 @@ export default class EditviewViewController extends mwf.ViewController {
             this.uploadfieldset.hidden=true;
         }
     }
-
 
 
     async updateorCreateItem (item){

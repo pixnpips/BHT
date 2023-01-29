@@ -22,18 +22,6 @@ export default class ReadviewViewController extends mwf.ViewController {
         this.mediaItem = this.args.item;
         this.viewProxy = this.bindElement("mediaReadviewTemplate",{item: this.mediaItem},this.root).viewProxy;
 
-
-
-        //---------------------------------Hier nochmal ansetzen, Objecte werden immer weiter transportiert
-
-        //Originales Objekt um alle Änderungen in der Editview Databinding wiedeer rückgängig zu machen
-        this.Original= JSON.parse(JSON.stringify(this.mediaItem));
-        console.log("Das Original nach Erstellen:");
-        console.log(this.Original);
-
-
-
-
         this.viewProxy.bindAction("deleteItem",(() => {
             // mediaItem.delete().then(() => {
             //     this.previousView({deletedItem:mediaItem});
@@ -95,22 +83,14 @@ export default class ReadviewViewController extends mwf.ViewController {
      */
     async onReturnFromNextView(nextviewid, returnValue, returnStatus) {
         // TODO: check from which view, and possibly with which status, we are returning, and handle returnValue accordingly
-       alert(returnStatus);
-
-       //  console.log("?\n?\n?");
-       // console.log(returnValue.updatedItem);
-
+       //alert(returnStatus);
         if(returnStatus==="upd"){
             this.viewProxy.update({item: returnValue.updatedItem});
         }else if(returnStatus==="del"){
             this.previousView();
             return false;
         }else{
-            //---------------------------------Hier nochmal ansetzen, Objekte werden immer weiter transportiert
-            console.log("Das Original nach Return:");
-            console.log(this.Original);
-            this.mediaItem= this.args.item;
-            this.viewProxy.update({item: this.mediaItem});
+            console.log("Editview verlassen, Item nicht verändert");
         }
     }
 
