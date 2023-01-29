@@ -16,7 +16,6 @@ export default class EditviewViewController extends mwf.ViewController {
      */
     async oncreate() {
 
-
         this.filedata=null;
 
         //erstellen erstmal ein MediaItemobject oder nehmen es aus den Args der Voransicht!!
@@ -32,7 +31,6 @@ export default class EditviewViewController extends mwf.ViewController {
         this.editviewForm= this.root.querySelector("#editForm");
 
         this.editviewForm.onsubmit = (e) =>{
-            //alert("sie haben das Formular versendet");
             e.preventDefault();
             this.updateorCreateItem(this.mediaItem);
         }
@@ -102,7 +100,7 @@ export default class EditviewViewController extends mwf.ViewController {
     // URL für Online Videos:
     // http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
     // http://192.168.178.45:7383/content/mov/1674906589146_bbb.mp4
-    //https://placekitten.com/150/200
+    //  https://placekitten.com/150/200
 
     displayPreview () {
         //erstellen Url und Object zum Anzeigen der Vorschau
@@ -110,15 +108,14 @@ export default class EditviewViewController extends mwf.ViewController {
         //Temporär - benutzen wir nicht, stattdessen die richtige URl nach dem Opload
         const filedataurl= URL.createObjectURL(this.filedata);
         this.mediaItem.src=filedataurl;
-        alert("FiledataURl gespeichert");
+
         this.mediaItem.contentType= this.filedata.type;
         this.viewProxy.update({item:this.mediaItem});
     }
-
-   async uploadData (next) {
+    uploadData () {
         // verschicken wir das FileinputFile per Formdata und XML HTTP Request
         if(this.filedata){
-            alert("Daten gefunden");
+
             const uploadData = new FormData;
             uploadData.append("filesrc", this.filedata);
             const brieftaube= new XMLHttpRequest();
@@ -128,7 +125,7 @@ export default class EditviewViewController extends mwf.ViewController {
             brieftaube.onload=(e)=>{
                 //Analyse des Filedata Type zum aktuelisieren der Vorschau und des Ractive Templates HTML
                 this.mediaItem.contentType= this.filedata.type;
-                //alert(filedata.type);
+
 
                 //Erstellen des Jasonobjects zum auslesen der Werte
                 const responseString=brieftaube.responseText;
@@ -140,17 +137,14 @@ export default class EditviewViewController extends mwf.ViewController {
                 const objectURL=JsonObj.data["filesrc"];
                 const completeURL=responseURl.concat(objectURL);
 
-                //Zuweisen der gültigen URL an alle erforderlichen Elemente
-                //this.image.src=completeURL;
-                //this.url.value=completeURL;
-
                 //Hier reicht die MediaItemsource weil wir Ractive Databinding benutzen
                 this.mediaItem.src=completeURL;
 
                 // anschließendes Update des Viewproxy, das ist wichtig damit wir direkt die Vorschau auf dem Viewproxy sehen
                 this.viewProxy.update({item:this.mediaItem});
-                console.log("?\n?\n?");
-                console.log(this.mediaItem);
+                // console.log("?\n?\n?");
+                // console.log(this.mediaItem);
+                this.mediaItem.update();
                 return true;
             }
         }
@@ -174,13 +168,13 @@ export default class EditviewViewController extends mwf.ViewController {
                 this.previousView({createdItem: item},"cre");
             })
         }else{
-            await(this.uploadData());
+            this.uploadData();
+            // await(this.uploadData());
             item.update().then(() => {
                 this.previousView({updatedItem: item},"upd");
             })
-
-            console.log("!\n!\n!");
-            console.log(this.mediaItem);
+            // console.log("!\n!\n!");
+            // console.log(this.mediaItem);
         }
     }
 
