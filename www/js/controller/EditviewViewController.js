@@ -34,7 +34,7 @@ export default class EditviewViewController extends mwf.ViewController {
 
         this.editviewForm.onsubmit = (e) =>{
             e.preventDefault();
-            this.updateorCreateItem(this.mediaItem);
+            this.uploadData();
         }
 
         this.viewProxy.bindAction("deleteItem",(() => {
@@ -60,14 +60,9 @@ export default class EditviewViewController extends mwf.ViewController {
             this.getMediaViewfromURL();
         });
 
-        // Test für Live aktualisierung
-        //this.url=this.mediaItem.src;
-
-
         //Hier wird geprüft ob der Dateiupload angezeigt werden soll
         this.uploadfieldset= document.getElementById("fsupload");
         this.showUploadView();
-        this.video=document.querySelector("video");
 
         //Inputelement auswählen und Eventlistener einfügen
 
@@ -84,9 +79,10 @@ export default class EditviewViewController extends mwf.ViewController {
         req.send();
         req.onerror=(e)=>{
             alert ("Ungültige URL, Bildinhalt nicht aktualisiert");
-
             //check
             this.url.value=this.mediaItem.src;
+            alert (false);
+            return false;
         }
         req.onload=(e)=>{
             //alert(req.getResponseHeader('Content-Type'));
@@ -94,8 +90,9 @@ export default class EditviewViewController extends mwf.ViewController {
 
             //check
             this.mediaItem.src= this.url.value;
-
             this.viewProxy.update({item:this.mediaItem});
+            alert(true);
+            return true;
         }
     }
 
@@ -109,26 +106,27 @@ export default class EditviewViewController extends mwf.ViewController {
         this.filedata = this.editviewForm.filesrc.files[0];
         //Temporär - benutzen wir nicht, stattdessen die richtige URl nach dem Opload
         const filedataurl= URL.createObjectURL(this.filedata);
+        this.url.value=filedataurl;
         this.mediaItem.src=filedataurl;
         this.mediaItem.contentType= this.filedata.type;
         this.viewProxy.update({item:this.mediaItem});
     }
 
 
-    uploadData () {
+     uploadData () {
         // verschicken wir das FileinputFile per Formdata und XML HTTP Request
-        if(this.filedata){
-
+        if(this.filedata || this.getMediaViewfromURL){
             const uploadData = new FormData;
             uploadData.append("filesrc", this.filedata);
             const brieftaube= new XMLHttpRequest();
             brieftaube.open("POST","api/upload");
             brieftaube.send(uploadData);
 
+            // alert("Daten sind da");
+
             brieftaube.onload=(e)=>{
                 //Analyse des Filedata Type zum aktuelisieren der Vorschau und des Ractive Templates HTML
                 this.mediaItem.contentType= this.filedata.type;
-
 
                 //Erstellen des Jasonobjects zum auslesen der Werte
                 const responseString=brieftaube.responseText;
@@ -144,14 +142,11 @@ export default class EditviewViewController extends mwf.ViewController {
                 this.mediaItem.src=completeURL;
 
                 // anschließendes Update des Viewproxy, das ist wichtig damit wir direkt die Vorschau auf dem Viewproxy sehen
-                this.viewProxy.update({item:this.mediaItem});
+                //this.viewProxy.update({item:this.mediaItem});
                 // console.log("?\n?\n?");
                 // console.log(this.mediaItem);
-                this.mediaItem.update().then(()=>{
-                    return true;
-                });
-
             }
+            this.updateorCreateItem(this.mediaItem);
         }
     }
 
@@ -171,14 +166,14 @@ export default class EditviewViewController extends mwf.ViewController {
     }
 
 
-    async updateorCreateItem (item){
+    updateorCreateItem (item){
+        //alert(item.created);
         if(!item.created) {
             item.create().then(() => {
                 //alert("Media Item created " + this.mediaItem);
                 this.previousView({createdItem: item},"cre");
             })
         }else{
-            this.uploadData();
             // await(this.uploadData());
             item.update().then(() => {
                 this.previousView({updatedItem: item},"upd");
