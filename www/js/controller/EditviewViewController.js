@@ -16,7 +16,6 @@ export default class EditviewViewController extends mwf.ViewController {
      */
     async oncreate() {
 
-        this.filedata=null;
 
         //erstellen erstmal ein MediaItemobject oder nehmen es aus den Args der Voransicht!!
         this.mediaItem = this.args?.item || new entities.MediaItem("", );
@@ -31,10 +30,12 @@ export default class EditviewViewController extends mwf.ViewController {
 
         this.originalsrc=this.mediaItem.src;
         this.originalContenttype= this.mediaItem.contentType;
+        this.filedata = this.editviewForm.filesrc.files[0];
 
         this.editviewForm.onsubmit = (e) =>{
             e.preventDefault();
-            this.uploadData();
+            if(this.filedata){this.uploadData();}
+            else(this.updateorCreateItem(this.mediaItem));
         }
 
         this.viewProxy.bindAction("deleteItem",(() => {
@@ -81,41 +82,42 @@ export default class EditviewViewController extends mwf.ViewController {
             alert ("Ungültige URL, Bildinhalt nicht aktualisiert");
             //check
             this.url.value=this.mediaItem.src;
-            alert (false);
-            return false;
+
         }
         req.onload=(e)=>{
             //alert(req.getResponseHeader('Content-Type'));
             this.mediaItem.contentType=req.getResponseHeader('Content-Type');
-
             //check
             this.mediaItem.src= this.url.value;
             this.viewProxy.update({item:this.mediaItem});
-            alert(true);
-            return true;
+            //alert(true);
         }
     }
 
     // URL divers:
     // http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
-    // http://192.168.178.45:7383/content/mov/1674906589146_bbb.mp4
+    // http://192.168.178.45:7383/content/mov/1675079939817_bbb.mp4
     //  https://placekitten.com/150/200
 
     displayPreview () {
         //erstellen Url und Object zum Anzeigen der Vorschau
-        this.filedata = this.editviewForm.filesrc.files[0];
+       this.filedata = this.editviewForm.filesrc.files[0];
         //Temporär - benutzen wir nicht, stattdessen die richtige URl nach dem Opload
-        const filedataurl= URL.createObjectURL(this.filedata);
-        this.url.value=filedataurl;
-        this.mediaItem.src=filedataurl;
-        this.mediaItem.contentType= this.filedata.type;
-        this.viewProxy.update({item:this.mediaItem});
+        if(this.filedata) {
+            const filedataurl = URL.createObjectURL(this.filedata);
+            this.url.value = filedataurl;
+            this.mediaItem.src = filedataurl;
+            this.mediaItem.contentType = this.filedata.type;
+            this.viewProxy.update({item: this.mediaItem});
+        }
     }
 
 
      uploadData () {
+
+        console.log(this.filedata);
         // verschicken wir das FileinputFile per Formdata und XML HTTP Request
-        if(this.filedata || this.getMediaViewfromURL){
+        if(this.filedata){
             const uploadData = new FormData;
             uploadData.append("filesrc", this.filedata);
             const brieftaube= new XMLHttpRequest();
@@ -145,8 +147,8 @@ export default class EditviewViewController extends mwf.ViewController {
                 //this.viewProxy.update({item:this.mediaItem});
                 // console.log("?\n?\n?");
                 // console.log(this.mediaItem);
+                this.updateorCreateItem(this.mediaItem);
             }
-            this.updateorCreateItem(this.mediaItem);
         }
     }
 
@@ -167,7 +169,7 @@ export default class EditviewViewController extends mwf.ViewController {
 
 
     updateorCreateItem (item){
-        //alert(item.created);
+        //alert (this.mediaItem);
         if(!item.created) {
             item.create().then(() => {
                 //alert("Media Item created " + this.mediaItem);
